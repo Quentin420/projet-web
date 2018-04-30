@@ -82,4 +82,8 @@ $RECYCLE.BIN/
 *.lnk
 
 
+# Problème DS-STORE
+*.ds_store
+
+
 # End of https://www.gitignore.io/api/macos,windows,sublimetext

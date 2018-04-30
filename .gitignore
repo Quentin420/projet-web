@@ -84,6 +84,13 @@ $RECYCLE.BIN/
 
 # Problème DS-STORE
 .DS_Store
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
 
 # End of https://www.gitignore.io/api/macos,windows,sublimetext

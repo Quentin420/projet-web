@@ -4,8 +4,8 @@ session_start();
 
 // Check if user is logged in using the session variable
 if ( $_SESSION['logged_in'] != 1 ) {
-     $_SESSION['message'] = "You must log in before viewing your profile page!";
-  header("location: error.php");    
+    $_SESSION['message'] = "You must log in before viewing your profile page!";
+    header("location: error.php");    
 }
 else {
     // Makes it easier to read
@@ -32,6 +32,10 @@ else {
                 background-color: #555;
                 color: white;
                 padding: 15px;
+            }
+
+            #accueil{
+                text-align: left;
             }
         </style>
     </head>
@@ -70,6 +74,15 @@ else {
             <div class="row">
 
                 <div class="col-sm-9">
+                    <div class="well" id="accueil">
+                        <form method="post" action="statut.php">
+                            <textarea rows="4" cols="50" name="statut">Des nouveautés à partager ?</textarea>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-bullhorn"></span> Poster
+                            </button>
+                        </form>
+
+                    </div>
 
                     <div class="row">
                         <div class="col-sm-2">
@@ -79,7 +92,7 @@ else {
                             </div>
                         </div>
 
-                        <div class="col-sm-9">
+                        <div class="col-sm-10">
                             <div class="well">
                                 <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
                                 <button type="button" class="btn btn-default btn-sm">
@@ -97,6 +110,7 @@ else {
                     </div>
 
                     <div class="row">
+
                         <div class="col-sm-2">
                             <div class="well">
                                 <p>Bo</p>
@@ -104,7 +118,7 @@ else {
                             </div>
                         </div>
 
-                        <div class="col-sm-9">
+                        <div class="col-sm-10">
                             <div class="well">
                                 <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
                                 <button type="button" class="btn btn-default btn-sm">
@@ -128,7 +142,7 @@ else {
                             </div>
                         </div>
 
-                        <div class="col-sm-9">
+                        <div class="col-sm-10">
                             <div class="well">
                                 <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
                                 <button type="button" class="btn btn-default btn-sm">
@@ -151,7 +165,7 @@ else {
                                 <img src="img/avatar.svg" class="img-circle" height="55" width="55" alt="Avatar">
                             </div>
                         </div>
-                        <div class="col-sm-9">
+                        <div class="col-sm-10">
                             <div class="well">
                                 <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
                                 <button type="button" class="btn btn-default btn-sm">

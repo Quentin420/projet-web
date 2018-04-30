@@ -21,6 +21,8 @@ else {
     $mysqli = new mysqli($host,$user,$pass,$db) or die($mysqli->error);
     $result = $mysqli->query("SELECT COUNT(*) as nb_relation FROM relation WHERE id_user1='$id_user'");
     $nb_relation = $result->fetch_assoc();
+    $result = $mysqli->query("SELECT COUNT(*) as nb_relation FROM relation WHERE id_user2='$id_user'");
+    $nb = $result->fetch_assoc();
 }
 ?>
 
@@ -72,7 +74,7 @@ else {
 
                     <ul class="nav navbar-nav navbar-right">
                         <li class="active"><a href="profil.php"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
+                        <li><a href="login-system/logout.php"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
                     </ul>
                 </div>
             </div>
@@ -94,7 +96,7 @@ else {
                     <div class="row">
                         <div class="col-sm-4">
                             <h2 class="profil"><?= $prenom.' '.$nom?></h2>
-                            <p class="profil">En réseau avec <?= $nb_relation['nb_relation'] ?> personnes</p>
+                            <p class="profil">En réseau avec <?= $nb_relation['nb_relation']+$nb['nb_relation']?> personnes <p>
                         </div>
 
                     </div>

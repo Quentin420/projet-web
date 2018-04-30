@@ -15,6 +15,10 @@
                 color: white;
                 padding: 15px;
             }
+            
+            .profil{
+                text-align:left; 
+            }
         </style>
     </head>
     <body>
@@ -52,24 +56,25 @@
             <div class="row">
 
                 <div class="col-sm-3">
-                    <h1>Profil</h1>
+                    <h1 class="profil">Profil</h1>
                     <div class="well">
                         <img src="img/avatar.svg" class="img-circle" height="150" width="150" alt="Avatar">
                     </div>
+                    
+                    <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-briefcase"></span> Ajouter au réseau</button>
+                    <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> Consulter son CV</button>
                 </div>
 
-                <div class="col-sm-8">
+                <div class="col-sm-9">
                     <div class="row">
                         <div class="col-sm-4">
-                            <h2>Jean Dupont</h2>
-                            <p>En réseau avec 15 personnes</p>
+                            <h2 class="profil">Jean Dupont</h2>
+                            <p class="profil">En réseau avec 15 personnes</p>
                         </div>
 
-                        <div class="col-sm-8">
-                            <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-briefcase"></span> Ajouter au réseau</button>
-                            <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> Consulter son CV</button>
-                        </div>
-
+                    </div>
+                    
+                    <div class="row">
                         <div class="col-sm-9">
                             <div class="well">
                                 <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>

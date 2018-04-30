@@ -28,15 +28,15 @@
                         <span class="icon-bar"></span>                        
                     </button>
                     <style>.navbar-brand {font-weight: bold;}</style>
-                    <a class="navbar-brand" href="#">LinkECE</a>
+                    <a class="navbar-brand" href="accueil.php">LinkECE</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-globe"></span> Réseau</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-search"></span> Emplois</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-bell"></span> Notifications</a></li>
+                        <li><a href="reseau.php"><span class="glyphicon glyphicon-globe"></span> Réseau</a></li>
+                        <li><a href="messagerie.php"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
+                        <li><a href="emplois.php"><span class="glyphicon glyphicon-search"></span> Emplois</a></li>
+                        <li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span> Notifications</a></li>
                     </ul>
 
 

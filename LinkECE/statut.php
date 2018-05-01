@@ -1,4 +1,6 @@
+
 <?php
+header('Location: accueil.php');
 session_start();
 
 // Check if user is logged in using the session variable
@@ -8,7 +10,6 @@ if ( $_SESSION['logged_in'] != 1 ) {
 }
 else {
     // Makes it easier to read
-    $id_user = $_SESSION['id_user'];
     $host = 'localhost';
     $user = 'root';
     $pass = 'root'; 

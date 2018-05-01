@@ -39,7 +39,7 @@ else {
             }
         </style>
     </head>
-    <body>
+    <body background="img/back.png">
 
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">

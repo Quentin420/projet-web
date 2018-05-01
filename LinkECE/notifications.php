@@ -1,3 +1,21 @@
+<?php
+/* Displays user information and some useful messages */
+session_start();
+
+// Check if user is logged in using the session variable
+if ( $_SESSION['logged_in'] != 1 ) {
+    $_SESSION['message'] = "You must log in before viewing your profile page!";
+    header("location: error.php");    
+}
+else {
+    // Makes it easier to read
+    $nom = $_SESSION['nom'];
+    $prenom = $_SESSION['prenom'];
+    $email = $_SESSION['email'];
+    $username = $_SESSION['username'];
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -41,7 +59,7 @@
 
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="profil.php"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
+                        <li><a href="profil.php"><span class="glyphicon glyphicon-user"></span> <?= $prenom.' '.$nom ?> </a></li>
                         <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
                     </ul>
                 </div>

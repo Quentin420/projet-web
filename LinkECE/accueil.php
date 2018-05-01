@@ -45,6 +45,14 @@ ORDER BY post.date_post DESC";
             #accueil{
                 text-align: left;
             }
+            
+            #post-heure{
+                text-align: right;
+            }
+            
+            #post-lieu{
+                text-align: right;
+            }
         </style>
     </head>
     <body background="img/back.png">
@@ -104,7 +112,15 @@ ORDER BY post.date_post DESC";
                             
                                 
                             <div class='well'>
-                                <p>".$post['descriptif']."</p>
+                                <p id='post-heure'>".$post['date_post']."</p>
+                                <p>".$post['descriptif']."</p>";
+                                
+                                if($post['document']){
+                                    echo"<img src=".$post['document']." width='400' height='300'>";
+                                }
+                                
+                        
+                            echo "<p id='post-lieu'> Lieu : ".$post['lieu']."</p>
                                 <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
                                 <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>
                                 <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Like</button>  

@@ -72,7 +72,6 @@ else {
 
         <div class="container text-center">    
             <div class="row">
-
                 <div class="col-sm-9">
                     <div class="well" id="accueil">
                         <form method="post" action="statut.php">
@@ -114,7 +113,7 @@ else {
                         <div class="col-sm-2">
                             <div class="well">
                                 <p>Bo</p>
-                                <img src="img/avatar.svg" class="img-circle" height="55" width="55" alt="Avatar">
+                                <img src="img/mec1.png" class="img-circle" height="55" width="55" alt="Avatar">
                             </div>
                         </div>
 
@@ -138,7 +137,7 @@ else {
                         <div class="col-sm-2">
                             <div class="well">
                                 <p>Jane</p>
-                                <img src="img/avatar.svg" class="img-circle" height="55" width="55" alt="Avatar">
+                                <img src="img/fille1.png" class="img-circle" height="55" width="55" alt="Avatar">
                             </div>
                         </div>
 

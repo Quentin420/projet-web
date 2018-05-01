@@ -23,6 +23,41 @@ else {
     $nb_relation = $result->fetch_assoc();
     $result = $mysqli->query("SELECT COUNT(*) as nb_relation FROM relation WHERE id_user2='$id_user'");
     $nb = $result->fetch_assoc();
+    
+    $result = $mysqli->query("SELECT DISTINCT(id_post) FROM post WHERE id_user='$id_user'");
+    //$nb_poste = $result->fetch_assoc();
+    //for ($x = 0; $x < $nb_poste['id_post']; $x++) {
+       // echo "The number is: $x <br>";
+   // } 
+    
+    $stack = array();
+    
+     while ($data = mysqli_fetch_row($result)) {   
+     echo "ID: " . $data[0] . '<br>';  
+         array_push($stack,$data[0]);
+       
+    }
+    
+    print_r($stack);
+
+    
+    //for ($x = 0; $x < $nb_poste['id_post']; $x++) {
+       // echo "The number is: $x <br>";
+   // } 
+    
+    $result = $mysqli->query("SELECT COUNT(id_post) as nb_post FROM post WHERE id_user='$id_user'");
+    $nb_post = $result->fetch_assoc();
+    for ($x = 0; $x < $nb_post['nb_post']; $x++) {
+        echo "The number is: $x <br>";
+    } 
+    
+    
+    $result = $mysqli->query("SELECT date_post, lieu, descriptif, humeur FROM post WHERE id_user='$id_user'");
+    $post_obj = $result->fetch_assoc();
+    
+    $result = $mysqli->query("SELECT * FROM users WHERE id_user='$id_user'");
+    $user_obj = $result->fetch_assoc();
+    $dist=$user_obj['avatar'];
 }
 ?>
 
@@ -86,7 +121,10 @@ else {
                 <div class="col-sm-3">
                     <h1 class="profil">Profil</h1>
                     <div class="well">
-                        <img src="img/avatar.svg" class="img-circle" height="150" width="150" alt="Avatar">
+                        
+                       <img src="<?= $dist ?>" class="img-circle" height="150" width="150" alt="Avatar">
+                       
+                        
                     </div>
                     
                     <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> Consulter CV</button>
@@ -96,7 +134,7 @@ else {
                     <div class="row">
                         <div class="col-sm-4">
                             <h2 class="profil"><?= $prenom.' '.$nom?></h2>
-                            <p class="profil">En réseau avec <?= $nb_relation['nb_relation']+$nb['nb_relation']?> personnes <p>
+                            <p class="profil">En réseau avec <?= $nb_relation['nb_relation']+$nb['nb_relation']?> personnes.</p>
                         </div>
 
                     </div>
@@ -104,7 +142,11 @@ else {
                     <div class="row">
                         <div class="col-sm-9">
                             <div class="well">
-                                <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
+                                <p class="profil"><?= $prenom.' '.$nom ?></p>
+                                <p class="profil"><?= $post_obj['lieu'].', '.$post_obj['humeur']?></p>
+                                
+                                <p class="profil"><?= $post_obj['descriptif']?></p>
+                                <p class="profil"><?= $post_obj['date_post']?></p>
                                 <button type="button" class="btn btn-default btn-sm">
                                     <span class="glyphicon glyphicon-comment"></span> Commenter
                                 </button> 
@@ -119,8 +161,10 @@ else {
 
                         <div class="col-sm-9">
                             <div class="well">
-                                <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-                                
+                                <p class="profil"><?= $prenom.' '.$nom ?></p>
+                                <p class="profil"><?= $post_obj['lieu'].', '.$post_obj['humeur']?></p>
+                                <p class="profil"><?= $post_obj['descriptif']?></p>
+                                <p class="profil"><?= $post_obj['date_post']?></p>                                
                                 <button type="button" class="btn btn-default btn-sm">
                                     <span class="glyphicon glyphicon-comment"></span> Commenter
                                 </button> 
@@ -136,7 +180,10 @@ else {
 
                         <div class="col-sm-9">
                             <div class="well">
-                                <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
+                                <p class="profil"><?= $prenom.' '.$nom ?></p>
+                                <p class="profil"><?= $post_obj['lieu'].', '.$post_obj['humeur']?></p>
+                                <p class="profil"><?= $post_obj['descriptif']?></p>
+                                <p class="profil"><?= $post_obj['date_post']?></p>
                                 <button type="button" class="btn btn-default btn-sm">
                                     <span class="glyphicon glyphicon-comment"></span> Commenter
                                 </button> 

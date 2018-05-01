@@ -1,7 +1,7 @@
 <?php
 /* Displays user information and some useful messages */
 session_start();
-
+include('connect.php');
 // Check if user is logged in using the session variable
 if ( $_SESSION['logged_in'] != 1 ) {
     $_SESSION['message'] = "You must log in before viewing your profile page!";

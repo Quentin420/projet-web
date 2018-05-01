@@ -1,6 +1,7 @@
 <?php
 /* Displays user information and some useful messages */
 session_start();
+include('connect.php');
 
 // Check if user is logged in using the session variable
 if ( $_SESSION['logged_in'] != 1 ) {
@@ -14,43 +15,19 @@ else {
     $email = $_SESSION['email'];
     $username = $_SESSION['username'];
     $id_user = $_SESSION['id_user'];
-    $host = 'localhost';
-    $user = 'root';
-    $pass = 'root'; 
-    $db = 'linkece';
-    $mysqli = new mysqli($host,$user,$pass,$db) or die($mysqli->error);
-    $result = mysqli_query($mysqli,"SELECT COUNT(*) as nb_relation FROM relation WHERE id_user1='$id_user'");
-    $nb_relation = $result->fetch_assoc();
-    $result = mysqli_query($mysqli,"SELECT COUNT(*) as nb_relation FROM relation WHERE id_user2='$id_user'");
-    $nb = $result->fetch_assoc();
     
-    $result = $mysqli->query("SELECT DISTINCT(id_post) FROM post WHERE id_user='$id_user'");
-    $nb_poste = $result->fetch_assoc();
-    //for ($x = 0; $x < $nb_poste['id_post']; $x++) {
-       // echo "The number is: $x <br>";
-   // } 
-    
-  //  $stack = array();
-    
-    // while ($data = mysqli_fetch_row($result)) {   
-     //echo "ID: " . $data[0] . '<br>';  
-      //   array_push($stack,$data[0]);
-       
-    //}
-    
-    //print_r($stack);
 
+    $result1 = mysqli_query($con,"SELECT COUNT(*) as nb_relation FROM relation WHERE id_user1='$id_user'");
+    $nb_relation = $result1->fetch_assoc();
+    $result2 = mysqli_query($con,"SELECT COUNT(*) as nb_relation FROM relation WHERE id_user2='$id_user'");
+    $nb = $result2->fetch_assoc();
+   
     
-    //for ($x = 0; $x < $nb_poste['id_post']; $x++) {
-      //  echo "The number is: $x <br>";
-   //} 
+    $resultat = mysqli_query($con,"SELECT * FROM post WHERE id_user='$id_user'");
     
     
-    $resultat = mysqli_query($mysqli,"SELECT descriptif FROM post WHERE id_user='$id_user'");
-    
-    
-    $result = mysqli_query($mysqli,"SELECT * FROM users WHERE id_user='$id_user'");
-    $user_obj = $result->fetch_assoc();
+    $av = mysqli_query($con,"SELECT * FROM users WHERE id_user='$id_user'");
+    $user_obj = $av->fetch_assoc();
     $dist=$user_obj['avatar'];
     
 }
@@ -135,21 +112,21 @@ else {
                     </div>
                     
                     <div class="row">
-                        <?
-                            for ($x = 0; $x < $nb_poste['id_post']; $x++) {
-                                $post_obj = mysqli_fetch_assoc($resultat);?>
-                                <div class="col-sm-9">
-                                    <div class="well">
-                                        <p class="profil"><?= $prenom.' '.$nom?></p>
-                                        <p class="profil"><?= $post_obj['lieu'].', '.$post_obj['humeur']?></p>
-                                        <p class="profil"><?= $post_obj['descriptif']?></p>
-                                        <p class="profil"><?= $post_obj['date_post']?></p>
-                                        <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-comment"></span> Commenter</button>
-                                        <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-share"></span> Partager</button>
-                                        <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button> 
+                                <?php
+                                while($post = mysqli_fetch_array($resultat)){
+                                echo "
+                                <div class='col-sm-9'>
+                                    <div class='well'>
+                                        <p class='profil'>". $post['descriptif']."</p>
+                                        <p class='profil'>". $post['lieu']."</p>
+                                        <p class='profil'>". $post['date_post']."</p>
+                                        <p class='profil'>". $post['humeur']."</p>
+                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
+                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>
+                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Like</button> 
                                     </div>
-                                </div>
-                        <?  }?>
+                                </div>";
+                                }?>
                         
 
                     </div>

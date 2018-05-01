@@ -29,7 +29,7 @@
                                 </div>
                                 <div class='text-con'>
                                     <p> {$user_form_nom} {$user_form_prenom}</p>
-                                    <a href='#''>Voir profil</a>
+                                    <a href='viewprofile.php?id_user=".$msg."'>Voir profil</a>
                                 </div>
                             </div>
                             <hr>";

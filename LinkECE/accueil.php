@@ -13,6 +13,14 @@ else {
     $prenom = $_SESSION['prenom'];
     $email = $_SESSION['email'];
     $username = $_SESSION['username'];
+    $id_user = $_SESSION['id_user'];
+    
+    $req = "SELECT * FROM post
+NATURAL JOIN users
+INNER JOIN relation ON post.id_user = relation.id_user1 OR post.id_user = relation.id_user2 
+WHERE relation.id_user1 = '$id_user' OR relation.id_user2 = '$id_user' 
+ORDER BY post.date_post DESC";
+    $resultat = mysqli_query($con, $req);
 }
 ?>
 
@@ -82,103 +90,29 @@ else {
                         </form>
 
                     </div>
-
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <div class="well">
-                                <p>John</p>
-                                <img src="img/avatar.svg" class="img-circle" height="55" width="55" alt="Avatar">
+                    <?php
+                    while($post = mysqli_fetch_array($resultat)){
+                        echo "<div class='row'>
+                        <div class='col-sm-2'>
+                            <div class='well'>
+                                <p>".$post['prenom']." ".$post['nom']."</p>
+                                <img src=".$post['avatar']." class='img-circle' height='55' width='55' alt='Avatar'>
                             </div>
                         </div>
 
-                        <div class="col-sm-10">
-                            <div class="well">
-                                <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-comment"></span> Commenter
-                                </button> 
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-share"></span> Partager
-                                </button>
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-thumbs-up"></span> Like
-                                </button>  
+                        <div class='col-sm-10'>
+                            
+                                
+                            <div class='well'>
+                                <p>".$post['descriptif']."</p>
+                                <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
+                                <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>
+                                <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Like</button>  
 
                             </div>
                         </div>  
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-sm-2">
-                            <div class="well">
-                                <p>Bo</p>
-                                <img src="img/mec1.png" class="img-circle" height="55" width="55" alt="Avatar">
-                            </div>
-                        </div>
-
-                        <div class="col-sm-10">
-                            <div class="well">
-                                <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-comment"></span> Commenter
-                                </button> 
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-share"></span> Partager
-                                </button>
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-thumbs-up"></span> Like
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <div class="well">
-                                <p>Jane</p>
-                                <img src="img/fille1.png" class="img-circle" height="55" width="55" alt="Avatar">
-                            </div>
-                        </div>
-
-                        <div class="col-sm-10">
-                            <div class="well">
-                                <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-comment"></span> Commenter
-                                </button> 
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-share"></span> Partager
-                                </button>
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-thumbs-up"></span> Like
-                                </button>    
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <div class="well">
-                                <p>Anja</p>
-                                <img src="img/avatar.svg" class="img-circle" height="55" width="55" alt="Avatar">
-                            </div>
-                        </div>
-                        <div class="col-sm-10">
-                            <div class="well">
-                                <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-comment"></span> Commenter
-                                </button> 
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-share"></span> Partager
-                                </button>
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-thumbs-up"></span> Like
-                                </button>
-                            </div>
-                        </div>
-                    </div>     
+                    </div>";
+                    }?>    
                 </div>
 
                 <div class="col-sm-3">

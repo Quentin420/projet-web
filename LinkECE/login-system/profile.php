@@ -10,7 +10,7 @@ if ( $_SESSION['logged_in'] != 1 ) {
 else {
     // Makes it easier to read
     $prenom = $_SESSION['prenom'];
-    $last_name = $_SESSION['last_name'];
+    $nom = $_SESSION['nom'];
     $email = $_SESSION['email'];
     $active = $_SESSION['active'];
 }
@@ -56,7 +56,7 @@ else {
           
           ?>
           
-          <h2><?php echo $first_name.' '.$last_name; ?></h2>
+          <h2><?php echo $prenom.' '.$nom; ?></h2>
           <p><?= $email ?></p>
           
           <a href="logout.php"><button class="button button-block" name="logout"/>Log Out</button></a>

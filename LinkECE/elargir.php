@@ -1,13 +1,86 @@
+<?php
+/* Displays user information and some useful messages */
+session_start();
+
+// Check if user is logged in using the session variable
+if ( $_SESSION['logged_in'] != 1 ) {
+    $_SESSION['message'] = "You must log in before viewing your profile page!";
+    header("location: error.php");    
+}
+else {
+    // Makes it easier to read
+    $nom = $_SESSION['nom'];
+    $prenom = $_SESSION['prenom'];
+    $email = $_SESSION['email'];
+    $username = $_SESSION['username'];
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html>
-
     <head>
         <title>Bienvenue sur LinkECE</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+
+           $(function()
+           {
+            $(".search_button").click(function()
+            {
+                var search_word = $("#search_box").val();
+                var dataString = 'search_word='+search_word;
+
+                if (search_word=='')
+                {
+
+                }
+
+                else
+                {
+                    $.ajax({
+                        type: "GET",
+                        url: "searchingdata.php",
+                        data: dataString,
+                        cache: false,
+                        beforeSend: function(html)
+                        {
+
+                            document.getElementById("insert_search").innerHTML='';
+                            $("#flash").show();
+                            $("#searchword").show();
+                            $("#flash").html('> Loading Results');
+
+                        },
+
+                        error: function(html){
+                         alert('error');
+                         },   
+
+                        success: function(html){
+                            $("#insert_search").show();
+                            $("#insert_search").append(html);
+                            $("#flash").hide();
+                            
+                        }
+                    });
+
+                }
+                return false;
+            });
+            });
+
+
+        
+        </script>
+
+
         <style>    
             /* Set black background color, white text and some padding */
             footer {
@@ -48,14 +121,24 @@
             </div>
         </nav>
 
-        <div class="container text-center">    
+        <div class="container text-center">   
+
+        <div style="width:500px; margin:0 auto; margin-top:100px; background:#FFFFFF; padding:20px;">
+            <form method="get" action="">
+               <input type="text" autocomplete=off name="search" id="search_box" class='search_box'/>
+               <input type="submit" value="Search" class="search_button" />
+            </form>
+            <br  />
+            <div id="searchword">
+            Search results for <b><span class="searchword"></span></b></div>
+            <div id="flash"></div>
+            <ol id="insert_search" class="update" style="color:#990000;">
             
+            </ol>
         </div>
 
-        <footer class="container-fluid text-center">
-            <p>LinkECE &copy;2018</p>
-        </footer>
-
+            
+        </div>
     </body>
 </html>
 

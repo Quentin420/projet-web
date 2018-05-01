@@ -1,3 +1,31 @@
+<?php
+/* Displays user information and some useful messages */
+session_start();
+
+// Check if user is logged in using the session variable
+if ( $_SESSION['logged_in'] != 1 ) {
+    $_SESSION['message'] = "You must log in before viewing your profile page!";
+    header("location: error.php");    
+}
+else {
+    // Makes it easier to read
+    $nom = $_SESSION['nom'];
+    $prenom = $_SESSION['prenom'];
+    $email = $_SESSION['email'];
+    $username = $_SESSION['username'];
+    $id_user = $_SESSION['id_user'];
+    $host = 'localhost';
+    $user = 'root';
+    $pass = 'root'; 
+    $db = 'linkece';
+    $mysqli = new mysqli($host,$user,$pass,$db) or die($mysqli->error);
+    $result = $mysqli->query("SELECT COUNT(*) as nb_relation FROM relation WHERE id_user1='$id_user'");
+    $nb_relation = $result->fetch_assoc();
+    $result = $mysqli->query("SELECT COUNT(*) as nb_relation FROM relation WHERE id_user2='$id_user'");
+    $nb = $result->fetch_assoc();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -15,7 +43,7 @@
                 color: white;
                 padding: 15px;
             }
-            
+
             .profil{
                 text-align:left; 
             }
@@ -45,8 +73,8 @@
 
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="profil.php"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
+                        <li class="active"><a href="profil.php"><span class="glyphicon glyphicon-user"></span> <?= $prenom.' '.$nom ?></a></li>
+                        <li><a href="login-system/logout.php"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
                     </ul>
                 </div>
             </div>
@@ -60,23 +88,44 @@
                     <div class="well">
                         <img src="img/avatar.svg" class="img-circle" height="150" width="150" alt="Avatar">
                     </div>
+
+                    <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> Consulter CV</button>
                 </div>
 
                 <div class="col-sm-9">
                     <div class="row">
                         <div class="col-sm-4">
-                            <h2 class="profil">Jean Dupont</h2>
-                            <p class="profil">En réseau avec 15 personnes</p>
+                            <h2 class="profil"><?= $prenom.' '.$nom?></h2>
+                            <p class="profil">En réseau avec <?= $nb_relation['nb_relation']+$nb['nb_relation']?> personnes <p>
                         </div>
 
-                        <div class="col-sm-6">
-                            <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-briefcase"></span> Ajouter au réseau</button>
-                            <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> Consulter son CV</button>
-                        </div>
+                    </div>
+
+                    <div class="row">
+                        <?
+                            $result = mysqli_query("SELECT * FROM post WHERE id_user ='$id_user'");
+                            while($data = mysqli_fetch_assoc($result)){
+                                echo '<div class="col-sm-9">';
+                                echo '<div class="well">';
+                                echo '<p>';
+                                echo $data['descriptif'];
+                                echo '</p>';
+                                echo '<button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-comment"></span> Commenter</button>'; 
+                                echo '<button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-share"></span> Partager</button>';
+                                echo '<button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button>';
+                                echo '</div>';
+                                echo '</div>';
+                            }
+
+                        ?>
+
+
+
 
                         <div class="col-sm-9">
                             <div class="well">
                                 <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
+
                                 <button type="button" class="btn btn-default btn-sm">
                                     <span class="glyphicon glyphicon-comment"></span> Commenter
                                 </button> 
@@ -85,24 +134,8 @@
                                 </button>
                                 <button type="button" class="btn btn-default btn-sm">
                                     <span class="glyphicon glyphicon-thumbs-up"></span> Like
-                                </button>    
-                            </div>
-                        </div>
+                                </button>
 
-                        <div class="col-sm-9">
-                            <div class="well">
-                                <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-                                
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-comment"></span> Commenter
-                                </button> 
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-share"></span> Partager
-                                </button>
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-thumbs-up"></span> Like
-                                </button>
-               
                             </div>
                         </div>
 

@@ -24,40 +24,39 @@ else {
     $result = $mysqli->query("SELECT COUNT(*) as nb_relation FROM relation WHERE id_user2='$id_user'");
     $nb = $result->fetch_assoc();
     
-    $result = $mysqli->query("SELECT DISTINCT(id_post) FROM post WHERE id_user='$id_user'");
+    //$result = $mysqli->query("SELECT DISTINCT(id_post) FROM post WHERE id_user='$id_user'");
     //$nb_poste = $result->fetch_assoc();
     //for ($x = 0; $x < $nb_poste['id_post']; $x++) {
        // echo "The number is: $x <br>";
    // } 
     
-    $stack = array();
+  //  $stack = array();
     
-     while ($data = mysqli_fetch_row($result)) {   
-     echo "ID: " . $data[0] . '<br>';  
-         array_push($stack,$data[0]);
+    // while ($data = mysqli_fetch_row($result)) {   
+     //echo "ID: " . $data[0] . '<br>';  
+      //   array_push($stack,$data[0]);
        
-    }
+    //}
     
-    print_r($stack);
+    //print_r($stack);
 
     
     //for ($x = 0; $x < $nb_poste['id_post']; $x++) {
-       // echo "The number is: $x <br>";
-   // } 
+      //  echo "The number is: $x <br>";
+   //} 
     
-    $result = $mysqli->query("SELECT COUNT(id_post) as nb_post FROM post WHERE id_user='$id_user'");
-    $nb_post = $result->fetch_assoc();
-    for ($x = 0; $x < $nb_post['nb_post']; $x++) {
-        echo "The number is: $x <br>";
-    } 
+    // = $mysqli->query("SELECT COUNT(id_post) as nb_post FROM post WHERE id_user='$id_user'");
+    //$nb_post = $result->fetch_assoc();
+    //echo "nb post = ".$nb_post['nb_post'];
     
     
-    $result = $mysqli->query("SELECT date_post, lieu, descriptif, humeur FROM post WHERE id_user='$id_user'");
+    
+    $result = $mysqli->query("SELECT * FROM post WHERE id_user='$id_user'");
     $post_obj = $result->fetch_assoc();
     
-    $result = $mysqli->query("SELECT * FROM users WHERE id_user='$id_user'");
-    $user_obj = $result->fetch_assoc();
-    $dist=$user_obj['avatar'];
+    //$result = $mysqli->query("SELECT * FROM users WHERE id_user='$id_user'");
+    //$user_obj = $result->fetch_assoc();
+    //$dist=$user_obj['avatar'];
 }
 ?>
 
@@ -140,61 +139,20 @@ else {
                     </div>
                     
                     <div class="row">
-                        <div class="col-sm-9">
-                            <div class="well">
-                                <p class="profil"><?= $prenom.' '.$nom ?></p>
-                                <p class="profil"><?= $post_obj['lieu'].', '.$post_obj['humeur']?></p>
-                                
-                                <p class="profil"><?= $post_obj['descriptif']?></p>
-                                <p class="profil"><?= $post_obj['date_post']?></p>
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-comment"></span> Commenter
-                                </button> 
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-share"></span> Partager
-                                </button>
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-thumbs-up"></span> Like
-                                </button>    
+                        <? while($post_obj = mysqli_fetch_assoc($result)){?>
+                            <div class="col-sm-9">
+                                    <div class="well">
+                                        <p class="profil"><?= $prenom.' '.$nom?></p>
+                                        <p class="profil"><?=$post_obj['lieu'].', '.$post_obj['humeur']?></p>
+                                        <p class="profil"><?=$post_obj['descriptif']?></p>
+                                        <p class="profil"><?=$post_obj['date_post']?></p>
+                                        <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-comment"></span> Commenter</button>
+                                        <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-share"></span> Partager</button>
+                                        <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button> 
+                                    </div>
                             </div>
-                        </div>
-
-                        <div class="col-sm-9">
-                            <div class="well">
-                                <p class="profil"><?= $prenom.' '.$nom ?></p>
-                                <p class="profil"><?= $post_obj['lieu'].', '.$post_obj['humeur']?></p>
-                                <p class="profil"><?= $post_obj['descriptif']?></p>
-                                <p class="profil"><?= $post_obj['date_post']?></p>                                
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-comment"></span> Commenter
-                                </button> 
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-share"></span> Partager
-                                </button>
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-thumbs-up"></span> Like
-                                </button>
-               
-                            </div>
-                        </div>
-
-                        <div class="col-sm-9">
-                            <div class="well">
-                                <p class="profil"><?= $prenom.' '.$nom ?></p>
-                                <p class="profil"><?= $post_obj['lieu'].', '.$post_obj['humeur']?></p>
-                                <p class="profil"><?= $post_obj['descriptif']?></p>
-                                <p class="profil"><?= $post_obj['date_post']?></p>
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-comment"></span> Commenter
-                                </button> 
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-share"></span> Partager
-                                </button>
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-thumbs-up"></span> Like
-                                </button>    
-                            </div>
-                        </div>
+                        <?}?>
+                        
 
                     </div>
                 </div>

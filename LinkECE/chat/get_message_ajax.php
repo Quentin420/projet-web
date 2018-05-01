@@ -14,16 +14,16 @@
                 $message = $m['message'];
  
                 //get name and image of $user_form from `user` table
-                $user = mysqli_query($con, "SELECT username,img FROM `user` WHERE id='$user_form'");
+                $user = mysqli_query($con, "SELECT username, avatar FROM `users` WHERE id_user='$user_form'");
                 $user_fetch = mysqli_fetch_assoc($user);
                 $user_form_username = $user_fetch['username'];
-                $user_form_img = $user_fetch['img'];
+                $user_form_img = $user_fetch['avatar'];
  
                 //display the message
                 echo "
                             <div class='message'>
                                 <div class='img-con'>
-                                    <img src='{$user_form_img}'>
+                                    <img src='../../{$user_form_img}'>
                                 </div>
                                 <div class='text-con'>
                                     <a href='#''>{$user_form_username}</a>

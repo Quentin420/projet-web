@@ -30,6 +30,7 @@ else {
     $user_obj = $av->fetch_assoc();
     $dist_av=$user_obj['avatar'];
     $dist_back=$user_obj['background'];
+    $dist_cv=$user_obj['cv'];
     
 }
 ?>
@@ -103,7 +104,7 @@ else {
                        
                         
                     </div>
-                    <a href="img/cv.pdf" download="cv.pdf">
+                    <a href="<?= $dist_cv ?>" download="<?= $dist_cv ?>">
                         <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> Consulter CV</button>
                     </a>     
                 </div>

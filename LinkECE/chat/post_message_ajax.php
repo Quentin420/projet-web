@@ -13,7 +13,8 @@
         $user_to = base64_decode($user_to);
  
         //insert into `messages`
-        $q = mysqli_query($con, "INSERT INTO `messages` VALUES ('','$conversation_id','$user_form','$user_to','$message')");
+        $q = mysqli_query($con, "INSERT INTO messages (conversation_id, user_from, user_to, message) VALUES ('$conversation_id','$user_form','$user_to','$message')");
+
         if($q){
             echo "Posted";
         }else{

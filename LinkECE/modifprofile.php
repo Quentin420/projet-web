@@ -1,5 +1,6 @@
 <?php
 /* Displays user information and some useful messages */
+//header('Location: profil.php');
 session_start();
 include('connect.php');
 
@@ -15,6 +16,8 @@ else {
     $email = $_SESSION['email'];
     $username = $_SESSION['username'];
     $id_user = $_SESSION['id_user'];
+    
+   
     
 
     $result1 = mysqli_query($con,"SELECT COUNT(*) as nb_relation FROM relation WHERE id_user1='$id_user'");
@@ -116,14 +119,11 @@ else {
                     </div>
                     
                     <div class="row">
-                             <form>  
+                             <form class="form" action="modif.php" method="post" enctype="multipart/form-data" autocomplete="off">  
                                 <div class='col-sm-9'>
                                     <div class='well'>
                                         <p class='profil'>Changer d'avatar :</p>
-                                        <p><input name="monFichier" type="file"></p>
-                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
-                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>
-                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Like</button> 
+                                        <p><input name="avatar" type="file" accept="image/*"></p>
                                     </div>
                                 </div>
                                 
@@ -131,20 +131,14 @@ else {
                                 <div class='col-sm-9'>
                                     <div class='well'>
                                         <p class='profil'>Changer d'image de fond :</p>
-                                        <p><input name="monFichier" type="file"></p>
-                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
-                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>
-                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Like</button> 
+                                        <p><input name="background" type="file" accept="image/*"></p>
                                     </div>
                                 </div>
                         
                                 <div class='col-sm-9'>
                                     <div class='well'>
                                         <p class='profil'>Upload un CV :</p>
-                                        <p><input name="monFichier" type="file"></p>
-                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
-                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>
-                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Like</button> 
+                                        <p><input name="cv" type="file" accept="image/*"></p>
                                     </div>
                                 </div>
                                  

@@ -1,10 +1,11 @@
 
 <?php
 session_start();
+header("location: accueil.php");
 
 // Check if user is logged in using the session variable
 if ( $_SESSION['logged_in'] != 1 ) {
-    $_SESSION['message'] = "You must log in before viewing your profile page!";
+     $_SESSION['message'] = "You must log in before viewing your profile page!";
     header("location: error.php");    
 }
 else {
@@ -24,9 +25,9 @@ else {
         VALUES('$id_user', '$document', 1, '$lieu','$name', '$humeur')";
 
     if ($mysqli->query($sql) === TRUE) {
-        
-        header('Location: accueil.php');
+        echo "<script type='text/javascript'> document.location = 'accueil.php'; </script>";
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }
-}?>
+}
+?>

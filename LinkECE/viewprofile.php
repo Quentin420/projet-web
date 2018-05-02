@@ -131,9 +131,17 @@ else{
             <div class="row">
 
                 <div class="col-sm-3">
-                    <h1 class="entete"><?= $user_viewed_prenom.' '.$user_viewed_nom ?></h1>
                     <div class="well">
-
+                    <h1 class="entete"><?= $user_viewed_prenom.' '.$user_viewed_nom ?></h1>
+                    
+                        <?php if($nb_relation['nb_relation']+$nb['nb_relation']>1){
+                                echo "<p class='entete'>En réseau avec ". ($nb_relation['nb_relation']+$nb['nb_relation'])." personnes</p>";
+                            }
+                            else{
+                                echo "<p class='entete'>En réseau avec ". ($nb_relation['nb_relation']+$nb['nb_relation'])." personne</p>";
+                            }?>
+                       
+                        <br>
                         <img src="<?= $user_viewed_avatar ?>" class="img-circle" height="150" width="150" alt="Avatar">
 
 
@@ -146,11 +154,11 @@ else{
 
                 <div class="col-sm-9">
                     <div class="row">
-                        <div class="col-sm-4">
-
+                        <div class="col-sm-5">
+                            <h3 class="well"> Informations</h3>
+                            <div class="well">
                             <div class="infos">
-                                <h2> <br/> </h2>
-                                <h3> Informations</h3>
+                                
                                 <p>  Pseudo LinkECE : <?= $user_viewed_username ?></p>
                                 <p>  Promotion : <?= $user_viewed_promotion ?></p>
                                 <p>  Adresse email : <a href="mailto:<?= $user_viewed_email ?>"><?= $user_viewed_email ?></a></p>
@@ -158,15 +166,19 @@ else{
                                 <p>  </p>
                                 <p  class="entete">En réseau avec <?= $nb_relation['nb_relation']+$nb['nb_relation']?> personnes.</p>
                             </div>
+                            </div>
 
                         </div>
 
-
-                        <div class="col-sm-6">
+                        
+                        
+                        <div class="col-sm-7">
+                            <h3 class="well">Résumé</h3>
+                            <div class="well">
                             <div class="infos">
-                                <h2><br/></h2>
-                                <h3> Résumé</h3>
+                                
                                 <p><?= $user_viewed_resume ?></p>
+                            </div>
                             </div>
                         </div>
 
@@ -177,7 +189,7 @@ else{
 
 
 
-                    <h3> Activité</h3>
+                    <h3 class="well">Fil d'Actualité</h3>
 
                     <?php
                         $time = strtotime($post['date_post']);
@@ -185,7 +197,7 @@ else{
 
                             while($post = mysqli_fetch_array($resultat)){
                                 echo "
-                                <div class='col-sm-9'>
+                                
                                     <div class='well'>";
 
                                 if($post['humeur'] != "---"){
@@ -208,7 +220,7 @@ else{
                                         </div>
                                     </div>
                                     </div>
-                                </div>";
+                                ";
                             }
                     ?>
 

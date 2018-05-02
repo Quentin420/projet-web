@@ -141,7 +141,7 @@ else {
                                 <div class='col-sm-9'>
                                     <div class='well'>
                                         <p class='profil'>Upload un CV :</p>
-                                        <p><input name="cv" type="file" required></p>
+                                        <p><input name="cv" type="file" accept="application/pdf" required></p>
                                         <input type="submit" value="Sauvegarder" name="Sauvegarder" class="btn btn-block btn-primary" /> 
                                     </div>
                                 </div>

@@ -15,7 +15,7 @@ else {
     
     $cv_path= mysqli_real_escape_string($con,'img/'.$_FILES['cv']['name']);
     
-    if(preg_match("!image!",$_FILES['cv']['type']))
+    if(preg_match("!application/pdf!",$_FILES['cv']['type']))
     {
         if(copy($_FILES['cv']['tmp_name'],$cv_path)){
 

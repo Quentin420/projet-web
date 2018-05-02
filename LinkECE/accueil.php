@@ -144,7 +144,7 @@ $dist_back=$user_obj['background'];
 
                 </div>
                 <br>
-                <h2>Fil d'Actualité</h2>
+                <h2 class="well">Fil d'Actualité</h2>
                 <?php
     while($post = mysqli_fetch_array($resultat)){
 

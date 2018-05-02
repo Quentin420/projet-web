@@ -60,18 +60,21 @@ $dist_back=$user_obj['background'];
             #post-description{
                 text-align: justify;
             }
-            
+
             textarea
             {
                 resize: none;
             }
-            
+
             #post-humeur{
                 color: grey;
                 text-align: left;
                 font-weight: bold;
             }
-            
+            h2{
+                text-align: left;
+            }
+
         </style>
     </head>
     <body background="<?= $dist_back ?>">
@@ -113,33 +116,35 @@ $dist_back=$user_obj['background'];
                             <textarea rows="4" cols="50" name="statut" class="form-control" placeholder="Des nouveautés à partager ?" required></textarea><br>
                             <input type="text" row="3" class="form-control" name="lieu" placeholder="Où êtes-vous ?" required></p>
                         <div class="row">
-                        <div class="col-sm-5">
-                        <p><br>
-                            <label for="humeur">Quelle est votre humeur ?</label>
-                            <select name="humeur" id="humeur">
-                                <option value="---">---</option>
-                                <option value="Heureux">Heureux</option>
-                                <option value="Cool">Cool</option>
-                                <option value="Dubitatif">Dubitatif</option>
-                                <option value="Triste">Triste</option>
-                                <option value="Enerve">Enervé</option>
-                            </select>
-                        </p>
+                            <div class="col-sm-5">
+                                <p><br>
+                                    <label for="humeur">Quelle est votre humeur ?</label>
+                                    <select name="humeur" id="humeur">
+                                        <option value="---">---</option>
+                                        <option value="Heureux">Heureux</option>
+                                        <option value="Cool">Cool</option>
+                                        <option value="Dubitatif">Dubitatif</option>
+                                        <option value="Triste">Triste</option>
+                                        <option value="Enerve">Enervé</option>
+                                    </select>
+                                </p>
                             </div>
                             <div class="col-sm-5"><br>
-                            <p><input name="monFichier" type="file"></p>
-                        </div>
-                        <div class="col-sm-2">
-                            <br>
-                        <button type="submit" class="btn btn-primary">
-                            
-                            <span class="glyphicon glyphicon-bullhorn"></span> Poster
-                        </button>
-                        </div>
+                                <p><input name="monFichier" type="file"></p>
                             </div>
+                            <div class="col-sm-2">
+                                <br>
+                                <button type="submit" class="btn btn-primary">
+
+                                    <span class="glyphicon glyphicon-bullhorn"></span> Poster
+                                </button>
+                            </div>
+                        </div>
                         </form>
 
                 </div>
+                <br>
+                <h2>Fil d'Actualité</h2>
                 <?php
     while($post = mysqli_fetch_array($resultat)){
 
@@ -147,6 +152,7 @@ $dist_back=$user_obj['background'];
         $myFormatForView = date("d/m/y à h:i", $time);
 
         echo "<div class='row'>
+                    
                         <div class='col-sm-2'>
                             <div class='well'>
                                 <a href='viewprofile.php?id_user=".$post['id_user']."'>".$post['prenom']." ".$post['nom']."</a>
@@ -159,15 +165,15 @@ $dist_back=$user_obj['background'];
 
                             <div class='well'>";
 
-                                
-                                
+
+
 
 
         if($post['humeur'] != "---"){
             echo "<p id='post-humeur'>".$post['humeur']."</p>";
         }
-            echo "<p id='post-description'>".$post['descriptif']."</p>";
-        
+        echo "<p id='post-description'>".$post['descriptif']."</p>";
+
         if($post['document']){
             echo"<img src=".'img/'.$post['document']." width='400px' ><p><br></p>";
         }
@@ -200,9 +206,8 @@ $dist_back=$user_obj['background'];
                     <a href="elargir.php" class="btn btn-success"><span class="glyphicon glyphicon-briefcase"></span> Élargir son réseau</a>
                 </div>
 
-                <div class="thumbnail">
-                    <p>Évènemets à venir :</p>
-                    <img src="paris.jpg" alt="Paris" width="400" height="300">
+                <div class="well">
+                    <p>Évènements à venir :</p>
                     <p><strong>Paris</strong></p>
                     <p>Vendredi 27 Novembre 2015</p>
                 </div>

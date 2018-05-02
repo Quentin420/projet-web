@@ -133,7 +133,7 @@ $av = mysqli_query($con,"SELECT * FROM users WHERE id_user='$id_user'");
                                 <p>".$post['descriptif']."</p>";
                                 
                                 if($post['document']){
-                                    echo"<img src=".$post['document']." width='400' height='300'>";
+                                    echo"<img src=".'img/'.$post['document']." width='400' height='300'>";
                                 }
                                 
                         

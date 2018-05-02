@@ -29,6 +29,7 @@ else{
                 //Assoc de l'user viewed
                 $user_viewed = mysqli_fetch_assoc($user);
                 //On récupère tous ses paramètres
+                $user_viewed_id= $user_viewed['id_user'];
                 $user_viewed_nom = $user_viewed['nom'];
                 $user_viewed_prenom = $user_viewed['prenom'];
                 $user_viewed_avatar = $user_viewed['avatar'];
@@ -150,7 +151,7 @@ else{
                     <a href="<?= $user_viewed['cv'] ?>" download="<?= $user_viewed['cv'] ?>">
                         <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> Consulter CV</button>
                     </a>
-                    <a href="">
+                    <a href="chat/message.php?id_user=<?= $user_viewed_id ?>">
                         <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-inbox"></span> Message</button>
                     </a>
 

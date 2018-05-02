@@ -96,11 +96,13 @@ ORDER BY post.date_post DESC";
                 <div class="col-sm-9">
                     <div class="well" id="accueil">
                         <form method="post" action="statut.php">
-                            <p><textarea rows="4" cols="50" name="statut">Des nouveautés à partager ?</textarea></p>
-                            <p><textarea rows="1" cols="50" name="lieu">Où êtes-vous ?</textarea></p>
+                            <textarea rows="4" cols="50" name="statut" class="form-control" placeholder="Des nouveautés à partager ?" required></textarea><br>
+                            <input type="text" row="3" class="form-control" name="lieu" placeholder="Où êtes-vous ?" required></p>
                             <p>
-                                <label for="humeur">Quelle est votre humeur ?</label><br />
+                                
+                                <label for="humeur">Quelle est votre humeur ?</label>
                                 <select name="humeur" id="humeur">
+                                    <option value="---">---</option>
                                     <option value="Heureux">Heureux</option>
                                     <option value="Cool">Cool</option>
                                     <option value="Dubitatif">Dubitatif</option>
@@ -138,14 +140,19 @@ ORDER BY post.date_post DESC";
                                 <p>".$post['descriptif']."</p>";
                                 
                                 if($post['document']){
-                                    echo"<img src=".'img/'.$post['document']." width='400' height='300'><p><br></p>";
+                                    echo"<img src=".'img/'.$post['document']." width='400px' ><p><br></p>";
                                 }
                                 
-                        
+                            
                             echo "
                                 <div class='row'>
                                 <div class='col-sm-6'>
-                                <p id='post-lieu'> Lieu : ".$post['lieu']." , Humeur : ".$post['humeur']."</p>
+                                <p id='post-lieu'> Lieu : ".$post['lieu'];
+                                if($post['humeur'] != "---"){
+                                    echo ", Humeur : ".$post['humeur'];
+                                }
+                                
+                                echo "</p>
                                 </div>
                                 <div class='col-sm-6'>
                                 <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>

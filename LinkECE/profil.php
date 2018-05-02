@@ -116,7 +116,13 @@ else {
                     <div class="row">
                         <div class="col-sm-4">
                             <h2 class="entete"><?= $prenom.' '.$nom?></h2>
-                            <p class="entete">En réseau avec <?= $nb_relation['nb_relation']+$nb['nb_relation']?> personnes.</p>
+                            <?php if($nb_relation['nb_relation']+$nb['nb_relation']>1){
+                                echo "<p class='entete'>En réseau avec ". ($nb_relation['nb_relation']+$nb['nb_relation'])." personnes.</p>";
+                            }
+                            else{
+                                echo "<p class='entete'>En réseau avec ". ($nb_relation['nb_relation']+$nb['nb_relation'])." personne.</p>";
+                            }?>
+                            
                         </div>
 
                     </div>

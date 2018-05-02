@@ -23,7 +23,7 @@ else {
     $nb = $result2->fetch_assoc();
    
     
-    $resultat = mysqli_query($con,"SELECT * FROM post WHERE id_user='$id_user'");
+    $resultat = mysqli_query($con,"SELECT * FROM post WHERE id_user='$id_user' ORDER BY date_post DESC");
     
     //requete pour recuperer avatar et background du user logged
     $av = mysqli_query($con,"SELECT * FROM users WHERE id_user='$id_user'");
@@ -60,6 +60,22 @@ else {
                 color: white;
                 text-align:left;
             }
+            
+            #post-humeur{
+                color: grey;
+                text-align: left;
+                font-weight: bold;
+            }
+            #post-lieu{
+                text-align: left;
+                color: grey;
+            }
+
+            #post-description{
+                text-align: justify;
+            }
+            
+            
         </style>
     </head>
     <body background="<?= $dist_back ?>">
@@ -129,22 +145,31 @@ else {
                     
                     <div class="row">
                                 <?php
+                                $time = strtotime($post['date_post']);
+                                $myFormatForView = date("d/m/y à H:i", $time);
+                                
                                 while($post = mysqli_fetch_array($resultat)){
                                 echo "
                                 <div class='col-sm-9'>
-                                    <div class='well'>
-                                        <p class='profil'>". $post['descriptif']."</p>
-                                        <p class='profil'>". $post['lieu']."</p>
-                                        <p class='profil'>". $post['date_post']."</p>
-                                        <p class='profil'>". $post['humeur']."</p>
-                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
-                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>
-                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Like</button> 
+                                    <div class='well'>";
+                                    
+                                    if($post['humeur'] != "---"){
+                                        echo "<p id='post-humeur'>".$post['humeur']."</p>";
+                                    }
+                                    echo "<p id='post-description'>".$post['descriptif']."</p>";
+
+                                    if($post['document']){
+                                        echo"<img src=".'img/'.$post['document']." width='400px' ><p><br></p>";
+                                    
+                                    }
+                                       echo" <p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$post['date_post']."</p>
                                     </div>
-                                </div>";
+                                </div>";    
+                    
+                                
                                 }?>
                         
-
+                            
                     </div>
                 </div>
             </div>

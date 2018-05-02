@@ -5,8 +5,8 @@ include('connect.php');
 
 // Check if user is logged in using the session variable
 if ( $_SESSION['logged_in'] != 1 ) {
-     $_SESSION['message'] = "You must log in before viewing your profile page!";
-  header("location: error.php");    
+    $_SESSION['message'] = "You must log in before viewing your profile page!";
+    header("location: error.php");    
 }
 
 else{
@@ -22,30 +22,30 @@ else{
     {
         //Id de l'utilisateur dont on regarde le profil
         $idviewed = $_GET['id_user'];
-        
+
         //Infos sur l'utilisateur dont on regarde le profil
         $user = mysqli_query($con, "SELECT * FROM `users` WHERE id_user='$idviewed'");
-                //Assoc de l'user viewed
-                $user_viewed = mysqli_fetch_assoc($user);
-                //On récupère tous ses paramètres
-                $user_viewed_nom = $user_viewed['nom'];
-                $user_viewed_prenom = $user_viewed['prenom'];
-                $user_viewed_avatar = $user_viewed['avatar'];
-                $user_viewed_email = $user_viewed['email'];
-                $user_viewed_username = $user_viewed['username'];
-                $user_viewed_adresse = $user_viewed['adresse'];
-                $user_viewed_resume = $user_viewed['resume'];
-                $user_viewed_promotion = $user_viewed['promotion'];
+        //Assoc de l'user viewed
+        $user_viewed = mysqli_fetch_assoc($user);
+        //On récupère tous ses paramètres
+        $user_viewed_nom = $user_viewed['nom'];
+        $user_viewed_prenom = $user_viewed['prenom'];
+        $user_viewed_avatar = $user_viewed['avatar'];
+        $user_viewed_email = $user_viewed['email'];
+        $user_viewed_username = $user_viewed['username'];
+        $user_viewed_adresse = $user_viewed['adresse'];
+        $user_viewed_resume = $user_viewed['resume'];
+        $user_viewed_promotion = $user_viewed['promotion'];
 
         //Recupère les post de l'utilisateur
-        $resultat = mysqli_query($con,"SELECT * FROM post WHERE id_user='$idviewed'");
+        $resultat = mysqli_query($con,"SELECT * FROM post WHERE id_user='$idviewed' ORDER BY date_post DESC");
 
         //Requete pour compter les relations
         $result1 = mysqli_query($con,"SELECT COUNT(*) as nb_relation FROM relation WHERE id_user1='$idviewed'");
         $nb_relation = $result1->fetch_assoc();
         $result2 = mysqli_query($con,"SELECT COUNT(*) as nb_relation FROM relation WHERE id_user2='$id_user'");
         $nb = $result2->fetch_assoc();
-                
+
 
     }
 }
@@ -74,6 +74,22 @@ else{
                 text-align: left;
             }
 
+            #post-humeur{
+                color: grey;
+                text-align: left;
+                font-weight: bold;
+            }
+            #post-lieu{
+                text-align: left;
+                color: grey;
+            }
+
+            #post-description{
+                text-align: justify;
+            }
+            h3{
+                text-align: left;
+            }
 
         </style>
     </head>
@@ -114,10 +130,10 @@ else{
                 <div class="col-sm-3">
                     <h1 class="entete"><?= $user_viewed_prenom.' '.$user_viewed_nom ?></h1>
                     <div class="well">
-                        
-                       <img src="<?= $user_viewed_avatar ?>" class="img-circle" height="150" width="150" alt="Avatar">
-                       
-                        
+
+                        <img src="<?= $user_viewed_avatar ?>" class="img-circle" height="150" width="150" alt="Avatar">
+
+
                     </div>
                     <a href="<?= $dist_cv ?>" download="<?= $dist_cv ?>">
                         <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> Consulter CV</button>
@@ -130,14 +146,14 @@ else{
                         <div class="col-sm-4">
 
                             <div class="infos">
-                            <h2> <br/> </h2>
-                            <h3> Informations : </h3>
-                            <p>  Pseudo LinkECE : <?= $user_viewed_username ?></p>
-                            <p>  Promotion : <?= $user_viewed_promotion ?></p>
-                            <p>  Adresse email : <a href="mailto:<?= $user_viewed_email ?>"><?= $user_viewed_email ?></a></p>
-                            <p>  Adresse : <?= $user_viewed_adresse ?></p>
-                            <p>  </p>
-                            <p  class="entete">En réseau avec <?= $nb_relation['nb_relation']+$nb['nb_relation']?> personnes.</p>
+                                <h2> <br/> </h2>
+                                <h3> Informations</h3>
+                                <p>  Pseudo LinkECE : <?= $user_viewed_username ?></p>
+                                <p>  Promotion : <?= $user_viewed_promotion ?></p>
+                                <p>  Adresse email : <a href="mailto:<?= $user_viewed_email ?>"><?= $user_viewed_email ?></a></p>
+                                <p>  Adresse : <?= $user_viewed_adresse ?></p>
+                                <p>  </p>
+                                <p  class="entete">En réseau avec <?= $nb_relation['nb_relation']+$nb['nb_relation']?> personnes.</p>
                             </div>
 
                         </div>
@@ -145,38 +161,55 @@ else{
 
                         <div class="col-sm-6">
                             <div class="infos">
-                            <h2><br/></h2>
-                            <h3> Résumé : </h3>
-                            <p><?= $user_viewed_resume ?></p>
+                                <h2><br/></h2>
+                                <h3> Résumé</h3>
+                                <p><?= $user_viewed_resume ?></p>
                             </div>
                         </div>
 
 
                     </div>
-                </div>
-            </div>
+                    <br>
+                
 
-            <div class="row">
 
-                <h2>Activité : </h2>
 
-                <?php
-                                while($post = mysqli_fetch_array($resultat)){
+                    <h3> Activité</h3>
+
+                    <?php
+                        $time = strtotime($post['date_post']);
+                            $myFormatForView = date("d/m/y à H:i", $time);
+
+                            while($post = mysqli_fetch_array($resultat)){
                                 echo "
-                                <div class='col-sm-12'>
-                                    <div class='well'>
-                                        <p class='profil'>". $post['descriptif']."</p>
-                                        <p class='profil'>". $post['lieu']."</p>
-                                        <p class='profil'>". $post['date_post']."</p>
-                                        <p class='profil'>". $post['humeur']."</p>
-                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
-                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>
-                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Like</button> 
+                                <div class='col-sm-9'>
+                                    <div class='well'>";
+
+                                if($post['humeur'] != "---"){
+                                    echo "<p id='post-humeur'>".$post['humeur']."</p>";
+                                }
+                                echo "<p id='post-description'>".$post['descriptif']."</p>";
+
+                                if($post['document']){
+                                    echo"<img src=".'img/'.$post['document']." width='400px' ><p><br></p>";
+
+                                }
+                                echo" <div class='row'>
+                                        <div class='col-sm-6'>
+                                            <p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$myFormatForView."</p>
+                                        </div>
+                                        <div class='col-sm-6'>
+                                            <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
+                                            <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>
+                                            <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Like</button>  
+                                        </div>
+                                    </div>
                                     </div>
                                 </div>";
-                                }
-                ?>
+                            }
+                    ?>
 
+                </div>
             </div>
         </div>
 

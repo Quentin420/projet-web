@@ -109,8 +109,12 @@ $dist_back=$user_obj['background'];
         </nav>
 
         <div class="container text-center">    
+            <h3 class="well">Bienvenue <?=$prenom?> !</h3>
             <div class="row">
+                
+                
                 <div class="col-sm-9">
+                    
                     <div class="well" id="accueil">
                         <form method="post" action="statut.php">
                             <textarea rows="4" cols="50" name="statut" class="form-control" placeholder="Des nouveautés à partager ?" required></textarea><br>

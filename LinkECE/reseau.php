@@ -40,8 +40,8 @@ $dist_back=$user_obj['background'];
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <style>    
             /* Set black background color, white text and some padding */
-            h2{
-                color: white;
+            h3{
+                text-align: left;
             }
             footer {
                 background-color: #555;
@@ -83,7 +83,7 @@ $dist_back=$user_obj['background'];
 
         <div class="container text-center">    
             <div class="row">
-                <h2>Votre réseau</h2>
+                <h3 class="well">Votre réseau LinkECE</h3>
             <?php
                     while($post = mysqli_fetch_array($resultat)){
                         if($post['id_user']!=$id_user){
@@ -93,9 +93,9 @@ $dist_back=$user_obj['background'];
                                     <img src=".$post['avatar']." class='img-circle' height='55' width='55' alt='Avatar'>
                                 </div>
                                 </div>
-                                <div class='col-sm-8'>
+                                <div class='col-sm-10'>
                                 <div class='well'>
-                                    <a href='viewprofile.php?id_user=".$post['id_user']."'>".$post['prenom']." ".$post['nom']."</a>
+                                    <a href='viewprofile.php?id_user=".$post['id_user']."' >".$post['prenom']." ".$post['nom']."</a>
                                 </div>
                                 </div>  
                             </div>";

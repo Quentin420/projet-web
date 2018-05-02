@@ -34,7 +34,7 @@
  
             }
         }else{
-            echo "No Messages";
+            echo "Pas de messages.";
         }
     }
  

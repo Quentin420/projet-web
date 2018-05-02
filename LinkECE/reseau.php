@@ -98,8 +98,8 @@ $dist_back=$user_obj['background'];
                                 <div class='row'>
                                 
                                 
-                                    <div class='col-sm-10'><a href='viewprofile.php?id_user=".$post['id_user']."'>".$post['prenom']." ".$post['nom']."</a></div>
-                                    <div class='col-sm-2'><a href='suppAmi.php?id_user=".$post['id_user']."' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Supprimer</a></div>
+                                    <div class='col-sm-9'><a href='viewprofile.php?id_user=".$post['id_user']."'>".$post['prenom']." ".$post['nom']."</a></div>
+                                    <div class='col-sm-3'><a href='suppAmi.php?id_user=".$post['id_user']."' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Supprimer cette relation</a></div>
                                 </div>
                                 </div> 
                                 </div>

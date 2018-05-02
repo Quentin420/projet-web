@@ -164,9 +164,9 @@ else{
                     else{
                         echo "<a href='chat/message.php?id_user=". $user_viewed_id ."'>
                         <button type='button' class='btn btn-info'><span class='glyphicon glyphicon-inbox'></span> Message</button>
-                    </a>
+                    </a><p></p>
                     <a href='suppAmi.php?id_user=".$user_viewed_id."'>
-                        <button type='button' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Supprimer</button>
+                        <button type='button' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Supprimer cette relation</button>
                     </a>";
                     }
                              

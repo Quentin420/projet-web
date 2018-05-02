@@ -15,6 +15,9 @@ else {
     $email = $_SESSION['email'];
     $username = $_SESSION['username'];
     $id_user = $_SESSION['id_user'];
+    $promotion = $_SESSION['promotion'];
+    $adresse = $_SESSION['adresse'];
+    $resume = $_SESSION['resume'];
     
 
     $result1 = mysqli_query($con,"SELECT COUNT(*) as nb_relation FROM relation WHERE id_user1='$id_user'");
@@ -144,10 +147,10 @@ else {
                             <div class="well">
                             <div class="infos">
                                 
-                                <p>  Pseudo LinkECE : <?= $user_viewed_username ?></p>
-                                <p>  Promotion : <?= $user_viewed_promotion ?></p>
-                                <p>  Adresse email : <a href="mailto:<?= $user_viewed_email ?>"><?= $user_viewed_email ?></a></p>
-                                <p>  Adresse : <?= $user_viewed_adresse ?></p>
+                                <p>  Pseudo LinkECE : <?= $username ?></p>
+                                <p>  Promotion : <?= $promotion ?></p>
+                                <p>  Adresse email : <a href="mailto:<?= $user_viewed_email ?>"><?= $email ?></a></p>
+                                <p>  Adresse : <?= $adresse ?></p>
                                 <p>  </p>
                                 
                             </div>
@@ -161,7 +164,7 @@ else {
                             <div class="well">
                             <div class="infos">
                                 
-                                <p><?= $user_viewed_resume ?></p>
+                                <p><?= $resume ?></p>
                             </div>
                             </div>
                         </div>

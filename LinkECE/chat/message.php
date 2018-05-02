@@ -34,7 +34,7 @@ else {
                     $q = mysqli_query($con, "SELECT * FROM `users` WHERE id_user!='$user_id'");
                     //display all the results
                     while($row = mysqli_fetch_assoc($q)){
-                        echo "<a href='message.php?id_user={$row['id_user']}'><li><img src='../../{$row['avatar']}'> {$row['nom']} {$row['prenom']}</li></a>";
+                        echo "<a href='message.php?id_user={$row['id_user']}'><li><img src='../{$row['avatar']}'> {$row['nom']} {$row['prenom']}</li></a>";
                     }
                 ?>
             </ul>

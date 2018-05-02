@@ -4,8 +4,8 @@ session_start();
 include('connect.php');
 // Check if user is logged in using the session variable
 if ( $_SESSION['logged_in'] != 1 ) {
-    $_SESSION['message'] = "You must log in before viewing your profile page!";
-    header("location: error.php");    
+    $_SESSION['message'] = "Vous devez être connecté pour acceder à ce contenu!";
+    header("location: login-system/error.php");    
 }
 else {
     // Makes it easier to read
@@ -67,7 +67,7 @@ $dist_back=$user_obj['background'];
                     <ul class="nav navbar-nav">
                         <li><a href="accueil.php"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
                         <li class="active"><a href="#"><span class="glyphicon glyphicon-globe"></span> Réseau</a></li>
-                        <li><a href="messagerie.php"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
+                        <li><a href="chat/message.php"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
                         <li><a href="emplois.php"><span class="glyphicon glyphicon-search"></span> Emplois</a></li>
                         <li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span> Notifications</a></li>
                     </ul>
@@ -75,7 +75,7 @@ $dist_back=$user_obj['background'];
 
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="profil.php"><span class="glyphicon glyphicon-user"></span>  <?= $prenom.' '.$nom ?> </a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
+                        <li><a href="login-system/logout.php"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
                     </ul>
                 </div>
             </div>

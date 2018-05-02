@@ -5,8 +5,8 @@ include('connect.php');
 
 // Check if user is logged in using the session variable
 if ( $_SESSION['logged_in'] != 1 ) {
-     $_SESSION['message'] = "You must log in before viewing your profile page!";
-  header("location: error.php");    
+     $_SESSION['message'] = "Vous devez être connecté pour acceder à ce contenu!";
+  header("location: login-system/error.php");    
 }
 else {
     // Makes it easier to read
@@ -95,7 +95,7 @@ else {
                     <ul class="nav navbar-nav">
                         <li><a href="accueil.php"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
                         <li><a href="reseau.php"><span class="glyphicon glyphicon-globe"></span> Réseau</a></li>
-                        <li><a href="messagerie.php"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
+                        <li><a href="chat/message.php"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
                         <li><a href="emplois.php"><span class="glyphicon glyphicon-search"></span> Emplois</a></li>
                         <li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span> Notifications</a></li>
                     </ul>

@@ -145,7 +145,61 @@ else {
                                         <input type="submit" value="Sauvegarder" name="Sauvegarder" class="btn btn-block btn-primary" /> 
                                     </div>
                                 </div>
-                             </form>     
+                             </form>   
+                        <form class="form" action="modif4.php" method="post" autocomplete="off">  
+                                <div class='col-sm-9'>
+                                    <div class='well'>
+                                        <p class='profil'>Modifier mon adresse :</p>
+                                        <p><input type="text" row="3" class="form-control" name="adresse" placeholder="Mon adresse" required></p>
+                                        <input type="submit" value="Sauvegarder" name="Sauvegarder" class="btn btn-block btn-primary" /> 
+                                    </div>
+                                </div>
+                             </form>   
+                        <form class="form" action="modif5.php" method="post" autocomplete="off">  
+                                <div class='col-sm-9'>
+                                    <div class='well'>
+                                        <p class='profil'>Modifier mon résumé :</p>
+                                        <p><input type="text" row="3" class="form-control" name="resume" placeholder="Mon résumé" required></p>
+                                        <input type="submit" value="Sauvegarder" name="Sauvegarder" class="btn btn-block btn-primary" /> 
+                                    </div>
+                                </div>
+                             </form>   
+                        <form class="form" action="modif6.php" method="post" autocomplete="off">  
+                                <div class='col-sm-9'>
+                                    <div class='well'>
+                                        <p class='profil'>Modifier ma promotion :</p>
+                                        <p><input type="text" row="3" class="form-control" name="promotion" placeholder="Ma promotion" required></p>
+                                        <input type="submit" value="Sauvegarder" name="Sauvegarder" class="btn btn-block btn-primary" /> 
+                                    </div>
+                                </div>
+                             </form>   
+                        <form class="form" action="modif7.php" method="post" autocomplete="off">  
+                                <div class='col-sm-9'>
+                                    <div class='well'>
+                                        <p class='profil'>Modifier mon prénom :</p>
+                                        <p><input type="text" row="3" class="form-control" name="prenom" placeholder="Mon prénom" required></p>
+                                        <input type="submit" value="Sauvegarder" name="Sauvegarder" class="btn btn-block btn-primary" /> 
+                                    </div>
+                                </div>
+                             </form>   
+                        <form class="form" action="modif8.php" method="post" autocomplete="off">  
+                                <div class='col-sm-9'>
+                                    <div class='well'>
+                                        <p class='profil'>Modifier mon nom :</p>
+                                        <p><input type="text" row="3" class="form-control" name="nom" placeholder="Mon nom" required></p>
+                                        <input type="submit" value="Sauvegarder" name="Sauvegarder" class="btn btn-block btn-primary" /> 
+                                    </div>
+                                </div>
+                             </form>   
+                        <form class="form" action="modif9.php" method="post" autocomplete="off">  
+                                <div class='col-sm-9'>
+                                    <div class='well'>
+                                        <p class='profil'>Modifier mon username :</p>
+                                        <p><input type="text" row="3" class="form-control" name="username" placeholder="Mon username" required></p>
+                                        <input type="submit" value="Sauvegarder" name="Sauvegarder" class="btn btn-block btn-primary" /> 
+                                    </div>
+                                </div>
+                             </form>   
                        
                     </div>
                 </div>

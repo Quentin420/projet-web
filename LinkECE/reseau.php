@@ -22,6 +22,10 @@ ORDER BY users.nom ASC";
     
     $resultat = mysqli_query($con, $req);
 }
+//Requete speciale pour recuperer avatar et background du user logged
+$av = mysqli_query($con,"SELECT * FROM users WHERE id_user='$id_user'");
+$user_obj = $av->fetch_assoc();
+$dist_back=$user_obj['background'];
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +40,9 @@ ORDER BY users.nom ASC";
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <style>    
             /* Set black background color, white text and some padding */
+            h2{
+                color: white;
+            }
             footer {
                 background-color: #555;
                 color: white;
@@ -43,7 +50,7 @@ ORDER BY users.nom ASC";
             }
         </style>
     </head>
-    <body>
+    <body background="<?= $dist_back ?>">
 
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">

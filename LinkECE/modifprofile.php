@@ -103,13 +103,7 @@ else {
                        <img src="<?= $dist_av ?>" class="img-circle" height="150" width="150" alt="Avatar">
                        
                         
-                    </div>
-                    <a href="<?= $dist_cv ?>" download="<?= $dist_cv ?>">
-                        <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> Consulter CV</button>
-                    </a>  
-                    <a href="modifprofile.php">
-                        <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-cog"></span> Modifier profil</button>
-                    </a>  
+                    </div> 
                 </div>
 
                 <div class="col-sm-9">
@@ -122,23 +116,44 @@ else {
                     </div>
                     
                     <div class="row">
-                                <?php
-                                while($post = mysqli_fetch_array($resultat)){
-                                echo "
+                             <form>  
                                 <div class='col-sm-9'>
                                     <div class='well'>
-                                        <p class='profil'>". $post['descriptif']."</p>
-                                        <p class='profil'>". $post['lieu']."</p>
-                                        <p class='profil'>". $post['date_post']."</p>
-                                        <p class='profil'>". $post['humeur']."</p>
+                                        <p class='profil'>Changer d'avatar :</p>
+                                        <p><input name="monFichier" type="file"></p>
                                         <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
                                         <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>
                                         <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Like</button> 
                                     </div>
-                                </div>";
-                                }?>
+                                </div>
+                                
                         
-
+                                <div class='col-sm-9'>
+                                    <div class='well'>
+                                        <p class='profil'>Changer d'image de fond :</p>
+                                        <p><input name="monFichier" type="file"></p>
+                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
+                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>
+                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Like</button> 
+                                    </div>
+                                </div>
+                        
+                                <div class='col-sm-9'>
+                                    <div class='well'>
+                                        <p class='profil'>Upload un CV :</p>
+                                        <p><input name="monFichier" type="file"></p>
+                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
+                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>
+                                        <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Like</button> 
+                                    </div>
+                                </div>
+                                 
+                                <div class='col-sm-9'>
+                                    <div class='well'>
+                                        <input type="submit" value="Sauvegarder" name="Sauvegarder" class="btn btn-block btn-primary" /> 
+                                    </div>
+                                </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -150,4 +165,3 @@ else {
 
     </body>
 </html>
-

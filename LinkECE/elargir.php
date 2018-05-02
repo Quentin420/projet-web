@@ -133,7 +133,7 @@ else {
         <div class="container text-center">   
         
         <div style="width:500px; margin:0 auto; margin-top:100px; background:#FFFFFF; padding:20px;">
-            <h1><span id="l">L</span><span id="i">i</span><span id="n">n</span><span id="k">k</span><span id="e1">E</span><span id="c">C</span><span id="e2">E</span><span id="people">people</span></h1>
+            <h1><span id="l">L</span><span id="i">i</span><span id="n">n</span><span id="k">k</span><span id="e1">E</span><span id="c">C</span><span id="e2">E</span><span id="people">'people</span></h1>
             <form method="get" action="">
                <input type="text" autocomplete=off name="search" id="search_box" class='search_box'/>
                <input type="submit" value="Search" class="search_button" />

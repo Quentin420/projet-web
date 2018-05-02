@@ -112,8 +112,9 @@ $dist_back=$user_obj['background'];
                         <form method="post" action="statut.php">
                             <textarea rows="4" cols="50" name="statut" class="form-control" placeholder="Des nouveautés à partager ?" required></textarea><br>
                             <input type="text" row="3" class="form-control" name="lieu" placeholder="Où êtes-vous ?" required></p>
-                        <p>
-
+                        <div class="row">
+                        <div class="col-sm-5">
+                        <p><br>
                             <label for="humeur">Quelle est votre humeur ?</label>
                             <select name="humeur" id="humeur">
                                 <option value="---">---</option>
@@ -124,10 +125,18 @@ $dist_back=$user_obj['background'];
                                 <option value="Enerve">Enervé</option>
                             </select>
                         </p>
-                        <p><input name="monFichier" type="file"></p>
+                            </div>
+                            <div class="col-sm-5"><br>
+                            <p><input name="monFichier" type="file"></p>
+                        </div>
+                        <div class="col-sm-2">
+                            <br>
                         <button type="submit" class="btn btn-primary">
+                            
                             <span class="glyphicon glyphicon-bullhorn"></span> Poster
                         </button>
+                        </div>
+                            </div>
                         </form>
 
                 </div>

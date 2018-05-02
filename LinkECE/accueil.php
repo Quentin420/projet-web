@@ -52,11 +52,11 @@ $av = mysqli_query($con,"SELECT * FROM users WHERE id_user='$id_user'");
             }
             
             #post-heure{
-                text-align: right;
+                text-align: left;
             }
             
             #post-lieu{
-                text-align: right;
+                text-align: left;
             }
         </style>
     </head>
@@ -129,7 +129,8 @@ $av = mysqli_query($con,"SELECT * FROM users WHERE id_user='$id_user'");
                             
                                 
                             <div class='well'>
-                                <p id='post-heure'>".$post['date_post']."</p>
+                                <p id='post-lieu'> Lieu : ".$post['lieu']." , Humeur : ".$post['humeur']."</p>
+                               
                                 <p>".$post['descriptif']."</p>";
                                 
                                 if($post['document']){
@@ -137,7 +138,7 @@ $av = mysqli_query($con,"SELECT * FROM users WHERE id_user='$id_user'");
                                 }
                                 
                         
-                            echo "<p id='post-lieu'> Lieu : ".$post['lieu']."</p>
+                            echo "<p id='post-heure'>".$post['date_post']."</p>
                                 <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
                                 <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>
                                 <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Like</button>  

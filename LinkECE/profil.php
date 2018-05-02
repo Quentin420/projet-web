@@ -148,7 +148,7 @@ else {
                                 <p>  Adresse email : <a href="mailto:<?= $user_viewed_email ?>"><?= $user_viewed_email ?></a></p>
                                 <p>  Adresse : <?= $user_viewed_adresse ?></p>
                                 <p>  </p>
-                                <p  class="entete">En réseau avec <?= $nb_relation['nb_relation']+$nb['nb_relation']?> personnes.</p>
+                                
                             </div>
                             </div>
 

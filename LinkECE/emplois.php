@@ -15,7 +15,7 @@ else {
     $username = $_SESSION['username'];
     $id_user = $_SESSION['id_user'];
     
-       $req = "SELECT * FROM emploi ORDER BY date_emploi DESC";
+       $req = "SELECT * FROM emploi ORDER BY date_emploi DESC LIMIT 20";
         
     $resultat = mysqli_query($con, $req);
     
@@ -105,7 +105,7 @@ $dist_back=$user_obj['background'];
                 <div class="col-sm-12">
                     
                     
-                    <h3 class="well">Les offres d'emplois</h3>
+                    <h3 class="well">Dernières offres mises en lignes : </h3>
                 <?php
     while($post = mysqli_fetch_array($resultat)){
 

@@ -64,6 +64,9 @@ $dist_back=$user_obj['background'];
                 color: white;
                 padding: 15px;
             }
+            h3{
+                text-align: left;
+            }
         </style>
     </head>
     <body background="<?= $dist_back ?>">
@@ -99,10 +102,10 @@ $dist_back=$user_obj['background'];
 
         <div class="container text-center">    
             <div class="row">
-                <div class="col-sm-9">
+                <div class="col-sm-12">
                     
                     
-                    <h2 class="well">Les offres d'emplois</h2>
+                    <h3 class="well">Les offres d'emplois</h3>
                 <?php
     while($post = mysqli_fetch_array($resultat)){
 

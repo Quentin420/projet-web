@@ -192,7 +192,8 @@ else {
                                         echo"<img src=".'img/'.$post['document']." width='400px' ><p><br></p>";
                                     
                                     }
-                                       echo" <p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$post['date_post']."</p>
+                                       echo" <div class='row'><div class='col-sm-10'><p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$post['date_post']."</p></div>
+                                       <div class='col-sm-2'><a href='supp.php' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Supprimer</a></div></div>
                                    
                                 </div>";    
                     

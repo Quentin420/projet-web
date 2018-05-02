@@ -7,7 +7,7 @@
         $search_word=$_GET['search_word'];
         $search_word_new=mysqli_real_escape_string($con, $search_word);
         $search_word_fix=str_replace(" ","%",$search_word_new);
-        $sql=mysqli_query($con,"SELECT * FROM users WHERE nom LIKE '%$search_word_fix%' ORDER BY id_user DESC LIMIT 10");
+        $sql=mysqli_query($con,"SELECT * FROM users WHERE (nom LIKE '%$search_word_fix%') OR (prenom LIKE '%$search_word_fix%')ORDER BY id_user DESC LIMIT 10");
         $count=mysqli_num_rows($sql);
         if($count > 0)
         {

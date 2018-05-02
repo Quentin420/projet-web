@@ -50,7 +50,7 @@ else {
                         <span class="icon-bar"></span>                        
                     </button>
                     <style>.navbar-brand {font-weight: bold;}</style>
-                    <a class="navbar-brand" href="accueil.php">LinkECE</a>
+                    <a class="navbar-brand" href="../accueil.php">LinkECE</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">

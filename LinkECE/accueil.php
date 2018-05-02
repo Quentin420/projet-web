@@ -52,7 +52,7 @@ ORDER BY post.date_post DESC";
             }
             
             #post-heure{
-                text-align: left;
+                text-align: right;  
             }
             
             #post-lieu{
@@ -117,6 +117,10 @@ ORDER BY post.date_post DESC";
                     </div>
                     <?php
                     while($post = mysqli_fetch_array($resultat)){
+                        
+                        $time = strtotime($post['date_post']);
+                        $myFormatForView = date("d/m/y à h:i", $time);
+                        
                         echo "<div class='row'>
                         <div class='col-sm-2'>
                             <div class='well'>
@@ -129,20 +133,26 @@ ORDER BY post.date_post DESC";
                             
                                 
                             <div class='well'>
-                                <p id='post-lieu'> Lieu : ".$post['lieu']." , Humeur : ".$post['humeur']."</p>
-                               
+                                
+                                <p id='post-heure'>Le ".$myFormatForView."</p>
                                 <p>".$post['descriptif']."</p>";
                                 
                                 if($post['document']){
-                                    echo"<img src=".'img/'.$post['document']." width='400' height='300'>";
+                                    echo"<img src=".'img/'.$post['document']." width='400' height='300'><p><br></p>";
                                 }
                                 
                         
-                            echo "<p id='post-heure'>".$post['date_post']."</p>
+                            echo "
+                                <div class='row'>
+                                <div class='col-sm-6'>
+                                <p id='post-lieu'> Lieu : ".$post['lieu']." , Humeur : ".$post['humeur']."</p>
+                                </div>
+                                <div class='col-sm-6'>
                                 <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
                                 <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>
                                 <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Like</button>  
-
+                                </div>
+                                </div>
                             </div>
                         </div>  
                     </div>";

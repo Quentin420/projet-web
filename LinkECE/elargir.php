@@ -92,8 +92,8 @@ else {
             #l{color: #4286f2}
             #i{color: #e94333}
             #n{color: #fdbe07}
-            #k{color: #4086f2}
-            #e1{color: #31aa52}
+            #k{color: #31aa52}
+            #e1{color: #4086f2}
             #c{color: #e94434}
             #e2{color: #4286f2}
         </style>

@@ -4,7 +4,7 @@ session_start();
 
 // Check if user is logged in using the session variable
 if ( $_SESSION['logged_in'] != 1 ) {
-    $_SESSION['message'] = "You must log in before viewing your profile page!";
+    $_SESSION['message'] = "Vous n'êtes pas connecté!";
     header("location: login-system/error.php");    
 }
 else {
@@ -123,7 +123,7 @@ else {
 
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="profil.php"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
+                        <li><a href="profil.php"><span class="glyphicon glyphicon-user"></span> <?= $prenom.' '.$nom ?> </a></li>
                         <li><a href="login-system/logout.php"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
                     </ul>
                 </div>

@@ -1,86 +1,64 @@
 <?php
 /* Displays user information and some useful messages */
 session_start();
+include('connect.php');
 
 // Check if user is logged in using the session variable
 if ( $_SESSION['logged_in'] != 1 ) {
-    $_SESSION['message'] = "Vous n'êtes pas connecté!";
+    $_SESSION['message'] = "Vous devez vous connecter!";
     header("location: login-system/error.php");    
 }
-else {
-    // Makes it easier to read
+
+else{
+
+    //ID de l'utilisateur
     $nom = $_SESSION['nom'];
     $prenom = $_SESSION['prenom'];
     $email = $_SESSION['email'];
     $username = $_SESSION['username'];
+    $id_user = $_SESSION['id_user'];
+
+    if(isset($_GET['id_emploi']))
+
+    {
+        //Id de l'utilisateur dont on regarde le profil
+        $idviewed = $_GET['id_emploi'];
+
+        //Infos sur l'utilisateur dont on regarde le profil
+        $emploi = mysqli_query($con, "SELECT * FROM `emploi` WHERE id_emploi='$idviewed'");
+
+                //Assoc de l'user viewed
+                $emploi_viewed = mysqli_fetch_assoc($emploi);
+                //On récupère tous ses paramètres
+                $emploi_viewed_id= $emploi_viewed['id_emploi'];
+                $emploi_viewed_date= $emploi_viewed['date_emploi'];
+                $emploi_viewed_entreprise= $emploi_viewed['entreprise'];
+                $emploi_viewed_type_offre= $emploi_viewed['type_offre'];
+                $emploi_viewed_id= $emploi_viewed['id_emploi'];
+                $emploi_viewed_descriptif= $emploi_viewed['descriptif_emploi'];
+                $emploi_viewed_intitule= $emploi_viewed['intitule_offre'];
+                $emploi_viewed_disponibilite= $emploi_viewed['disponibilite'];
+
+                //Si l'offre n'est plus disponible
+                if($emploi_viewed_disponibilite==0){
+                    echo 'Cette offre a expiré';
+                    die;
+                }
+    }
 }
 ?>
 
 
-
 <!DOCTYPE html>
 <html>
+
     <head>
-        <title>Bienvenue sur LinkECE</title>
+        <title>Offre d'emploi de <?php echo $emploi_viewed_entreprise; ?></title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script type="text/javascript">
-
-           $(function()
-           {
-            $(".search_button").click(function()
-            {
-                var search_word = $("#search_box").val();
-                var dataString = 'search_word='+search_word;
-
-                if (search_word=='')
-                {
-
-                }
-
-                else
-                {
-                    $.ajax({
-                        type: "GET",
-                        url: "searchingdataemploi.php",
-                        data: dataString,
-                        cache: false,
-                        beforeSend: function(html)
-                        {
-
-                            document.getElementById("insert_search").innerHTML='';
-                            $("#flash").show();
-                            $("#searchword").show();
-                            $("#flash").html('> Loading Results');
-
-                        },
-
-                        error: function(html){
-                         alert('error');
-                         },   
-
-                        success: function(html){
-                            $("#insert_search").show();
-                            $("#insert_search").append(html);
-                            $("#flash").hide();
-                            
-                        }
-                    });
-
-                }
-                return false;
-            });
-            });
-
-
-        
-        </script>
-
-
         <style>    
             /* Set black background color, white text and some padding */
             footer {
@@ -88,15 +66,15 @@ else {
                 color: white;
                 padding: 15px;
             }
-            
-            #l{color: #4286f2}
-            #i{color: #e94333}
-            #n{color: #fdbe07}
-            #k{color: #4086f2}
-            #e1{color: #31aa52}
-            #c{color: #e94434}
-            #e2{color: #4286f2}
-            #people{font-size: 12px;}
+
+            .infos{
+                text-align: left;
+            }
+
+            h3{
+                text-align: left;
+            }
+
         </style>
     </head>
     <body>
@@ -130,24 +108,35 @@ else {
             </div>
         </nav>
 
-        <div class="container text-center">   
-        
-            <div style="width:500px; margin:0 auto; margin-top:100px; background:#FFFFFF; padding:20px;">
-            <h1><span id="l">L</span><span id="i">i</span><span id="n">n</span><span id="k">k</span><span id="e1">E</span><span id="c">C</span><span id="e2">E</span><span id="people">'jobs</span></h1>
-            <form method="get" action="">
-               <input type="text" autocomplete=off name="search" id="search_box" class='search_box'/>
-               <input type="submit" value="Search" class="search_button" />
-            </form>
-            <br  />
-            <div id="searchword">
-            Rechercher par entreprise ou type d'offre : <b><span class="searchword"></span></b></div>
-            <div id="flash"></div>
-            <ol id="insert_search" class="update" style="color: black; text-align: left;">
-            
-            </ol>
+        <div class="container text-center">    
+            <div class="row">
+                
+                <div class="col-sm-12">
+                    
+                        
+                            <h3 class="well"> Informations</h3>
+                            <div class="well">
+                            <div class="infos">
+                                
+                                <p>  Date de mise en ligne : <?= $emploi_viewed_date ?></p>
+                                <p>  Entreprise : <?= $emploi_viewed_entreprise ?></p>
+                                <p>  Intitulé de l'offre : <?= $emploi_viewed_intitule ?></p>
+                                <p>  Type d'offre : <?= $emploi_viewed_type_offre ?></p>
+                                <p>  Descriptif de l'offre : <br/><br/> <?= $emploi_viewed_descriptif ?></p>
+                                <p style="text-align: center;">  <a href="mailto:<?= 'recrutement@gmail.com' ?>">Postuler à cette offre</a></p>
+                                
+                            </div>
+                            </div>
+
+                       
+                     
+                </div>
+            </div>
         </div>
 
-            
-        </div>
+        <footer class="container-fluid text-center">
+            <p>LinkECE &copy;2018</p>
+        </footer>
+
     </body>
 </html>

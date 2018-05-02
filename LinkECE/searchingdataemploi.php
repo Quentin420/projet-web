@@ -30,7 +30,7 @@
                                     <p> Mise en ligne le : {$emploi_date} </p>
                                     <p> Entreprise : {$emploi_entreprise} Type : {$emploi_type_offre}</p>
                                     <p> Intitulé de l'offre : {$emploi_intitule} </p>
-                                    <a href='viewprofile.php?id_user=".$msg."'>Voir l'offre</a>
+                                    <a href='viewemploi.php?id_emploi=".$msg."'>Voir l'offre</a>
                                     <br/>
                                     <br/>
                                 </div>

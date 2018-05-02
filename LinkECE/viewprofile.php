@@ -25,19 +25,7 @@ else{
 
         //Infos sur l'utilisateur dont on regarde le profil
         $user = mysqli_query($con, "SELECT * FROM `users` WHERE id_user='$idviewed'");
-<<<<<<< HEAD
-        //Assoc de l'user viewed
-        $user_viewed = mysqli_fetch_assoc($user);
-        //On récupère tous ses paramètres
-        $user_viewed_nom = $user_viewed['nom'];
-        $user_viewed_prenom = $user_viewed['prenom'];
-        $user_viewed_avatar = $user_viewed['avatar'];
-        $user_viewed_email = $user_viewed['email'];
-        $user_viewed_username = $user_viewed['username'];
-        $user_viewed_adresse = $user_viewed['adresse'];
-        $user_viewed_resume = $user_viewed['resume'];
-        $user_viewed_promotion = $user_viewed['promotion'];
-=======
+
                 //Assoc de l'user viewed
                 $user_viewed = mysqli_fetch_assoc($user);
                 //On récupère tous ses paramètres
@@ -50,7 +38,7 @@ else{
                 $user_viewed_resume = $user_viewed['resume'];
                 $user_viewed_promotion = $user_viewed['promotion'];
                 $user_viewed_cv= $user_viewed['cv'];
->>>>>>> 2a7951aff600333a3d719eed6c3c12aeb5537c5d
+
 
         //Recupère les post de l'utilisateur
         $resultat = mysqli_query($con,"SELECT * FROM post WHERE id_user='$idviewed' ORDER BY date_post DESC");

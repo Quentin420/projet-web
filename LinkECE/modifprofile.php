@@ -123,31 +123,30 @@ else {
                                 <div class='col-sm-9'>
                                     <div class='well'>
                                         <p class='profil'>Changer d'avatar :</p>
-                                        <p><input name="avatar" type="file" accept="image/*"></p>
-                                    </div>
-                                </div>
-                                
-                        
-                                <div class='col-sm-9'>
-                                    <div class='well'>
-                                        <p class='profil'>Changer d'image de fond :</p>
-                                        <p><input name="background" type="file" accept="image/*"></p>
-                                    </div>
-                                </div>
-                        
-                                <div class='col-sm-9'>
-                                    <div class='well'>
-                                        <p class='profil'>Upload un CV :</p>
-                                        <p><input name="cv" type="file" accept="image/*"></p>
-                                    </div>
-                                </div>
-                                 
-                                <div class='col-sm-9'>
-                                    <div class='well'>
+                                        <p><input name="avatar" type="file" accept="image/*" required></p>
                                         <input type="submit" value="Sauvegarder" name="Sauvegarder" class="btn btn-block btn-primary" /> 
                                     </div>
                                 </div>
                         </form>
+                        <form class="form" action="modif2.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                                <div class='col-sm-9'>
+                                    <div class='well'>
+                                        <p class='profil'>Changer d'image de fond :</p>
+                                        <p><input name="background" type="file" accept="image/*" required></p>
+                                        <input type="submit" value="Sauvegarder" name="Sauvegarder" class="btn btn-block btn-primary" /> 
+                                    </div>
+                                </div>
+                        </form>
+                         <form class="form" action="modif3.php" method="post" enctype="multipart/form-data" autocomplete="off">  
+                                <div class='col-sm-9'>
+                                    <div class='well'>
+                                        <p class='profil'>Upload un CV :</p>
+                                        <p><input name="cv" type="file" required></p>
+                                        <input type="submit" value="Sauvegarder" name="Sauvegarder" class="btn btn-block btn-primary" /> 
+                                    </div>
+                                </div>
+                             </form>     
+                       
                     </div>
                 </div>
             </div>

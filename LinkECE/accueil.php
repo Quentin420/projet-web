@@ -15,7 +15,7 @@ else {
     $username = $_SESSION['username'];
     $id_user = $_SESSION['id_user'];
     
-    $req = "SELECT * FROM post
+    $req = "SELECT DISTINCT id_post, id_user, prenom, nom, lieu, humeur, date_post, document, avatar, descriptif FROM post
 NATURAL JOIN users
 INNER JOIN relation ON post.id_user = relation.id_user1 OR post.id_user = relation.id_user2 
 WHERE relation.id_user1 = '$id_user' OR relation.id_user2 = '$id_user' 

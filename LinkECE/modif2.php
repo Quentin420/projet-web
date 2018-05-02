@@ -1,5 +1,5 @@
 <?php
-//header('Location: modifprofile.php');
+
 session_start();
 include('connect.php');
 
@@ -13,14 +13,16 @@ else {
 
     $id_user = $_SESSION['id_user'];
     
-    $avatar_path= mysqli_real_escape_string($con,'img/'.$_FILES['avatar']['name']);
     
-    if(preg_match("!image!",$_FILES['avatar']['type']))
+    $back_path= mysqli_real_escape_string($con,'img/'.$_FILES['background']['name']);
+    
+    if(preg_match("!image!",$_FILES['background']['type']))
     {
-        if(copy($_FILES['avatar']['tmp_name'],$avatar_path)){
-            $_SESSION['avatar']=$avatar_path;
+        if(copy($_FILES['background']['tmp_name'],$back_path)){
             
-            $sql="UPDATE users SET avatar='$avatar_path' WHERE id_user='$id_user'"; 
+            $_SESSION['background']=$back_path;
+            
+            $sql="UPDATE users SET background='$back_path' WHERE id_user='$id_user'"; 
             if (mysqli_query($con,$sql) === TRUE) {
                 echo "New record created successfully";
                 header("location: profil.php");

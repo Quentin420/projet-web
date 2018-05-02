@@ -111,8 +111,9 @@ else {
 
         <div class="container text-center">    
             <div class="row">
-
+                    
                 <div class="col-sm-3">
+                    <br>
                     <div class="well">
                     <h1 class="entete"><?= $prenom.' '.$nom?></h1>
                     <?php if($nb_relation['nb_relation']+$nb['nb_relation']>1){

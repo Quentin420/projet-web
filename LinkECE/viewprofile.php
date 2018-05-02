@@ -129,8 +129,9 @@ else{
 
         <div class="container text-center">    
             <div class="row">
-
+                
                 <div class="col-sm-3">
+                <br>
                     <div class="well">
                     <h1 class="entete"><?= $user_viewed_prenom.' '.$user_viewed_nom ?></h1>
                     
@@ -186,9 +187,6 @@ else{
                     </div>
                     <br>
                 
-
-
-
                     <h3 class="well">Fil d'Actualité</h3>
 
                     <?php

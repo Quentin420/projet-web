@@ -20,10 +20,8 @@ else {
     $resume = $_SESSION['resume'];
     
 
-    $result1 = mysqli_query($con,"SELECT COUNT(*) as nb_relation FROM relation WHERE id_user1='$id_user'");
-    $nb_relation = $result1->fetch_assoc();
-    $result2 = mysqli_query($con,"SELECT COUNT(*) as nb_relation FROM relation WHERE id_user2='$id_user'");
-    $nb = $result2->fetch_assoc();
+    $result = mysqli_query($con,"SELECT COUNT(*) as nb_relation FROM relation WHERE id_user1 = '$id_user'OR id_user2 = '$id_user'");
+    $nb_relation = $result->fetch_assoc();
    
     
     $resultat = mysqli_query($con,"SELECT * FROM post WHERE id_user='$id_user' ORDER BY date_post DESC");
@@ -119,7 +117,7 @@ else {
                     <br>
                     <div class="well">
                     <h1 class="entete"><?= $prenom.' '.$nom?></h1>
-                    <?php if($nb_relation['nb_relation']+$nb['nb_relation']>1){
+                    <?php if($nb_relation['nb_relation']>1){
                                 echo "<p class='entete'>En réseau avec ". ($nb_relation['nb_relation']+$nb['nb_relation'])." personnes</p>";
                             }
                             else{

@@ -13,15 +13,15 @@ else{
 
     //ID de l'utilisateur
     $id_session = $_SESSION['id_user'];
-    if(isset($_GET['id_post']))
+    if(isset($_GET['id_user']))
 
     {
         //Id de l'utilisateur dont on regarde le profil
-        $idviewed = $_GET['id_post'];
+        $idviewed = $_GET['id_user'];
         
         //Infos sur l'utilisateur dont on regarde le profil
-        $user = mysqli_query($con, "DELETE FROM post WHERE id_post = '$idviewed' AND id_user ='$id_session'");
-        echo "<script type='text/javascript'> document.location = 'profil.php'; </script>";    
+        $user = mysqli_query($con, "INSERT INTO relation (id_user1, id_user2) VALUES ('$idviewed', '$id_session');");
+        echo "<script type='text/javascript'> document.location = 'viewprofile.php?id_user=".$idviewed."'; </script>";    
     }
 }
 ?>

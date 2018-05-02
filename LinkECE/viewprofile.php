@@ -45,10 +45,11 @@ else{
         $resultat = mysqli_query($con,"SELECT * FROM post WHERE id_user='$idviewed' ORDER BY date_post DESC");
 
         //Requete pour compter les relations
-        $result1 = mysqli_query($con,"SELECT COUNT(*) as nb_relation FROM relation WHERE id_user1='$idviewed'");
-        $nb_relation = $result1->fetch_assoc();
-        $result2 = mysqli_query($con,"SELECT COUNT(*) as nb_relation FROM relation WHERE id_user2='$id_user'");
-        $nb = $result2->fetch_assoc();
+        $result = mysqli_query($con,"SELECT COUNT(*) as nb_relation FROM relation WHERE id_user1 = '$idviewed'OR id_user2 = '$idviewed'");
+        $nb = $result->fetch_assoc();
+        
+        $req = mysqli_query($con,"SELECT COUNT(*) as ami FROM relation WHERE (id_user1 = '$idviewed' AND id_user2='$id_user' )OR (id_user2 = '$idviewed' AND id_user1='$id_user' )");
+        $ami = $req->fetch_assoc();
 
 
     }
@@ -136,7 +137,7 @@ else{
                     <div class="well">
                     <h1 class="entete"><?= $user_viewed_prenom.' '.$user_viewed_nom ?></h1>
                     
-                        <?php if($nb_relation['nb_relation']+$nb['nb_relation']>1){
+                        <?php if($nb['nb_relation']>1){
                                 echo "<p class='entete'>En réseau avec ". ($nb_relation['nb_relation']+$nb['nb_relation'])." personnes</p>";
                             }
                             else{
@@ -151,9 +152,26 @@ else{
                     <a href="<?= $user_viewed['cv'] ?>" download="<?= $user_viewed['cv'] ?>">
                         <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> Consulter CV</button>
                     </a>
-                    <a href="chat/message.php?id_user=<?= $user_viewed_id ?>">
-                        <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-inbox"></span> Message</button>
+                    
+                    <?php
+                    if($ami['ami']==0){
+                    echo "<a href='ajouterAmi.php?id_user=".$user_viewed_id."'>
+                        <button type='button' class='btn btn-success'><span class='glyphicon glyphicon-plus'></span> Ajouter ami</button>
                     </a>
+                        ";
+                        
+                    }
+                    else{
+                        echo "<a href='chat/message.php?id_user=". $user_viewed_id ."'>
+                        <button type='button' class='btn btn-info'><span class='glyphicon glyphicon-inbox'></span> Message</button>
+                    </a>
+                    <a href='suppAmi.php?id_user=".$user_viewed_id."'>
+                        <button type='button' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Supprimer</button>
+                    </a>";
+                    }
+                             
+                        
+                    ?>
 
                 </div>
 

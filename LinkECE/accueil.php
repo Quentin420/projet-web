@@ -60,6 +60,18 @@ $dist_back=$user_obj['background'];
             #post-description{
                 text-align: justify;
             }
+            
+            textarea
+            {
+                resize: none;
+            }
+            
+            #post-humeur{
+                color: grey;
+                text-align: left;
+                font-weight: bold;
+            }
+            
         </style>
     </head>
     <body background="<?= $dist_back ?>">
@@ -136,20 +148,17 @@ $dist_back=$user_obj['background'];
                         <div class='col-sm-10'>
 
 
-                            <div class='well'>
+                            <div class='well'>";
 
                                 
-                                <p id='post-description'>".$post['prenom']." ".$post['nom'];
+                                
 
 
         if($post['humeur'] != "---"){
-
-
-
-
-            echo " est ".$post['humeur'] ;}
-        echo " : ".$post['descriptif']."</p>";
-
+            echo "<p id='post-humeur'>".$post['humeur']."</p>";
+        }
+            echo "<p id='post-description'>".$post['descriptif']."</p>";
+        
         if($post['document']){
             echo"<img src=".'img/'.$post['document']." width='400px' ><p><br></p>";
         }

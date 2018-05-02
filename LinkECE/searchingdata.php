@@ -25,7 +25,7 @@
                 echo "
                             <div class='result'>
                                 <div class='img-con'>
-                                    <img src='../{$user_form_img}'>
+                                    <img src='{$user_form_img}'>
                                 </div>
                                 <div class='text-con'>
                                     <p> {$user_form_nom} {$user_form_prenom}</p>

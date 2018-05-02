@@ -149,7 +149,7 @@ $dist_back=$user_obj['background'];
     while($post = mysqli_fetch_array($resultat)){
 
         $time = strtotime($post['date_post']);
-        $myFormatForView = date("d/m/y à h:i", $time);
+        $myFormatForView = date("d/m/y à H:i", $time);
 
         echo "<div class='row'>
                     

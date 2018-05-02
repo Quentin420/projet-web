@@ -36,6 +36,7 @@ else{
                 $user_viewed_adresse = $user_viewed['adresse'];
                 $user_viewed_resume = $user_viewed['resume'];
                 $user_viewed_promotion = $user_viewed['promotion'];
+                $user_viewed_cv= $user_viewed['cv'];
 
         //Recupère les post de l'utilisateur
         $resultat = mysqli_query($con,"SELECT * FROM post WHERE id_user='$idviewed'");
@@ -119,7 +120,7 @@ else{
                        
                         
                     </div>
-                    <a href="<?= $dist_cv ?>" download="<?= $dist_cv ?>">
+                    <a href="<?= $user_viewed['cv'] ?>" download="<?= $user_viewed['cv'] ?>">
                         <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> Consulter CV</button>
                     </a>     
 

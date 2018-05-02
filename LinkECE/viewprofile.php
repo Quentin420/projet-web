@@ -150,7 +150,6 @@ else{
 
 
                     </div>
-                    <a href="<?= $dist_cv ?>" download="<?= $dist_cv ?>">
                     <a href="<?= $user_viewed['cv'] ?>" download="<?= $user_viewed['cv'] ?>">
                         <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> Consulter CV</button>
                     </a>     

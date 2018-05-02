@@ -147,7 +147,7 @@ ORDER BY post.date_post DESC";
                             echo "
                                 <div class='row'>
                                 <div class='col-sm-6'>
-                                <p id='post-lieu'> Lieu : ".$post['lieu'];
+                                <p id='post-lieu'> Posté depuis ".$post['lieu'];
                                 if($post['humeur'] != "---"){
                                     echo ", Humeur : ".$post['humeur'];
                                 }

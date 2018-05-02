@@ -17,8 +17,8 @@ else {
 
     $id_user = $_SESSION['id_user'];
     $mysqli = new mysqli($host,$user,$pass,$db);
-    $lieu = isset($_POST["lieu"])?$_POST["lieu"]:"";
-    $name = isset($_POST["statut"])?$_POST["statut"]:"";
+    $lieu = $mysqli->escape_string($_POST["lieu"]);
+    $name = $mysqli->escape_string($_POST["statut"]);
     $humeur = isset($_POST["humeur"])?$_POST["humeur"]:"";
     $document = isset($_POST["monFichier"])?$_POST["monFichier"]:"";
     $sql="INSERT INTO post (id_user, document, visibilite, lieu, descriptif, humeur) 

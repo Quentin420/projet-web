@@ -5,7 +5,7 @@ session_start();
 
 // Check if user is logged in using the session variable
 if ( $_SESSION['logged_in'] != 1 ) {
-     $_SESSION['message'] = "You must log in before viewing your message page!";
+     $_SESSION['message'] = "Vous n'êtes pas connecté!";
      header("location: ../login-system/error.php");    
 }
 else {
@@ -122,7 +122,7 @@ else {
                     }
                 }else 
                 {
-                    die("Click On the Person to start Chating.");
+                    die("Clickez sur un utilisateur pour lancer un chat.");
                 }
             ?>
             </div>
@@ -135,9 +135,9 @@ else {
                 <input type="hidden" id="user_form" value="<?php echo base64_encode($user_id); ?>">
                 <input type="hidden" id="user_to" value="<?php echo base64_encode($user_two); ?>">
                 <div class="form-group">
-                    <textarea class="form-control" id="message" placeholder="Enter Your Message"></textarea>
+                    <textarea class="form-control" id="message" placeholder="Entrez votre message"></textarea>
                 </div>
-                <button class="btn btn-primary" id="reply">Reply</button> 
+                <button class="btn btn-primary" id="reply">Envoyer</button> 
                 <span id="error"></span>
             </div>
             <!-- / send message -->

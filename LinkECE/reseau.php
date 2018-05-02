@@ -15,6 +15,12 @@ else {
     $username = $_SESSION['username'];
     $id_user = $_SESSION['id_user'];
     
+    $req = "SELECT DISTINCT id_user, prenom, nom, avatar FROM users
+INNER JOIN relation ON users.id_user = relation.id_user1 OR users.id_user = relation.id_user2
+WHERE relation.id_user1 = 36 OR relation.id_user2 = '36'
+ORDER BY users.nom ASC";
+    
+    $resultat = mysqli_query($con, $req);
 }
 ?>
 
@@ -69,7 +75,21 @@ else {
         </nav>
 
         <div class="container text-center">    
-
+            <div class="row">
+            <?php
+                    while($post = mysqli_fetch_array($resultat)){
+                        if($post['id_user']!=$id_user){
+                        echo "<div class='row'>
+                                <div class='col-sm-2'>
+                                <div class='well'>
+                                    <p>".$post['prenom']." ".$post['nom']."</p>
+                                    <img src=".$post['avatar']." class='img-circle' height='55' width='55' alt='Avatar'>
+                                </div>
+                            </div>  
+                            </div>";
+                        }
+                    }?>   
+            </div>
         </div>
 
         <footer class="container-fluid text-center">

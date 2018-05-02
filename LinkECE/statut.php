@@ -1,6 +1,5 @@
 
 <?php
-header('Location: accueil.php');
 session_start();
 
 // Check if user is logged in using the session variable
@@ -25,7 +24,8 @@ else {
         VALUES('$id_user', '$document', 1, '$lieu','$name', '$humeur')";
 
     if ($mysqli->query($sql) === TRUE) {
-        echo "New record created successfully";
+        
+        header('Location: accueil.php');
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }

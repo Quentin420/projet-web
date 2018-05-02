@@ -14,7 +14,7 @@ else {
     $email = $_SESSION['email'];
     $username = $_SESSION['username'];
     $id_user = $_SESSION['id_user'];
-    
+
     $req = "SELECT DISTINCT id_post, id_user, prenom, nom, lieu, humeur, date_post, document, avatar, descriptif FROM post
 NATURAL JOIN users
 INNER JOIN relation ON post.id_user = relation.id_user1 OR post.id_user = relation.id_user2 
@@ -23,10 +23,10 @@ ORDER BY post.date_post DESC";
     $resultat = mysqli_query($con, $req);
 }
 //Requete speciale pour recuperer avatar et background du user logged
-    $av = mysqli_query($con,"SELECT * FROM users WHERE id_user='$id_user'");
-    $user_obj = $av->fetch_assoc();
-    $dist_av=$user_obj['avatar'];
-    $dist_back=$user_obj['background'];
+$av = mysqli_query($con,"SELECT * FROM users WHERE id_user='$id_user'");
+$user_obj = $av->fetch_assoc();
+$dist_av=$user_obj['avatar'];
+$dist_back=$user_obj['background'];
 ?>
 
 <!DOCTYPE html>
@@ -50,13 +50,15 @@ ORDER BY post.date_post DESC";
             #accueil{
                 text-align: left;
             }
-            
-            #post-heure{
-                text-align: right;  
-            }
-            
+
+
             #post-lieu{
                 text-align: left;
+                color: grey;
+            }
+
+            #post-description{
+                text-align: justify;
             }
         </style>
     </head>
@@ -98,32 +100,32 @@ ORDER BY post.date_post DESC";
                         <form method="post" action="statut.php">
                             <textarea rows="4" cols="50" name="statut" class="form-control" placeholder="Des nouveautés à partager ?" required></textarea><br>
                             <input type="text" row="3" class="form-control" name="lieu" placeholder="Où êtes-vous ?" required></p>
-                            <p>
-                                
-                                <label for="humeur">Quelle est votre humeur ?</label>
-                                <select name="humeur" id="humeur">
-                                    <option value="---">---</option>
-                                    <option value="Heureux">Heureux</option>
-                                    <option value="Cool">Cool</option>
-                                    <option value="Dubitatif">Dubitatif</option>
-                                    <option value="Triste">Triste</option>
-                                    <option value="Enerve">Enervé</option>
-                                </select>
-                            </p>
-                            <p><input name="monFichier" type="file"></p>
-                            <button type="submit" class="btn btn-primary">
-                                <span class="glyphicon glyphicon-bullhorn"></span> Poster
-                            </button>
+                        <p>
+
+                            <label for="humeur">Quelle est votre humeur ?</label>
+                            <select name="humeur" id="humeur">
+                                <option value="---">---</option>
+                                <option value="Heureux">Heureux</option>
+                                <option value="Cool">Cool</option>
+                                <option value="Dubitatif">Dubitatif</option>
+                                <option value="Triste">Triste</option>
+                                <option value="Enerve">Enervé</option>
+                            </select>
+                        </p>
+                        <p><input name="monFichier" type="file"></p>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-bullhorn"></span> Poster
+                        </button>
                         </form>
 
-                    </div>
-                    <?php
-                    while($post = mysqli_fetch_array($resultat)){
-                        
-                        $time = strtotime($post['date_post']);
-                        $myFormatForView = date("d/m/y à h:i", $time);
-                        
-                        echo "<div class='row'>
+                </div>
+                <?php
+    while($post = mysqli_fetch_array($resultat)){
+
+        $time = strtotime($post['date_post']);
+        $myFormatForView = date("d/m/y à h:i", $time);
+
+        echo "<div class='row'>
                         <div class='col-sm-2'>
                             <div class='well'>
                                 <a href='viewprofile.php?id_user=".$post['id_user']."'>".$post['prenom']." ".$post['nom']."</a>
@@ -132,27 +134,31 @@ ORDER BY post.date_post DESC";
                         </div>
 
                         <div class='col-sm-10'>
-                            
-                                
+
+
                             <div class='well'>
+
                                 
-                                <p id='post-heure'>Le ".$myFormatForView."</p>
-                                <p>".$post['descriptif']."</p>";
-                                
-                                if($post['document']){
-                                    echo"<img src=".'img/'.$post['document']." width='400px' ><p><br></p>";
-                                }
-                                
-                            
-                            echo "
+                                <p id='post-description'>".$post['prenom']." ".$post['nom'];
+
+
+        if($post['humeur'] != "---"){
+
+
+
+
+            echo " est ".$post['humeur'] ;}
+        echo " : ".$post['descriptif']."</p>";
+
+        if($post['document']){
+            echo"<img src=".'img/'.$post['document']." width='400px' ><p><br></p>";
+        }
+
+
+        echo "
                                 <div class='row'>
                                 <div class='col-sm-6'>
-                                <p id='post-lieu'> Posté depuis ".$post['lieu'];
-                                if($post['humeur'] != "---"){
-                                    echo ", Humeur : ".$post['humeur'];
-                                }
-                                
-                                echo "</p>
+                                <p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$myFormatForView."</p>
                                 </div>
                                 <div class='col-sm-6'>
                                 <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
@@ -163,35 +169,35 @@ ORDER BY post.date_post DESC";
                             </div>
                         </div>  
                     </div>";
-                    }?>    
+    }?>    
+            </div>
+
+            <div class="col-sm-3">
+                <div class="well">
+                    <p><a href="profil.php">Mon Profil</a></p>
+                    <img src="<?= $dist_av ?>" class="img-circle" height="55" width="55" alt="Avatar">
                 </div>
 
-                <div class="col-sm-3">
-                    <div class="well">
-                        <p><a href="profil.php">Mon Profil</a></p>
-                        <img src="<?= $dist_av ?>" class="img-circle" height="55" width="55" alt="Avatar">
-                    </div>
-
-                    <div class="well">
-                        <a href="elargir.php" class="btn btn-success"><span class="glyphicon glyphicon-briefcase"></span> Élargir son réseau</a>
-                    </div>
-
-                    <div class="thumbnail">
-                        <p>Évènemets à venir :</p>
-                        <img src="paris.jpg" alt="Paris" width="400" height="300">
-                        <p><strong>Paris</strong></p>
-                        <p>Vendredi 27 Novembre 2015</p>
-                    </div>
-
-
-
+                <div class="well">
+                    <a href="elargir.php" class="btn btn-success"><span class="glyphicon glyphicon-briefcase"></span> Élargir son réseau</a>
                 </div>
+
+                <div class="thumbnail">
+                    <p>Évènemets à venir :</p>
+                    <img src="paris.jpg" alt="Paris" width="400" height="300">
+                    <p><strong>Paris</strong></p>
+                    <p>Vendredi 27 Novembre 2015</p>
+                </div>
+
+
+
             </div>
         </div>
+        </div>
 
-        <footer class="container-fluid text-center">
-            <p>LinkECE &copy;2018</p>
-        </footer>
+    <footer class="container-fluid text-center">
+        <p>LinkECE &copy;2018</p>
+    </footer>
 
     </body>
 </html>

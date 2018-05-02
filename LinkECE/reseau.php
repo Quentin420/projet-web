@@ -82,7 +82,7 @@ ORDER BY users.nom ASC";
                         echo "<div class='row'>
                                 <div class='col-sm-2'>
                                 <div class='well'>
-                                    <p>".$post['prenom']." ".$post['nom']."</p>
+                                    <a href='viewprofile.php?id_user=".$post['id_user']."'>".$post['prenom']." ".$post['nom']."</a>
                                     <img src=".$post['avatar']." class='img-circle' height='55' width='55' alt='Avatar'>
                                 </div>
                             </div>  

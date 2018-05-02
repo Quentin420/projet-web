@@ -149,7 +149,10 @@ else{
                     </div>
                     <a href="<?= $user_viewed['cv'] ?>" download="<?= $user_viewed['cv'] ?>">
                         <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> Consulter CV</button>
-                    </a>     
+                    </a>
+                    <a href="">
+                        <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-inbox"></span> Message</button>
+                    </a>
 
                 </div>
 
@@ -187,7 +190,7 @@ else{
                     </div>
                     <br>
                 
-                    <h3 class="well">Fil d'Actualité</h3>
+                    <h3 class="well">Activité</h3>
 
                     <?php
                         $time = strtotime($post['date_post']);

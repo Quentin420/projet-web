@@ -173,7 +173,7 @@ else {
 
 
 
-                   <h3 class="well">Fil d'Actualité</h3>
+                   <h3 class="well">Activité</h3>
                    
                                 <?php
                                 $time = strtotime($post['date_post']);

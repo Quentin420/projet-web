@@ -207,7 +207,8 @@ $dist_back=$user_obj['background'];
                 </div>
 
                 <div class="well">
-                    <a href="elargir.php" class="btn btn-success"><span class="glyphicon glyphicon-briefcase"></span> Élargir son réseau</a>
+                    <a href="elargir.php" class="btn btn-success"><span class="glyphicon glyphicon-briefcase"></span> Élargir son réseau</a><p> </p>
+                    <a href="elargiremploi.php" class="btn btn-info"><span class="glyphicon glyphicon-pushpin"></span> Trouver un emploi</a>
                 </div>
 
                 <div class="well">

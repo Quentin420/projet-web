@@ -95,7 +95,7 @@ $dist_back=$user_obj['background'];
                                 </div>
                                 <div class='col-sm-10'>
                                 <div class='well'>
-                                    <a href='viewprofile.php?id_user=".$post['id_user']."' >".$post['prenom']." ".$post['nom']."</a>
+                                    <a href='viewprofile.php?id_user=".$post['id_user']."'>".$post['prenom']." ".$post['nom']."</a>
                                 </div>
                                 </div>  
                             </div>";

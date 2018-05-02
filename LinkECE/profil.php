@@ -25,10 +25,11 @@ else {
     
     $resultat = mysqli_query($con,"SELECT * FROM post WHERE id_user='$id_user'");
     
-    
+    //requete pour recuperer avatar et background du user logged
     $av = mysqli_query($con,"SELECT * FROM users WHERE id_user='$id_user'");
     $user_obj = $av->fetch_assoc();
-    $dist=$user_obj['avatar'];
+    $dist_av=$user_obj['avatar'];
+    $dist_back=$user_obj['background'];
     
 }
 ?>
@@ -54,9 +55,13 @@ else {
             .profil{
                 text-align:left; 
             }
+            .entete{
+                color: white;
+                text-align:left;
+            }
         </style>
     </head>
-    <body>
+    <body background="<?= $dist_back ?>">
 
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -91,10 +96,10 @@ else {
             <div class="row">
 
                 <div class="col-sm-3">
-                    <h1 class="profil">Profil</h1>
+                    <h1 class="entete">Profil</h1>
                     <div class="well">
                         
-                       <img src="<?= $dist ?>" class="img-circle" height="150" width="150" alt="Avatar">
+                       <img src="<?= $dist_av ?>" class="img-circle" height="150" width="150" alt="Avatar">
                        
                         
                     </div>
@@ -105,8 +110,8 @@ else {
                 <div class="col-sm-9">
                     <div class="row">
                         <div class="col-sm-4">
-                            <h2 class="profil"><?= $prenom.' '.$nom?></h2>
-                            <p class="profil">En réseau avec <?= $nb_relation['nb_relation']+$nb['nb_relation']?> personnes.</p>
+                            <h2 class="entete"><?= $prenom.' '.$nom?></h2>
+                            <p class="entete">En réseau avec <?= $nb_relation['nb_relation']+$nb['nb_relation']?> personnes.</p>
                         </div>
 
                     </div>

@@ -17,9 +17,11 @@ else {
 
     $id_user = $_SESSION['id_user'];
     $mysqli = new mysqli($host,$user,$pass,$db);
+    $lieu = isset($_POST["lieu"])?$_POST["lieu"]:"";
     $name = isset($_POST["statut"])?$_POST["statut"]:"";
-    $sql="INSERT INTO post (id_user, descriptif) 
-        VALUES('$id_user','$name')";
+    $humeur = isset($_POST["humeur"])?$_POST["humeur"]:"";
+    $sql="INSERT INTO post (id_user, visibilite, lieu, descriptif, humeur) 
+        VALUES('$id_user', 1, '$lieu','$name', '$humeur')";
 
     if ($mysqli->query($sql) === TRUE) {
         echo "New record created successfully";

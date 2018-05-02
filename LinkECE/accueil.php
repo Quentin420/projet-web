@@ -22,6 +22,11 @@ WHERE relation.id_user1 = '$id_user' OR relation.id_user2 = '$id_user'
 ORDER BY post.date_post DESC";
     $resultat = mysqli_query($con, $req);
 }
+//Requete speciale pour recuperer avatar et background du user logged
+$av = mysqli_query($con,"SELECT * FROM users WHERE id_user='$id_user'");
+    $user_obj = $av->fetch_assoc();
+    $dist_av=$user_obj['avatar'];
+    $dist_back=$user_obj['background'];
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +60,7 @@ ORDER BY post.date_post DESC";
             }
         </style>
     </head>
-    <body background="img/back.png">
+    <body background="<?= $dist_back ?>">
 
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -91,7 +96,18 @@ ORDER BY post.date_post DESC";
                 <div class="col-sm-9">
                     <div class="well" id="accueil">
                         <form method="post" action="statut.php">
-                            <textarea rows="4" cols="50" name="statut">Des nouveautés à partager ?</textarea>
+                            <p><textarea rows="4" cols="50" name="statut">Des nouveautés à partager ?</textarea></p>
+                            <p><textarea rows="1" cols="50" name="lieu">Où êtes-vous ?</textarea></p>
+                            <p>
+                                <label for="humeur">Quelle est votre humeur ?</label><br />
+                                <select name="humeur" id="humeur">
+                                    <option value="Heureux">Heureux</option>
+                                    <option value="Cool">Cool</option>
+                                    <option value="Dubitatif">Dubitatif</option>
+                                    <option value="Triste">Triste</option>
+                                    <option value="Enerve">Enervé</option>
+                                </select>
+                            </p>
                             <button type="submit" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-bullhorn"></span> Poster
                             </button>
@@ -134,7 +150,7 @@ ORDER BY post.date_post DESC";
                 <div class="col-sm-3">
                     <div class="well">
                         <p><a href="profil.php">Mon Profil</a></p>
-                        <img src="img/avatar.svg" class="img-circle" height="55" width="55" alt="Avatar">
+                        <img src="<?= $dist_av ?>" class="img-circle" height="55" width="55" alt="Avatar">
                     </div>
 
                     <div class="well">

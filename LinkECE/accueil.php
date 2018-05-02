@@ -108,6 +108,7 @@ $av = mysqli_query($con,"SELECT * FROM users WHERE id_user='$id_user'");
                                     <option value="Enerve">Enervé</option>
                                 </select>
                             </p>
+                            <p><input name="monFichier" type="file"></p>
                             <button type="submit" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-bullhorn"></span> Poster
                             </button>

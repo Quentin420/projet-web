@@ -20,8 +20,9 @@ else {
     $lieu = isset($_POST["lieu"])?$_POST["lieu"]:"";
     $name = isset($_POST["statut"])?$_POST["statut"]:"";
     $humeur = isset($_POST["humeur"])?$_POST["humeur"]:"";
-    $sql="INSERT INTO post (id_user, visibilite, lieu, descriptif, humeur) 
-        VALUES('$id_user', 1, '$lieu','$name', '$humeur')";
+    $document = isset($_POST["monFichier"])?$_POST["monFichier"]:"";
+    $sql="INSERT INTO post (id_user, document, visibilite, lieu, descriptif, humeur) 
+        VALUES('$id_user', '$document', 1, '$lieu','$name', '$humeur')";
 
     if ($mysqli->query($sql) === TRUE) {
         echo "New record created successfully";

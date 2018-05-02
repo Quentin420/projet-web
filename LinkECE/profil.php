@@ -103,8 +103,9 @@ else {
                        
                         
                     </div>
-                    
-                    <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> Consulter CV</button>
+                    <a href="img/cv.pdf" download="cv.pdf">
+                        <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> Consulter CV</button>
+                    </a>     
                 </div>
 
                 <div class="col-sm-9">

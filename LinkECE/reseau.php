@@ -119,7 +119,7 @@ $dist_back=$user_obj['background'];
                                 
                                     <div class='col-sm-8'><a href='viewprofile.php?id_user=".$info_user_from['id_user']."'>".$info_user_from['prenom']." ".$info_user_from['nom']."</a></div>
 
-                                    <div class='col-sm-2'><a href='suppAmi.php?id_user=".$info_user_from['id_user']."' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Refuser</a></div>
+                                    <div class='col-sm-2'><a href='refuserrequete.php?id_requete=".$post['id_requete']."' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Refuser</a></div>
 
                                     <div class='col-sm-2'><a href='accepterrequete.php?id_demandeur=".$post['id_from']."&id_requete=".$post['id_requete']."' class='btn btn-success'><span class='glyphicon glyphicon-ok-circle'></span> Accepter</a></div>
                                 </div>
@@ -150,7 +150,9 @@ $dist_back=$user_obj['background'];
                                 <div class='row'>
                                 
                                 
+                         
                                     <div class='col-sm-9'><a href='viewprofile.php?id_user=".$post['id_user']."'>".$post['prenom']." ".$post['nom']."</a></div>
+                                 
                                     <div class='col-sm-3'><a href='suppAmi.php?id_user=".$post['id_user']."' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Supprimer cette relation</a></div>
                                 </div>
                                 </div> 

@@ -269,7 +269,8 @@ $dist_admin=$user_obj['admin'];
                                 $nb = $req_like->fetch_assoc();
                                 $req_like = mysqli_query($con,"SELECT COUNT(*) as nb FROM `like` WHERE `like`.id_post='$id_post' AND `like`.id_user='$id_user'");
                                 $bool = $req_like->fetch_assoc();
-                                $url = "viewprofile.php?id_user=" . $user_viewed_id ;
+                                $url = "viewprofile.php?id_user=" . $user_viewed_id;
+                                $txt = "Posté par ".$user_viewed['prenom']. " ".$user_viewed['nom']." depuis ".$post['lieu']." le ".$myFormatForView." : ".$post['descriptif'];
                                 echo "
                                 
                                     <div class='well'>";
@@ -293,7 +294,7 @@ $dist_admin=$user_obj['admin'];
                                             <button type='submit' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
                                         </form><p></p>";
                                         ?> 
-                                  <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>      
+                                  <a href="mailto: ?subject=LinkECE - Post à voir&body=<?=$txt?>"><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button></a>      
                                 <?php
                                 
                                 if($bool['nb']>0){

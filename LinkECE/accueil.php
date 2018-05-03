@@ -242,21 +242,14 @@ $dist_admin=$user_obj['admin'];
         $myFormatForView = date("d/m/y à H:i", $ish);
                                     echo " 
                                     <div class='row'>
-                                    <div class='col-sm-3'></div>
-                                    <div class='col-sm-9'>
-
-
-                                <div class='well'>
-                                    
-                                    <p id='post-ami'> Commentaire de ".$sku['prenom'].' '.$sku['nom']."<span id='date-comment'>(".$myFormatForView.")<span></p>
-                                    <p id='post-description'> ".$sku['commenatire']."</p>
-                                        
-                               
-                                </div>
-                                </div></div>
-                                    
-                                    
-                                    
+                                        <div class='col-sm-3'></div>
+                                            <div class='col-sm-9'>
+                                                <div class='well'>                                    
+                                                    <p id='post-ami'> Commentaire de ".$sku['prenom'].' '.$sku['nom']."<span id='date-comment'>(".$myFormatForView.")<span></p>
+                                                    <p id='post-description'> ".$sku['commenatire']."</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     ";}
                                 }
                 

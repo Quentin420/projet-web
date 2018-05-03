@@ -119,6 +119,12 @@ $dist_admin=$user_obj['admin'];
             h3{
                 text-align: left;
             }
+            #date-comment{
+                 text-align: left;
+                color: grey;
+                font-weight: normal;
+                margin-left: 25px;
+            }
 
         </style>
     </head>
@@ -259,10 +265,10 @@ $dist_admin=$user_obj['admin'];
                                 
                                  $id_post = $post['id_post'];
                                 
-        $req_like = mysqli_query($con,"SELECT COUNT(*) as nb FROM `like` WHERE `like`.id_post='$id_post'");
-        $nb = $req_like->fetch_assoc();
-        $req_like = mysqli_query($con,"SELECT COUNT(*) as nb FROM `like` WHERE `like`.id_post='$id_post' AND `like`.id_user='$id_user'");
-        $bool = $req_like->fetch_assoc();
+                                $req_like = mysqli_query($con,"SELECT COUNT(*) as nb FROM `like` WHERE `like`.id_post='$id_post'");
+                                $nb = $req_like->fetch_assoc();
+                                $req_like = mysqli_query($con,"SELECT COUNT(*) as nb FROM `like` WHERE `like`.id_post='$id_post' AND `like`.id_user='$id_user'");
+                                $bool = $req_like->fetch_assoc();
                                 $url = "viewprofile.php?id_user=" . $user_viewed_id ;
                                 echo "
                                 
@@ -281,11 +287,14 @@ $dist_admin=$user_obj['admin'];
                                         <div class='col-sm-6'>
                                             <p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$myFormatForView."</p>
                                         </div>
-                                        <div class='col-sm-6'>
-                                            <form class='form' action='commentaire.php?id_post=".$post['id_post']."' method='post' autocomplete='off'>
-                                            <input type='text' row='3' class='form-control' name='commentaire' placeholder='Commenter' required>
-                                            <button type='submit' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button></form>
-                                            <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>";
+                                        <div class='col-sm-6 '>
+                                        <form class='form' action='commentaire.php?id_post=".$post['id_post']."' method='post' autocomplete='off'>       
+                                            <input type='text' class='form-control' name='commentaire' placeholder='Écrire un commentaire...' required><p></p>
+                                            <button type='submit' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
+                                        </form><p></p>";
+                                        ?> 
+                                  <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>      
+                                <?php
                                 
                                 if($bool['nb']>0){
                                     ?><a href='dislike.php?id_post=<?= $id_post?>&id_url=<?= $url?>'><button class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Déjà aimé (<?=$nb['nb']?>)</button></a><?php
@@ -295,6 +304,7 @@ $dist_admin=$user_obj['admin'];
                                     ?><a href='like.php?id_post=<?= $id_post?>&id_url=<?= $url?>'><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> J'aime (<?=$nb['nb']?>)</button></a><?php
                                 } 
                                 echo "
+                                        
                                         </div>
                                     </div>
                                     </div>
@@ -311,14 +321,14 @@ $dist_admin=$user_obj['admin'];
                                         $myFormatForView = date("d/m/y à H:i", $ish);
                                         echo " 
                                             <div class='row'>
-                                            <div class='col-sm-8'>
-                                                <div class='well'>
-                                                    <p id='post-ami'> Commenté par ".$sku['prenom'].' '.$sku['nom']."</p>
+                                        <div class='col-sm-3'></div>
+                                            <div class='col-sm-9'>
+                                                <div class='well'>                                    
+                                                    <p id='post-ami'> Commentaire de ".$sku['prenom'].' '.$sku['nom']."<span id='date-comment'>(".$myFormatForView.")<span></p>
                                                     <p id='post-description'> ".$sku['commenatire']."</p>
-                                                    <p id='post-lieu'> ".$myFormatForView."</p>
                                                 </div>
-                                                </div>
-                                                </div>";
+                                            </div>
+                                        </div>";
                                     }
                                 }
                             }?>

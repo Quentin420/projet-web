@@ -84,6 +84,12 @@ else {
             h3{
                 text-align: left;
             }
+            #date-comment{
+                 text-align: left;
+                color: grey;
+                font-weight: normal;
+                margin-left: 25px;
+            }
 
 
 
@@ -227,14 +233,14 @@ else {
                                     $myFormatForView = date("d/m/y à H:i", $ish);
                                     echo "
                                     <div class='row'>
-                                        <div class='col-sm-8'>
-                                            <div class='well'>
-                                                <p id='post-ami'> Commenté par ".$sku['prenom'].' '.$sku['nom']."</p>
-                                                <p id='post-description'> ".$sku['commenatire']."</p>
-                                                <p id='post-lieu'> ".$myFormatForView."</p>
+                                        <div class='col-sm-3'></div>
+                                            <div class='col-sm-9'>
+                                                <div class='well'>                                    
+                                                    <p id='post-ami'> Commentaire de ".$sku['prenom'].' '.$sku['nom']."<span id='date-comment'>(".$myFormatForView.")<span></p>
+                                                    <p id='post-description'> ".$sku['commenatire']."</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>";
+                                        </div>";
                                 }
                             }
                         }?>    

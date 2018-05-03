@@ -127,7 +127,7 @@ else{
 
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="profil.php"><span class="glyphicon glyphicon-user"></span> <?= $prenom.' '.$nom ?> </a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
+                        <li><a href="login-system/logout.php"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
                     </ul>
                 </div>
             </div>

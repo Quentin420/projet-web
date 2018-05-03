@@ -193,7 +193,7 @@ $dist_admin=$user_obj['admin'];
                                 <div class='col-sm-6'>
                                 <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
                                 <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>
-                                <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Like</button>  
+                                <a href='like.php?id_post=". $post['id_post'] ."'><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Like</button></a>
                                 </div>
                                 </div>
                             </div>

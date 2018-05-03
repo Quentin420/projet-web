@@ -21,7 +21,9 @@ else {
          //$n_post=$_SESSION['id_post'];
          $mysqli = new mysqli($host,$user,$pass,$db);
          $commentaire = $mysqli->escape_string($_POST["commentaire"]);
-    
+        
+         $text = "Nouveau commentaire";
+         $req= mysqli_query($con, "INSERT INTO notification (id_post, label, id_user) VALUES ('$n_post', '$text', '$id_session')");
          $sql="INSERT INTO commentaire (id_user, id_post, commenatire) VALUES ('$id_user', '$n_post', '$commentaire')"; 
          if ($mysqli->query($sql) === TRUE) {
             //$_SESSION['promotion']=$promotion;

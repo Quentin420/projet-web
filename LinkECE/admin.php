@@ -67,7 +67,7 @@ $dist_admin=$user_obj['admin'];
                 text-align: left;
                 font-weight: bold;
             }
-            h2{
+            h3{
                 text-align: left;
             }
 
@@ -88,12 +88,12 @@ $dist_admin=$user_obj['admin'];
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
                         <li><a href="reseau.php"><span class="glyphicon glyphicon-globe"></span> Réseau</a></li>
                         <li><a href="chat/message.php"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
                         <li><a href="emplois.php"><span class="glyphicon glyphicon-search"></span> Emplois</a></li>
                         <li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span> Notifications</a></li>
-                        <?php if($dist_admin==1){echo "<li><a href='admin.php'><span class='glyphicon glyphicon-eye-open'></span> Page Admin</a></li>";}?>
+                        <?php if($dist_admin==1){echo "<li class='active'><a href='admin.php'><span class='glyphicon glyphicon-eye-open'></span> Page Admin</a></li>";}?>
                     </ul>
 
 
@@ -109,9 +109,9 @@ $dist_admin=$user_obj['admin'];
             <div class="row">
                 
                 
-                <div class="col-sm-9">      
+                <div class="col-sm-12">      
            
-                <h2 class="well">Supprimer un utilisateur</h2>
+                <h3 class="well">Supprimer un utilisateur</h3>
                             <?php
                     while($post = mysqli_fetch_array($resultat)){
                         if($post['id_user']!=$id_user){
@@ -137,8 +137,8 @@ $dist_admin=$user_obj['admin'];
             </div>
                 
             
-            <div class="col-sm-9">
-                    <h2 class="well">Ajouter un utilisateur</h2>
+            <div class="col-sm-12">
+                    <h3 class="well">Ajouter un utilisateur</h3>
                     
                     <div class="row">
                              <form class="form" action="addUser.php" method="post" autocomplete="off">  

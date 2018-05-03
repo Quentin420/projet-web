@@ -17,11 +17,10 @@ else{
     {
         //Id de l'utilisateur dont on regarde le profil
         $idpost = $_GET['id_post'];
-        $url = $_GET['id_url']
-        
+        $url = $_GET['id_url'];
         //Infos sur l'utilisateur dont on regarde le profil
-        $user = mysqli_query($con, "INSERT INTO `like` (id_user, id_post) VALUES ('$id_session', '$idpost');");
-        echo "<script type='text/javascript'> document.location = '".$url."'; </script>";    
+        $user = mysqli_query($con, "INSERT INTO `like` (id_user, id_post) VALUES ('$id_session', '$idpost');");?>
+        <script type='text/javascript'> document.location = '<?= $url?>'; </script>";  <?php
     }
 }
 ?>

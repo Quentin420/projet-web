@@ -293,7 +293,7 @@ else{
                                         </div>
                                     </div>
                                     </div>
-                                ";}
+                                ";
                                     if($blindage==1 ){
                                     $req3 = "SELECT commentaire.id_commentaire, commentaire.id_user, commentaire.id_post, commentaire.commenatire, commentaire.date_commentaire, users.id_user, users.prenom, users.nom FROM commentaire, users WHERE commentaire.id_user = users.id_user AND commentaire.id_post=".$dist_test." ORDER BY commentaire.date_commentaire";
     $resultat3 = mysqli_query($con, $req3);
@@ -319,13 +319,11 @@ else{
                                     ";}
                                 }
                             
-                    ?>
+                    }?>
 
                 </div>
             </div>
         </div>
-
-        
 
     </body>
 </html>

@@ -28,11 +28,12 @@ else {
                 
 
  
-        $ruq = "SELECT DISTINCT id_post, id_user, prenom, nom, lieu, humeur, date_post, document, avatar, descriptif FROM post
+        $req = "SELECT DISTINCT id_post, id_user, prenom, nom, lieu, humeur, date_post, document, avatar, descriptif FROM post
         NATURAL JOIN users
         INNER JOIN relation ON post.id_user = relation.id_user1 OR post.id_user = relation.id_user2 
         WHERE relation.id_user1 = '$id_user' OR relation.id_user2 = '$id_user' 
         ORDER BY post.date_post DESC";
+        $ruq = "SELECT * FROM post WHERE id_post='$idviewed'";
         $resultatprofil = mysqli_query($con, $ruq);
         
 
@@ -150,7 +151,7 @@ else {
                         
                         while($post = mysqli_fetch_array($resultatprofil)){
                             $blindage=0;
-                            $test = mysqli_query($con,"SELECT * FROM commentaire WHERE id_post=".$post['id_post']."");
+                            $test = mysqli_query($con,"SELECT * FROM commentaire WHERE id_post=".$idviewed."");
                             $test_obj = $test->fetch_assoc();
                             $dist_test=$test_obj['id_post'];
                             if($post['id_post']==$test_obj['id_post']){
@@ -180,7 +181,7 @@ else {
                             echo "</div>";
                             
                             if($blindage==1 ){
-                                $req3 = "SELECT commentaire.id_commentaire, commentaire.id_user, commentaire.id_post, commentaire.commenatire, commentaire.date_commentaire, users.id_user, users.prenom, users.nom FROM commentaire, users WHERE commentaire.id_user = users.id_user AND commentaire.id_post=".$dist_test." ORDER BY commentaire.date_commentaire";
+                                $req3 = "SELECT commentaire.id_commentaire, commentaire.id_user, commentaire.id_post, commentaire.commenatire, commentaire.date_commentaire, users.id_user, users.prenom, users.nom FROM commentaire, users WHERE commentaire.id_user = users.id_user AND commentaire.id_post=".$idviewed." ORDER BY commentaire.date_commentaire";
                                 $resultat3 = mysqli_query($con, $req3);
                                 while($sku = mysqli_fetch_array($resultat3)){
                                     $ish = strtotime($sku['date_commentaire']);

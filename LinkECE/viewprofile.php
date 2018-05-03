@@ -286,47 +286,43 @@ $dist_admin=$user_obj['admin'];
                                             <input type='text' row='3' class='form-control' name='commentaire' placeholder='Commenter' required>
                                             <button type='submit' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button></form>
                                             <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>";
-                            
-                if($bool['nb']>0){
-                                    ?>
-                    
-                    <a href='dislike.php?id_post=<?= $id_post?>&id_url=<?= $url?>'><button class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Déjà aimé (<?=$nb['nb']?>)</button></a>
-                <?php
-                    }
+                                
+                                if($bool['nb']>0){
+                                    ?><a href='dislike.php?id_post=<?= $id_post?>&id_url=<?= $url?>'><button class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Déjà aimé (<?=$nb['nb']?>)</button></a><?php
+                                }
+                                
                                 else{
-                                ?><a href='like.php?id_post=<?= $id_post?>&id_url=<?= $url?>'><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> J'aime (<?=$nb['nb']?>)</button></a><?php
-                                } echo "
+                                    ?><a href='like.php?id_post=<?= $id_post?>&id_url=<?= $url?>'><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> J'aime (<?=$nb['nb']?>)</button></a><?php
+                                } 
+                                echo "
                                         </div>
                                     </div>
                                     </div>
                                 ";
-                                    if($blindage==1 ){
+                                
+                                if($blindage==1 ){
+                                    
                                     $req3 = "SELECT commentaire.id_commentaire, commentaire.id_user, commentaire.id_post, commentaire.commenatire, commentaire.date_commentaire, users.id_user, users.prenom, users.nom FROM commentaire, users WHERE commentaire.id_user = users.id_user AND commentaire.id_post=".$dist_test." ORDER BY commentaire.date_commentaire";
-    $resultat3 = mysqli_query($con, $req3);
+                                    
+                                    $resultat3 = mysqli_query($con, $req3);
+                                    
                                     while($sku = mysqli_fetch_array($resultat3)){
-                                                           $ish = strtotime($sku['date_commentaire']);
-        $myFormatForView = date("d/m/y à H:i", $ish);
-                                    echo " 
-             
-                                    <div class='col-sm-12'>
-
-
-                            <div class='well'>
-                                    
-                                    <p id='post-ami'> Commenté par ".$sku['prenom'].' '.$sku['nom']."</p>
-                                    <p id='post-description'> ".$sku['commenatire']."</p>
-                                    <p id='post-lieu'> ".$myFormatForView."</p>
-                               
-                                </div>
-                                </div>
-                                    
-                                    
-                                    
-                                    ";}
+                                        $ish = strtotime($sku['date_commentaire']);
+                                        $myFormatForView = date("d/m/y à H:i", $ish);
+                                        echo " 
+                                            <div class='row'>
+                                            <div class='col-sm-8'>
+                                                <div class='well'>
+                                                    <p id='post-ami'> Commenté par ".$sku['prenom'].' '.$sku['nom']."</p>
+                                                    <p id='post-description'> ".$sku['commenatire']."</p>
+                                                    <p id='post-lieu'> ".$myFormatForView."</p>
+                                                </div>
+                                                </div>
+                                                </div>";
+                                    }
                                 }
-                            
-                    }?>
-
+                            }?>
+                    
                 </div>
             </div>
         </div>

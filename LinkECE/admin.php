@@ -114,6 +114,8 @@ $dist_admin=$user_obj['admin'];
                              <form class="form" action="addUser.php" method="post" autocomplete="off">  
                                 <div class="col-sm-12">
                                     <div class='well'>
+                                        <p class='profil'><label>Admin (0 ou 1)<span class="req">*</span></label>
+                                        <input type="text" class="form-control" pattern="[0-1]{1}" required autocomplete="off" name='admin' /></p>
                                         <p class='profil'><label>Nom<span class="req">*</span></label>
                                         <input type="text" class="form-control" required autocomplete="off" name='nom' /></p>
                                         <p class='profil'><label>Prénom <span class="req">*</span></label>

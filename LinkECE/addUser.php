@@ -26,6 +26,7 @@ else{
     
     
     // Escape all $_POST variables to protect against SQL injections
+    $admin = $mysqli->real_escape_string($_POST['admin']);
     $nom = $mysqli->real_escape_string($_POST['nom']);
     $prenom = $mysqli->escape_string($_POST['prenom']);
     $email = $mysqli->escape_string($_POST['email']);
@@ -46,13 +47,13 @@ else{
     else { // Email doesn't already exist in a database, proceed...
 
         // active is 0 by DEFAULT (no need to include it here)
-        $sql = "INSERT INTO users (email, username, prenom, nom, password, hash, active) VALUES ('$email', '$username', '$prenom','$nom','$password', '$hash', 1)";
+        $sql = "INSERT INTO users (admin, email, username, prenom, nom, password, hash, active) VALUES ('$admin', '$email', '$username', '$prenom','$nom','$password', '$hash', 1)";
 
         // Add user to the database
         if ( $mysqli->query($sql) ){
 
             $_SESSION['message']="Utilisateur crée avec succès!";
-
+ 
             header("location: admin.php"); 
 
         }

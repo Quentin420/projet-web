@@ -150,11 +150,7 @@ else {
         </div>
     </div>
             
-        
 
-        <footer class="container-fluid text-center">
-            <p>LinkECE &copy;2018</p>
-        </footer>
 
          <script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
          <script type="text/javascript" src="script.js"></script> 

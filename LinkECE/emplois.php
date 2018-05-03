@@ -150,9 +150,6 @@ $dist_back=$user_obj['background'];
             </div>
         </div>
 
-        <footer class="container-fluid text-center">
-            <p>LinkECE &copy;2018</p>
-        </footer>
 
     </body>
 </html>

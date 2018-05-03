@@ -341,7 +341,7 @@ $dist_admin=$user_obj['admin'];
                             }
                         }
                         else{
-                            echo "<div class='well'><p id=refus>Cet utilisateur a mis ses informations en privées, vous ne pouvez donc pas voir ses publications ! Vous devez d'abord l'ajouter à votre réseau !</p></div>";
+                            echo "<div class='well'><p id=refus>Cet utilisateur a mis ses informations en privées, vous ne pouvez donc pas voir ses publications !<br>Vous devez d'abord l'ajouter à votre réseau !</p></div>";
                         }
                     ?>
                     

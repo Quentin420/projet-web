@@ -142,10 +142,10 @@ else{
                     <h1 class="entete"><?= $user_viewed_prenom.' '.$user_viewed_nom ?></h1>
                     
                         <?php if($nb['nb_relation']>1){
-                                echo "<p class='entete'>En réseau avec ". ($nb_relation['nb_relation'])." personnes</p>";
+                                echo "<p class='entete'>En réseau avec ". $nb['nb_relation']." personnes</p>";
                             }
                             else{
-                                echo "<p class='entete'>En réseau avec ". ($nb_relation['nb_relation'])." personne</p>";
+                                echo "<p class='entete'>En réseau avec ". $nb['nb_relation']." personne</p>";
                             }?>
                        
                         <br>
@@ -153,30 +153,31 @@ else{
 
 
                     </div>
+                    <div class="well">
                     <a href="<?= $user_viewed['cv'] ?>" download="<?= $user_viewed['cv'] ?>">
-                        <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> Consulter CV</button>
-                    </a>
+                        <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> Consulter son CV</button>
+                    </a><p></p>
                     
                     <?php
                     if($ami['ami']==0){
                     echo "<a href='ajouterAmi.php?id_user=".$user_viewed_id."'>
-                        <button type='button' class='btn btn-success'><span class='glyphicon glyphicon-plus'></span> Ajouter ami</button>
+                        <button type='button' class='btn btn-success'><span class='glyphicon glyphicon-plus'></span> Ajouter au réseau </button>
                     </a>
                         ";
                         
                     }
                     else{
                         echo "<a href='chat/message.php?id_user=". $user_viewed_id ."'>
-                        <button type='button' class='btn btn-info'><span class='glyphicon glyphicon-inbox'></span> Message</button>
+                        <button type='button' class='btn btn-info'><span class='glyphicon glyphicon-inbox'></span> Envoyer un message</button>
                     </a><p></p>
                     <a href='suppAmi.php?id_user=".$user_viewed_id."'>
-                        <button type='button' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Supprimer cette relation</button>
+                        <button type='button' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Supprimer la relation</button>
                     </a>";
                     }
                              
                         
                     ?>
-
+                    </div>
                 </div>
 
                 <div class="col-sm-9">

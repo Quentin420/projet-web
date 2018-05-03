@@ -131,12 +131,14 @@ else {
                        
                         
                     </div>
+                    <div class="well">
                     <a href="<?= $dist_cv ?>" download="<?= $dist_cv ?>">
                         <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> Consulter CV</button>
-                    </a>  
+                    </a>  <p></p>
                     <a href="modifprofile.php">
                         <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-cog"></span> Modifier profil</button>
                     </a>  
+                        </div>
                 </div>
 
                 <div class="col-sm-9">

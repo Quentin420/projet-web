@@ -195,8 +195,16 @@ else {
                                         <input type="submit" value="Sauvegarder" name="Sauvegarder" class="btn btn-block btn-primary" /> 
                                     </div>
                                 </div>
-                             </form>   
-                       
+                             </form>  
+                        <form class="form" action="modif10.php" method="post" autocomplete="off">  
+                                <div class='col-sm-9'>
+                                    <div class='well'>
+                                        <p class='profil'>Modifier ma visibilité (0 pour public ou 1 pour privé) :</p>
+                                        <p><input type="text" row="3" class="form-control" pattern="[0-1]{1}" required autocomplete="off" name='visibilite' placeholder="Ma visibilité" /></p>
+                                        <input type="submit" value="Sauvegarder" name="Sauvegarder" class="btn btn-block btn-primary" /> 
+                                    </div>
+                                </div>
+                             </form> 
                     </div>
                 </div>
             </div>

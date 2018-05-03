@@ -15,13 +15,19 @@ else {
     $username = $_SESSION['username'];
     $id_user = $_SESSION['id_user'];
     $dist_admin = $_SESSION['admin'];
+
     
     $req = "SELECT DISTINCT id_user, prenom, nom, avatar FROM users
 INNER JOIN relation ON users.id_user = relation.id_user1 OR users.id_user = relation.id_user2
 WHERE relation.id_user1 = '$id_user' OR relation.id_user2 = '$id_user'
 ORDER BY users.nom ASC";
+
+    //Requete qui recupère les demandes d'ami
+    $req2 = "SELECT * FROM requeteami WHERE id_to='$id_user'";
     
     $resultat = mysqli_query($con, $req);
+    $resultat2 = mysqli_query($con, $req2);
+
 }
 //Requete speciale pour recuperer avatar et background du user logged
 $av = mysqli_query($con,"SELECT * FROM users WHERE id_user='$id_user'");
@@ -85,6 +91,50 @@ $dist_back=$user_obj['background'];
 
         <div class="container text-center">    
             <div class="row">
+                <h3 class="well">Demandes d'ami en attente : </h3>
+            <?php
+                    while($post = mysqli_fetch_array($resultat2)){
+
+                        //Récupère l'id du demandeur
+                        $id_user_requetefrom = $post['id_from'];
+                        //Requete qui récupère les infos du demandeur
+                        $req3 = "SELECT * FROM users WHERE id_user='$id_user_requetefrom'";
+                        //Query
+                        $resultat3 = mysqli_query($con, $req3);
+                        //Stock les infos du demandeur dans $info_user_from[]
+                        $info_user_from = mysqli_fetch_array($resultat3);
+
+                        //Output
+                        echo "
+                                <div class='row'>
+                                <div class='col-sm-2'>
+                                <div class='well'>
+                                    <img src=".$info_user_from['avatar']." class='img-circle' height='55' width='55' alt='Avatar'>
+                                </div>
+                                </div>
+                                <div class='col-sm-10'>
+                                <div class='well'>
+                                <div class='row'>
+                                
+                                
+                                    <div class='col-sm-8'><a href='viewprofile.php?id_user=".$info_user_from['id_user']."'>".$info_user_from['prenom']." ".$info_user_from['nom']."</a></div>
+
+                                    <div class='col-sm-2'><a href='suppAmi.php?id_user=".$info_user_from['id_user']."' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Refuser</a></div>
+
+                                    <div class='col-sm-2'><a href='suppAmi.php?id_user=".$info_user_from['id_user']."' class='btn btn-success'><span class='glyphicon glyphicon-remove-circle'></span> Accepter</a></div>
+                                </div>
+                                </div> 
+                                </div>
+                            </div>
+
+
+                        ";
+                        
+                        
+                    }?>   
+            </div>
+
+            <div class="row">
                 <h3 class="well">Votre réseau LinkECE</h3>
             <?php
                     while($post = mysqli_fetch_array($resultat)){
@@ -109,6 +159,7 @@ $dist_back=$user_obj['background'];
                         }
                     }?>   
             </div>
+
         </div>
 
         <footer class="container-fluid text-center">

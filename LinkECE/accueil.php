@@ -153,6 +153,12 @@ $dist_admin=$user_obj['admin'];
                 <h2 class="well">Fil d'Actualité</h2>
                 <?php
     while($post = mysqli_fetch_array($resultat)){
+        $id_post = $post['id_post'];
+        
+        $req_like = mysqli_query($con,"SELECT COUNT(*) as nb FROM `like` WHERE `like`.id_post='$id_post'");
+        $nb = $req_like->fetch_assoc();
+        $req_like = mysqli_query($con,"SELECT COUNT(*) as nb FROM `like` WHERE `like`.id_post='$id_post' AND `like`.id_user='$id_user'");
+        $bool = $req_like->fetch_assoc();
 
         $time = strtotime($post['date_post']);
         $myFormatForView = date("d/m/y à H:i", $time);
@@ -192,10 +198,16 @@ $dist_admin=$user_obj['admin'];
                                 </div>
                                 <div class='col-sm-6'>
                                 <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
-                                <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>
-                                <a href='like.php?id_post=". $post['id_post'] ."'><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Like</button></a>
+                                <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>";
+                                if($bool['nb']>0){
+                                    echo "<button class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Déjà aimé</button>";
+                                }else{
+                                    echo "<a href='like.php?id_post=". $post['id_post'] ."'><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> J'aime</button></a>";
+                                }
+                                echo "
                                 </div>
                                 </div>
+                                <p>Nb like : ". $nb['nb']."</p>
                             </div>
                         </div>  
                     </div>";

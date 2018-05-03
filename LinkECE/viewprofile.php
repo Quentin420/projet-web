@@ -41,6 +41,7 @@ else{
                 $user_viewed_resume = $user_viewed['resume'];
                 $user_viewed_promotion = $user_viewed['promotion'];
                 $user_viewed_cv= $user_viewed['cv'];
+                $user_viewed_active= $user_viewed['active'];
 
 
         //Recupère les post de l'utilisateur
@@ -57,7 +58,7 @@ else{
         $requeteami = $res->fetch_assoc();
         
         
-        $ruq = "SELECT DISTINCT id_post, id_user, prenom, nom, lieu, humeur, date_post, document, avatar, descriptif FROM post
+        $ruq = "SELECT DISTINCT id_post, id_user, prenom, nom, active, lieu, humeur, date_post, document, avatar, descriptif FROM post
         NATURAL JOIN users
         INNER JOIN relation ON post.id_user = relation.id_user1 OR post.id_user = relation.id_user2 
         WHERE relation.id_user1 = '$id_user' OR relation.id_user2 = '$id_user' 
@@ -101,6 +102,10 @@ $dist_admin=$user_obj['admin'];
             #post-humeur{
                 color: grey;
                 text-align: left;
+                font-weight: bold;
+            }
+            #refus{
+                color: white;
                 font-weight: bold;
             }
             #post-ami{
@@ -186,6 +191,7 @@ $dist_admin=$user_obj['admin'];
                     </a><p></p>
                     
                     <?php
+            if($user_viewed_id!=$_SESSION['id_user']){
                     if($ami['ami']==0){
                         if($requeteami['nb']==0){
                             echo "<a href='ajouterAmi.php?id_user=".$user_viewed_id."'>
@@ -205,7 +211,7 @@ $dist_admin=$user_obj['admin'];
                         <button type='button' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Supprimer la relation</button>
                     </a>";
                     }
-                             
+                     }        
                         
                     ?>
                     </div>
@@ -249,7 +255,8 @@ $dist_admin=$user_obj['admin'];
 
                     <?php
                         
-
+                        if($ami['ami']!=0 || $user_viewed_id==$_SESSION['id_user'] || $user_viewed['active']==0)
+                        {
                             while($post = mysqli_fetch_array($resultat)){
                                 
                                 $blindage=0;
@@ -269,7 +276,7 @@ $dist_admin=$user_obj['admin'];
                                 $nb = $req_like->fetch_assoc();
                                 $req_like = mysqli_query($con,"SELECT COUNT(*) as nb FROM `like` WHERE `like`.id_post='$id_post' AND `like`.id_user='$id_user'");
                                 $bool = $req_like->fetch_assoc();
-                                $url = "viewprofile.php?id_user=" . $user_viewed_id;
+                                $url = "viewprofile.php?id_user=" . $user_viewed_id ;
                                 $txt = "Posté par ".$user_viewed['prenom']. " ".$user_viewed['nom']." depuis ".$post['lieu']." le ".$myFormatForView." : ".$post['descriptif'];
                                 echo "
                                 
@@ -294,7 +301,7 @@ $dist_admin=$user_obj['admin'];
                                             <button type='submit' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
                                         </form><p></p>";
                                         ?> 
-                                  <a href="mailto: ?subject=LinkECE - Post à voir&body=<?=$txt?>"><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button></a>      
+                                  <a href="mailto: ?subject=LinkECE - Post à voir&body=<?=$txt?>"><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button></a>  
                                 <?php
                                 
                                 if($bool['nb']>0){
@@ -332,7 +339,12 @@ $dist_admin=$user_obj['admin'];
                                         </div>";
                                     }
                                 }
-                            }?>
+                            }
+                        }
+                        else{
+                            echo "<p id=refus>Cet utilisateur a mis ces informations en privées, vous ne pouvez donc pas voir ces post ! Vous devez d'abord l'ajouter a votre réseau pour pouvoir voir ses posts !</p>";
+                        }
+                    ?>
                     
                 </div>
             </div>

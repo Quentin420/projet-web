@@ -88,7 +88,7 @@ $dist_admin=$user_obj['admin'];
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li><a href="#"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
+                        <li><a href="accueil.php"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
                         <li><a href="reseau.php"><span class="glyphicon glyphicon-globe"></span> Réseau</a></li>
                         <li><a href="chat/message.php"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
                         <li><a href="emplois.php"><span class="glyphicon glyphicon-search"></span> Emplois</a></li>

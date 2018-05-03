@@ -14,10 +14,11 @@ else {
     $email = $_SESSION['email'];
     $username = $_SESSION['username'];
     $id_user = $_SESSION['id_user'];
+    $dist_admin = $_SESSION['admin'];
     
     $req = "SELECT DISTINCT id_user, prenom, nom, avatar FROM users
 INNER JOIN relation ON users.id_user = relation.id_user1 OR users.id_user = relation.id_user2
-WHERE relation.id_user1 = 36 OR relation.id_user2 = '36'
+WHERE relation.id_user1 = '$id_user' OR relation.id_user2 = '$id_user'
 ORDER BY users.nom ASC";
     
     $resultat = mysqli_query($con, $req);
@@ -70,6 +71,7 @@ $dist_back=$user_obj['background'];
                         <li><a href="chat/message.php"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
                         <li><a href="emplois.php"><span class="glyphicon glyphicon-search"></span> Emplois</a></li>
                         <li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span> Notifications</a></li>
+                        <?php if($dist_admin==1){echo "<li><a href='admin.php'><span class='glyphicon glyphicon-eye-open'></span> Page Admin</a></li>";}?>
                     </ul>
 
 

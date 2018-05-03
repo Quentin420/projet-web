@@ -24,6 +24,7 @@ else { // User exists
         $_SESSION['adresse'] = $user['adresse'];
         $_SESSION['avatar'] = $user['avatar'];
         $_SESSION['resume'] = $user['resume'];
+        $_SESSION['admin'] = $user['admin'];
         
         // This is how we'll know the user is logged in
         $_SESSION['logged_in'] = true;

@@ -13,6 +13,7 @@ else {
     $prenom = $_SESSION['prenom'];
     $email = $_SESSION['email'];
     $username = $_SESSION['username'];
+    $dist_admin = $_SESSION['admin'];
 }
 ?>
 
@@ -55,6 +56,7 @@ else {
                         <li><a href="chat/message.php"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
                         <li><a href="emplois.php"><span class="glyphicon glyphicon-search"></span> Emplois</a></li>
                         <li class="active"><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span> Notifications</a></li>
+                        <?php if($dist_admin==1){echo "<li><a href='admin.php'><span class='glyphicon glyphicon-eye-open'></span> Page Admin</a></li>";}?>
                     </ul>
 
 

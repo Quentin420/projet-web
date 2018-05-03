@@ -14,6 +14,7 @@ else {
     $email = $_SESSION['email'];
     $username = $_SESSION['username'];
     $id_user = $_SESSION['id_user'];
+    $dist_admin = $_SESSION['admin'];
     
        $req = "SELECT * FROM emploi ORDER BY date_emploi DESC LIMIT 20";
         
@@ -89,6 +90,7 @@ $dist_back=$user_obj['background'];
                         <li><a href="chat/message.php"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
                         <li class="active"><a href="#"><span class="glyphicon glyphicon-search"></span> Emplois</a></li>
                         <li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span> Notifications</a></li>
+                        <?php if($dist_admin==1){echo "<li><a href='admin.php'><span class='glyphicon glyphicon-eye-open'></span> Page Admin</a></li>";}?>
                     </ul>
 
 

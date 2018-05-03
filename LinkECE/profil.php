@@ -32,6 +32,7 @@ else {
     $dist_av=$user_obj['avatar'];
     $dist_back=$user_obj['background'];
     $dist_cv=$user_obj['cv'];
+    $dist_admin=$user_obj['admin'];
     
 }
 ?>
@@ -99,6 +100,7 @@ else {
                         <li><a href="chat/message.php"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
                         <li><a href="emplois.php"><span class="glyphicon glyphicon-search"></span> Emplois</a></li>
                         <li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span> Notifications</a></li>
+                        <?php if($dist_admin==1){echo "<li><a href='admin.php'><span class='glyphicon glyphicon-eye-open'></span> Page Admin</a></li>";}?>
                     </ul>
 
 
@@ -118,10 +120,10 @@ else {
                     <div class="well">
                     <h1 class="entete"><?= $prenom.' '.$nom?></h1>
                     <?php if($nb_relation['nb_relation']>1){
-                                echo "<p class='entete'>En réseau avec ". ($nb_relation['nb_relation']+$nb['nb_relation'])." personnes</p>";
+                                echo "<p class='entete'>En réseau avec ". ($nb_relation['nb_relation'])." personnes</p>";
                             }
                             else{
-                                echo "<p class='entete'>En réseau avec ". ($nb_relation['nb_relation']+$nb['nb_relation'])." personne</p>";
+                                echo "<p class='entete'>En réseau avec ". ($nb_relation['nb_relation'])." personne</p>";
                             }?>
                        
                         <br>
@@ -147,7 +149,7 @@ else {
                                 
                                 <p>  Pseudo LinkECE : <?= $username ?></p>
                                 <p>  Promotion : <?= $promotion ?></p>
-                                <p>  Adresse email : <a href="mailto:<?= $user_viewed_email ?>"><?= $email ?></a></p>
+                                <p>  Adresse email : <a href="mailto:<?= $email ?>"><?= $email ?></a></p>
                                 <p>  Adresse : <?= $adresse ?></p>
                                 <p>  </p>
                                 
@@ -177,10 +179,11 @@ else {
                    <h3 class="well">Activité</h3>
                    
                                 <?php
-                                $time = strtotime($post['date_post']);
-                                $myFormatForView = date("d/m/y à H:i", $time);
+                                
                                 
                                 while($post = mysqli_fetch_array($resultat)){
+                                    $time = strtotime($post['date_post']);
+                                $myFormatForView = date("d/m/y à H:i", $time);
                                 echo "
                                     <div class='well'>";
                                     
@@ -193,7 +196,7 @@ else {
                                         echo"<img src=".'img/'.$post['document']." width='400px' ><p><br></p>";
                                     
                                     }
-                                       echo" <div class='row'><div class='col-sm-10'><p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$post['date_post']."</p></div>
+                                       echo" <div class='row'><div class='col-sm-10'><p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$myFormatForView."</p></div>
                                        <div class='col-sm-2'><a href='suppPost.php?id_post=".$post['id_post']."' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Supprimer</a></div></div>
                                    
                                 </div>";    

@@ -17,6 +17,8 @@ else{
     $email = $_SESSION['email'];
     $username = $_SESSION['username'];
     $id_user = $_SESSION['id_user'];
+    $dist_admin = $_SESSION['admin'];
+    
     if(isset($_GET['id_user']))
 
     {
@@ -50,6 +52,7 @@ else{
         
         $req = mysqli_query($con,"SELECT COUNT(*) as ami FROM relation WHERE (id_user1 = '$idviewed' AND id_user2='$id_user' )OR (id_user2 = '$idviewed' AND id_user1='$id_user' )");
         $ami = $req->fetch_assoc();
+        
 
 
     }
@@ -118,6 +121,7 @@ else{
                         <li><a href="chat/message.php"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
                         <li><a href="emplois.php"><span class="glyphicon glyphicon-search"></span> Emplois</a></li>
                         <li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span> Notifications</a></li>
+                        <?php if($dist_admin==1){echo "<li><a href='admin.php'><span class='glyphicon glyphicon-eye-open'></span> Page Admin</a></li>";}?>
                     </ul>
 
 
@@ -138,10 +142,10 @@ else{
                     <h1 class="entete"><?= $user_viewed_prenom.' '.$user_viewed_nom ?></h1>
                     
                         <?php if($nb['nb_relation']>1){
-                                echo "<p class='entete'>En réseau avec ". ($nb_relation['nb_relation']+$nb['nb_relation'])." personnes</p>";
+                                echo "<p class='entete'>En réseau avec ". ($nb_relation['nb_relation'])." personnes</p>";
                             }
                             else{
-                                echo "<p class='entete'>En réseau avec ". ($nb_relation['nb_relation']+$nb['nb_relation'])." personne</p>";
+                                echo "<p class='entete'>En réseau avec ". ($nb_relation['nb_relation'])." personne</p>";
                             }?>
                        
                         <br>
@@ -212,10 +216,11 @@ else{
                     <h3 class="well">Activité</h3>
 
                     <?php
-                        $time = strtotime($post['date_post']);
-                            $myFormatForView = date("d/m/y à H:i", $time);
+                        
 
                             while($post = mysqli_fetch_array($resultat)){
+                                $time = strtotime($post['date_post']);
+                            $myFormatForView = date("d/m/y à H:i", $time);
                                 echo "
                                 
                                     <div class='well'>";

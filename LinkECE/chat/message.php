@@ -114,7 +114,7 @@ else {
                             $conversation_id = $fetch['id'];
                         }else{ //they do not have a conversation
                             //start a new converstaion and fetch its id
-                            $q = mysqli_query($con, "INSERT INTO `conversation` VALUES ('','$user_id',$user_two)");
+                            $q = mysqli_query($con, "INSERT INTO `conversation` (user_one, user_two) VALUES ('$user_id','$user_two')");
                             $conversation_id = mysqli_insert_id($con);        
                         }
                     }

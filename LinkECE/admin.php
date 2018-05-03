@@ -133,7 +133,7 @@ $dist_admin=$user_obj['admin'];
                 </div>
 
 
-            <div class="row">
+            
                 <div class="col-sm-12">      
                 <h3 class="well">Supprimer un utilisateur</h3>
                             <?php
@@ -161,7 +161,7 @@ $dist_admin=$user_obj['admin'];
             </div>
 
 
-        </div>
+        
         </div>
 
     <footer class="container-fluid text-center">

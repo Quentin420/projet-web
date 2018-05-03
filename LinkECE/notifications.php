@@ -91,15 +91,16 @@ else {
                         $myFormatForView = date("d/m/y à H:i", $time);
                         $myFormatForView2 = date("d/m/y à H:i", $time2);
                 echo "<div class='row'>
-                            <div class='col-sm-9'>
+                            <div class='col-sm-8'>
                                 <div class='well'>
                                     <p class='notif'>Le ".$myFormatForView.", ".$notif['label']."</p>
                                     <p class='notif'>Depuis votre publication du ".$myFormatForView2." : ". $notif['descriptif']."</p>
                                 </div>
+                            </div>
                         
-                            <div class='col-sm-3'>
-                                <div class='well'>
-                                    <a href='retirernotif.php?id_notification=".$notif['id_notification']."' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Retirer</a>
+                            <div class='col-sm-4'>
+                                <div class='well'><h5></h5>
+                                    <a href='retirernotif.php?id_notification=".$notif['id_notification']."' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Retirer</a><h5></h5>
                                 </div>
                             </div>
                         </div>

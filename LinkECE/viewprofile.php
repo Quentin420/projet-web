@@ -66,6 +66,12 @@ else{
         
 
     }
+//Requete speciale pour recuperer avatar et background du user logged
+$av = mysqli_query($con,"SELECT * FROM users WHERE id_user='$id_user'");
+$user_obj = $av->fetch_assoc();
+$dist_av=$user_obj['avatar'];
+$dist_back=$user_obj['background'];
+$dist_admin=$user_obj['admin'];    
 }
 ?>
 
@@ -116,7 +122,7 @@ else{
 
         </style>
     </head>
-    <body>
+    <body background="<?= $dist_back ?>">
 
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">

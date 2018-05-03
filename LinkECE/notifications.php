@@ -19,6 +19,11 @@ else {
     
     
     }
+$av = mysqli_query($con,"SELECT * FROM users WHERE id_user='$id_user'");
+$user_obj = $av->fetch_assoc();
+$dist_av=$user_obj['avatar'];
+$dist_back=$user_obj['background'];
+$dist_admin=$user_obj['admin'];
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +51,7 @@ else {
             }
         </style>
     </head>
-    <body>
+    <body background="<?= $dist_back ?>">
 
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -80,7 +85,7 @@ else {
 
         <div class="container text-center">
             <div class="row">
-                <h3 class="well"> Notification</h3>
+                <h3 class="well">Notifications</h3>
             
             
             <?php
@@ -111,7 +116,6 @@ else {
             ?>                     
         </div>
         </div>
-
 
     </body>
 </html>

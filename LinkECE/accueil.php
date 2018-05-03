@@ -200,7 +200,7 @@ $dist_admin=$user_obj['admin'];
                                 <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
                                 <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>";
                                 if($bool['nb']>0){
-                                    echo "<button class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Déjà aimé (".$nb['nb'].")</button>";
+                                    echo "<a href='dislike.php?id_post=". $post['id_post'] ."'><button class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Déjà aimé (".$nb['nb'].")</button></a>";
                                 }else{
                                     echo "<a href='like.php?id_post=". $post['id_post'] ."'><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> J'aime (".$nb['nb'].")</button></a>";
                                 }

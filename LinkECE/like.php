@@ -18,8 +18,11 @@ else{
         //Id de l'utilisateur dont on regarde le profil
         $idpost = $_GET['id_post'];
         $url = $_GET['id_url'];
+        $text = "Nouvelle mention \"J\'aime\"";
         //Infos sur l'utilisateur dont on regarde le profil
+        $req = mysqli_query($con,"INSERT INTO notification (id_post, label, id_user) VALUES ('$idpost', '$text', '$id_session')");
         $user = mysqli_query($con, "INSERT INTO `like` (id_user, id_post) VALUES ('$id_session', '$idpost');");?>
+        
         <script type='text/javascript'> document.location = '<?= $url?>'; </script>";  <?php
     }
 }

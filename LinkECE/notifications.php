@@ -1,6 +1,7 @@
 <?php
 /* Displays user information and some useful messages */
 session_start();
+include('connect.php');
 
 // Check if user is logged in using the session variable
 if ( $_SESSION['logged_in'] != 1 ) {
@@ -14,7 +15,10 @@ else {
     $email = $_SESSION['email'];
     $username = $_SESSION['username'];
     $dist_admin = $_SESSION['admin'];
-}
+    $id_user = $_SESSION['id_user'];
+    
+    
+    }
 ?>
 
 <!DOCTYPE html>
@@ -33,6 +37,12 @@ else {
                 background-color: #555;
                 color: white;
                 padding: 15px;
+            }
+            h3{
+                text-align: left;
+            }
+            .notif{
+                text-align: left;
             }
         </style>
     </head>
@@ -68,8 +78,37 @@ else {
             </div>
         </nav>
 
-        <div class="container text-center">    
+        <div class="container text-center">
+            <div class="row">
+                <h3 class="well"> Notification</h3>
             
+            
+            <?php
+                $result = mysqli_query($con,"SELECT * FROM notification INNER JOIN post ON notification.id_post = post.id_post WHERE post.id_user = '$id_user'");
+                while($notif = mysqli_fetch_array($result)){
+                        $time = strtotime($notif['date_notification']);
+                        $time2 = strtotime($notif['date_post']);
+                        $myFormatForView = date("d/m/y à H:i", $time);
+                        $myFormatForView2 = date("d/m/y à H:i", $time2);
+                echo "<div class='row'>
+                            <div class='col-sm-9'>
+                                <div class='well'>
+                                    <p class='notif'>Le ".$myFormatForView.", ".$notif['label']."</p>
+                                    <p class='notif'>Depuis votre publication du ".$myFormatForView2." : ". $notif['descriptif']."</p>
+                                </div>
+                        
+                            <div class='col-sm-3'>
+                                <div class='well'>
+                                    <a href='retirernotif.php?id_notification=".$notif['id_notification']."' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Retirer</a>
+                                </div>
+                            </div>
+                        </div>
+                        </div>";
+                }
+            
+            
+            ?>                     
+        </div>
         </div>
 
         <footer class="container-fluid text-center">

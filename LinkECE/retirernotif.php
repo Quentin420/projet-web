@@ -13,15 +13,14 @@ else{
 
     //ID de l'utilisateur
     $id_session = $_SESSION['id_user'];
-    if(isset($_GET['id_post']))
+    if(isset($_GET['id_notification']))
     {
         //Id de l'utilisateur dont on regarde le profil
-        $idpost = $_GET['id_post'];
-        $url=$_GET['id_url'];
+        $idnotif = $_GET['id_notification'];
+        
         //Infos sur l'utilisateur dont on regarde le profil
-        $req = mysqli_query($con,"DELETE FROM notification WHERE (id_post = '$idpost' AND id_user = '$id_session')");
-        $user = mysqli_query($con, "DELETE FROM `like` WHERE (id_user ='$id_session' AND id_post='$idpost')");?>
-        <script type='text/javascript'> document.location = '<?= $url?>'; </script>";  <?php
+        $req = mysqli_query($con,"DELETE FROM notification WHERE id_notification = '$idnotif'");
+        echo "<script type='text/javascript'> document.location = 'notifications.php'; </script>";
     }
 }
 ?>

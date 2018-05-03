@@ -105,7 +105,6 @@ $dist_admin=$user_obj['admin'];
                 font-weight: bold;
             }
             #refus{
-                color: white;
                 font-weight: bold;
             }
             #post-ami{
@@ -342,7 +341,7 @@ $dist_admin=$user_obj['admin'];
                             }
                         }
                         else{
-                            echo "<p id=refus>Cet utilisateur a mis ces informations en privées, vous ne pouvez donc pas voir ces post ! Vous devez d'abord l'ajouter a votre réseau pour pouvoir voir ses posts !</p>";
+                            echo "<div class='well'><p id=refus>Cet utilisateur a mis ses informations en privées, vous ne pouvez donc pas voir ses publications ! Vous devez d'abord l'ajouter à votre réseau !</p></div>";
                         }
                     ?>
                     

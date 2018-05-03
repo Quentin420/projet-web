@@ -215,6 +215,7 @@ $dist_admin=$user_obj['admin'];
                                 <div class='row'>
                                 <div class='col-sm-6'>
                                 <p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$myFormatForView."</p>";?>
+
                                 
                                 <a href="mailto: ?subject=LinkECE - Post à voir&body=<?=$txt?>"><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button></a><?php
                                 
@@ -227,6 +228,9 @@ $dist_admin=$user_obj['admin'];
                                 echo "
                                 </div>
                                 <div class='col-sm-6 '>
+
+                                <p> <a href='viewpost.php?id_post=".$notif['id_post']."'> Voir la publication </a></p>
+
                                 <form class='form' action='commentaire.php?id_post=".$post['id_post']."' method='post' autocomplete='off'>
                                    
                                 <input type='text' class='form-control' name='commentaire' placeholder='Écrire un commentaire...' required><p></p>
@@ -237,7 +241,7 @@ $dist_admin=$user_obj['admin'];
                                 </div>
                             </div>";
                                         if($blindage==1 ){
-                                    $req3 = "SELECT commentaire.id_commentaire, commentaire.id_user, commentaire.id_post, commentaire.commenatire, commentaire.date_commentaire, users.id_user, users.prenom, users.nom FROM commentaire, users WHERE commentaire.id_user = users.id_user AND commentaire.id_post=".$dist_test." ORDER BY commentaire.date_commentaire";
+                                    $req3 = "SELECT commentaire.id_commentaire, commentaire.id_user, commentaire.id_post, commentaire.commenatire, commentaire.date_commentaire, users.id_user, users.prenom, users.nom FROM commentaire, users WHERE commentaire.id_user = users.id_user AND commentaire.id_post=".$dist_test." ORDER BY commentaire.date_commentaire LIMIT 4";
     $resultat3 = mysqli_query($con, $req3);
                                     while($sku = mysqli_fetch_array($resultat3)){
                                                            $ish = strtotime($sku['date_commentaire']);

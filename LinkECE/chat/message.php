@@ -83,7 +83,11 @@ else {
             <ul>
                 <?php
                     //show all the users expect me
-                    $q = mysqli_query($con, "SELECT * FROM `users` WHERE id_user!='$user_id'");
+                    $q = mysqli_query($con, "SELECT DISTINCT id_user, prenom, nom, avatar, username FROM users
+                    INNER JOIN relation ON users.id_user = relation.id_user1 OR users.id_user = relation.id_user2
+                    WHERE (relation.id_user1 = '$user_id' OR relation.id_user2 = '$user_id') AND users.id_user!='$user_id'
+                    ORDER BY users.nom ASC");
+
                     //display all the results
                     while($row = mysqli_fetch_assoc($q)){
                         echo "<a href='message.php?id_user={$row['id_user']}'><li><img src='../{$row['avatar']}'> {$row['nom']} {$row['prenom']}</li></a>";

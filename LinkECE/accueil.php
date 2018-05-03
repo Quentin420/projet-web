@@ -56,6 +56,7 @@ $dist_admin=$user_obj['admin'];
             #post-lieu{
                 text-align: left;
                 color: grey;
+                   
             }
 
             #post-description{
@@ -79,6 +80,12 @@ $dist_admin=$user_obj['admin'];
             }
             h2{
                 text-align: left;
+            }
+            #date-comment{
+                 text-align: left;
+                color: grey;
+                font-weight: normal;
+                margin-left: 25px;
             }
 
         </style>
@@ -208,11 +215,6 @@ $dist_admin=$user_obj['admin'];
                                 <div class='row'>
                                 <div class='col-sm-6'>
                                 <p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$myFormatForView."</p>
-                                </div>
-                                <div class='col-sm-6'>
-                                <form class='form' action='commentaire.php?id_post=".$post['id_post']."' method='post' autocomplete='off'>
-                                <input type='text' row='3' class='form-control' name='commentaire' placeholder='Commenter' required>
-                                <button type='submit' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button></form>
                                 <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>";
                                 if($bool['nb']>0){
                                     echo "<a href='dislike.php?id_post=". $post['id_post'] ."&id_url=accueil.php'><button class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Déjà aimé (".$nb['nb'].")</button></a>";
@@ -221,6 +223,14 @@ $dist_admin=$user_obj['admin'];
                                 }
         
                                 echo "
+                                </div>
+                                <div class='col-sm-6 '>
+                                <form class='form' action='commentaire.php?id_post=".$post['id_post']."' method='post' autocomplete='off'>
+                                   
+                                <input type='text' class='form-control' name='commentaire' placeholder='Écrire un commentaire...' required><p></p>
+                                   
+                                <button type='submit' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button></form>
+                                
                                 </div>
                                 </div>
                             </div>";
@@ -231,18 +241,19 @@ $dist_admin=$user_obj['admin'];
                                                            $ish = strtotime($sku['date_commentaire']);
         $myFormatForView = date("d/m/y à H:i", $ish);
                                     echo " 
-             
-                                    <div class='col-sm-12'>
+                                    <div class='row'>
+                                    <div class='col-sm-3'></div>
+                                    <div class='col-sm-9'>
 
 
-                            <div class='well'>
+                                <div class='well'>
                                     
-                                    <p id='post-ami'> Commenté par ".$sku['prenom'].' '.$sku['nom']."</p>
+                                    <p id='post-ami'> Commentaire de ".$sku['prenom'].' '.$sku['nom']."<span id='date-comment'>(".$myFormatForView.")<span></p>
                                     <p id='post-description'> ".$sku['commenatire']."</p>
-                                    <p id='post-lieu'> ".$myFormatForView."</p>
+                                        
                                
                                 </div>
-                                </div>
+                                </div></div>
                                     
                                     
                                     

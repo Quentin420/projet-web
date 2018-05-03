@@ -100,6 +100,7 @@ $dist_admin=$user_obj['admin'];
                                 <div class='well'>
                                     <p class='notif'>Le ".$myFormatForView.", ".$notif['label']."</p>
                                     <p class='notif'>Depuis votre publication du ".$myFormatForView2." : ". $notif['descriptif']."</p>
+                                    <a href='viewpost.php?id_post=".$notif['id_post']."'> Voir la publication </a>
                                 </div>
                             </div>
                         

@@ -53,7 +53,9 @@ else{
         $req = mysqli_query($con,"SELECT COUNT(*) as ami FROM relation WHERE (id_user1 = '$idviewed' AND id_user2='$id_user' )OR (id_user2 = '$idviewed' AND id_user1='$id_user' )");
         $ami = $req->fetch_assoc();
         
-
+        $res = mysqli_query($con,"SELECT COUNT(*) as nb FROM requeteami WHERE id_from = '$id_user' AND id_to = '$idviewed'");
+        $requeteami = $res->fetch_assoc();
+        
 
     }
 }
@@ -160,12 +162,16 @@ else{
                     
                     <?php
                     if($ami['ami']==0){
-                    echo "<a href='ajouterAmi.php?id_user=".$user_viewed_id."'>
+                        if($requeteami['nb']==0){
+                            echo "<a href='ajouterAmi.php?id_user=".$user_viewed_id."'>
                         <button type='button' class='btn btn-success'><span class='glyphicon glyphicon-plus'></span> Ajouter au réseau </button>
-                    </a>
-                        ";
+                    </a>";
+                        }
+                        else{
+                        echo 
+                        "<button class='btn btn-success'><span class='glyphicon glyphicon-plus'></span> Demande en cours </button>";
                         
-                    }
+                    }}
                     else{
                         echo "<a href='chat/message.php?id_user=". $user_viewed_id ."'>
                         <button type='button' class='btn btn-info'><span class='glyphicon glyphicon-inbox'></span> Envoyer un message</button>

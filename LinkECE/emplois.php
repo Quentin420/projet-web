@@ -113,7 +113,7 @@ $dist_back=$user_obj['background'];
 
         $time = strtotime($post['date_emploi']);
         $myFormatForView = date("d/m/y à H:i", $time);
-
+        $txt = "Posté par ".$post['entreprise']. " le ".$myFormatForView." : ".$post['descriptif_emploi'];
         echo "<div class='row'>
                     
                 
@@ -133,8 +133,8 @@ $dist_back=$user_obj['background'];
                                 <p id='post-type'> ".$post['type_offre']." </p>
                                 <p id='post-offre'>Offre posté le ".$myFormatForView."</p>
                                 
-                                <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Postuler</button>
-                                <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>  
+                                <a href='mailto: 'recrutement@gmail.com' '><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Postuler</button></a> 
+                                <a href='mailto: ?subject=LinkECE - Offre d emploi à voir&body=<?=$txt?>'><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button></a>  
                                 
                                 </div>
                                 

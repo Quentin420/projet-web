@@ -228,6 +228,14 @@ else{
                             while($post = mysqli_fetch_array($resultat)){
                                 $time = strtotime($post['date_post']);
                             $myFormatForView = date("d/m/y à H:i", $time);
+                                
+                                 $id_post = $post['id_post'];
+                                
+        $req_like = mysqli_query($con,"SELECT COUNT(*) as nb FROM `like` WHERE `like`.id_post='$id_post'");
+        $nb = $req_like->fetch_assoc();
+        $req_like = mysqli_query($con,"SELECT COUNT(*) as nb FROM `like` WHERE `like`.id_post='$id_post' AND `like`.id_user='$id_user'");
+        $bool = $req_like->fetch_assoc();
+                                $url = "viewprofile.php?id_user=" . $user_viewed_id ;
                                 echo "
                                 
                                     <div class='well'>";
@@ -247,13 +255,22 @@ else{
                                         </div>
                                         <div class='col-sm-6'>
                                             <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
-                                            <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>
-                                            <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Like</button>  
+                                            <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>";
+                            
+                if($bool['nb']>0){
+                                    ?>
+                    
+                    <a href='dislike.php?id_post=<?= $id_post?>&id_url=<?= $url?>'><button class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Déjà aimé (<?=$nb['nb']?>)</button></a>
+                <?php
+                    }
+                                else{
+                                ?><a href='like.php?id_post=<?= $id_post?>&id_url=<?= $url?>'><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> J'aime (<?=$nb['nb']?>)</button></a><?php
+                                } echo "
                                         </div>
                                     </div>
                                     </div>
-                                ";
-                            }
+                                ";}
+                            
                     ?>
 
                 </div>

@@ -106,6 +106,33 @@ $dist_admin=$user_obj['admin'];
         </nav>
 
         <div class="container text-center">    
+           
+             <div class="col-sm-12">
+                    <h3 class="well">Ajouter un utilisateur</h3>
+                    
+                    <div class="row">
+                             <form class="form" action="addUser.php" method="post" autocomplete="off">  
+                                <div class="col-sm-12">
+                                    <div class='well'>
+                                        <p class='profil'><label>Nom<span class="req">*</span></label>
+                                        <input type="text" class="form-control" required autocomplete="off" name='nom' /></p>
+                                        <p class='profil'><label>Prénom <span class="req">*</span></label>
+                                        <input type="text"required autocomplete="off" class="form-control" name='prenom' /></p>
+                                        <p class='profil'><label>Pseudo<span class="req">*</span></label>
+                                        <input class="form-control" type="text"required autocomplete="off" name='username' /></p>
+                                        <p class='profil'><label>Adresse Email<span class="req">*</span></label>
+                                        <input class="form-control" type="email"required autocomplete="off" name='email' /></p>
+                                        <p class='profil'><label>Mot de passe<span class="req">*</span></label>
+                                        <input class="form-control" type="password"required autocomplete="off" name='password'/></p><br>
+                                        <input type="submit" value="Enregistrer" name="Enregistrer" class="btn btn-block btn-primary" /> 
+                                    </div>
+                                </div>
+                        </form>  
+                       
+                    </div>
+                </div>
+
+
             <div class="row">
                 
                 
@@ -135,32 +162,6 @@ $dist_admin=$user_obj['admin'];
                         }
                     }?> 
             </div>
-                
-            
-            <div class="col-sm-12">
-                    <h3 class="well">Ajouter un utilisateur</h3>
-                    
-                    <div class="row">
-                             <form class="form" action="addUser.php" method="post" autocomplete="off">  
-                                <div class="col-sm-12">
-                                    <div class='well'>
-                                        <p class='profil'><label>Nom<span class="req">*</span></label>
-                                        <input type="text" class="form-control" required autocomplete="off" name='nom' /></p>
-                                        <p class='profil'><label>Prénom <span class="req">*</span></label>
-                                        <input type="text"required autocomplete="off" class="form-control" name='prenom' /></p>
-                                        <p class='profil'><label>Pseudo<span class="req">*</span></label>
-                                        <input class="form-control" type="text"required autocomplete="off" name='username' /></p>
-                                        <p class='profil'><label>Adresse Email<span class="req">*</span></label>
-                                        <input class="form-control" type="email"required autocomplete="off" name='email' /></p>
-                                        <p class='profil'><label>Mot de passe<span class="req">*</span></label>
-                                        <input class="form-control" type="password"required autocomplete="off" name='password'/></p><br>
-                                        <input type="submit" value="Enregistrer" name="Enregistrer" class="btn btn-block btn-primary" /> 
-                                    </div>
-                                </div>
-                        </form>  
-                       
-                    </div>
-                </div>
 
 
         </div>

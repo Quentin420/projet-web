@@ -21,7 +21,7 @@ else{
         
         //Infos sur l'utilisateur dont on regarde le profil
         $user = mysqli_query($con, "DELETE FROM relation WHERE (id_user1 = '$idviewed' AND id_user2='$id_session' )OR (id_user2 = '$idviewed' AND id_user1='$id_session' )");
-        echo "<script type='text/javascript'> document.location = 'reseau.php?id_user=".id_session."'; </script>";    
+        echo "<script type='text/javascript'> document.location = 'reseau.php?id_user=".$id_session."'; </script>";    
     }
 }
 ?>

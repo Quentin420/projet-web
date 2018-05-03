@@ -15,7 +15,7 @@ else {
     $username = $_SESSION['username'];
     $id_user = $_SESSION['id_user'];
 
-    $req = "SELECT * FROM users";
+    $req = "SELECT * FROM users ORDER BY nom ASC";
     $resultat = mysqli_query($con, $req);
 }
 //Requete speciale pour recuperer avatar et background du user logged
@@ -134,10 +134,7 @@ $dist_admin=$user_obj['admin'];
 
 
             <div class="row">
-                
-                
                 <div class="col-sm-12">      
-           
                 <h3 class="well">Supprimer un utilisateur</h3>
                             <?php
                     while($post = mysqli_fetch_array($resultat)){

@@ -56,6 +56,14 @@ else{
         $res = mysqli_query($con,"SELECT COUNT(*) as nb FROM requeteami WHERE id_from = '$id_user' AND id_to = '$idviewed'");
         $requeteami = $res->fetch_assoc();
         
+        
+        $ruq = "SELECT DISTINCT id_post, id_user, prenom, nom, lieu, humeur, date_post, document, avatar, descriptif FROM post
+        NATURAL JOIN users
+        INNER JOIN relation ON post.id_user = relation.id_user1 OR post.id_user = relation.id_user2 
+        WHERE relation.id_user1 = '$id_user' OR relation.id_user2 = '$id_user' 
+        ORDER BY post.date_post DESC";
+        $resultatprofil = mysqli_query($con, $ruq);
+        
 
     }
 }
@@ -86,6 +94,11 @@ else{
 
             #post-humeur{
                 color: grey;
+                text-align: left;
+                font-weight: bold;
+            }
+            #post-ami{
+                color: black;
                 text-align: left;
                 font-weight: bold;
             }
@@ -226,6 +239,15 @@ else{
                         
 
                             while($post = mysqli_fetch_array($resultat)){
+                                
+                                $blindage=0;
+                                $test = mysqli_query($con,"SELECT * FROM commentaire WHERE id_post=".$post['id_post']."");
+                                $test_obj = $test->fetch_assoc();
+                                $dist_test=$test_obj['id_post'];
+                                if($post['id_post']==$test_obj['id_post']){
+                                    $blindage=1;
+                                }
+                                
                                 $time = strtotime($post['date_post']);
                             $myFormatForView = date("d/m/y à H:i", $time);
                                 
@@ -254,7 +276,9 @@ else{
                                             <p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$myFormatForView."</p>
                                         </div>
                                         <div class='col-sm-6'>
-                                            <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>
+                                            <form class='form' action='commentaire.php?id_post=".$post['id_post']."' method='post' autocomplete='off'>
+                                            <input type='text' row='3' class='form-control' name='commentaire' placeholder='Commenter' required>
+                                            <button type='submit' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button></form>
                                             <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>";
                             
                 if($bool['nb']>0){
@@ -270,6 +294,30 @@ else{
                                     </div>
                                     </div>
                                 ";}
+                                    if($blindage==1 ){
+                                    $req3 = "SELECT commentaire.id_commentaire, commentaire.id_user, commentaire.id_post, commentaire.commenatire, commentaire.date_commentaire, users.id_user, users.prenom, users.nom FROM commentaire, users WHERE commentaire.id_user = users.id_user AND commentaire.id_post=".$dist_test." ORDER BY commentaire.date_commentaire";
+    $resultat3 = mysqli_query($con, $req3);
+                                    while($sku = mysqli_fetch_array($resultat3)){
+                                                           $ish = strtotime($sku['date_commentaire']);
+        $myFormatForView = date("d/m/y à H:i", $ish);
+                                    echo " 
+             
+                                    <div class='col-sm-12'>
+
+
+                            <div class='well'>
+                                    
+                                    <p id='post-ami'> Commenté par ".$sku['prenom'].' '.$sku['nom']."</p>
+                                    <p id='post-description'> ".$sku['commenatire']."</p>
+                                    <p id='post-lieu'> ".$myFormatForView."</p>
+                               
+                                </div>
+                                </div>
+                                    
+                                    
+                                    
+                                    ";}
+                                }
                             
                     ?>
 

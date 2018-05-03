@@ -27,6 +27,7 @@ $av = mysqli_query($con,"SELECT * FROM users WHERE id_user='$id_user'");
 $user_obj = $av->fetch_assoc();
 $dist_av=$user_obj['avatar'];
 $dist_back=$user_obj['background'];
+$dist_admin=$user_obj['admin'];
 ?>
 
 <!DOCTYPE html>
@@ -97,6 +98,7 @@ $dist_back=$user_obj['background'];
                         <li><a href="chat/message.php"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
                         <li><a href="emplois.php"><span class="glyphicon glyphicon-search"></span> Emplois</a></li>
                         <li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span> Notifications</a></li>
+                        <?php if($dist_admin==1){echo "<li><a href='admin.php'><span class='glyphicon glyphicon-eye-open'></span> Page Admin</a></li>";}?>
                     </ul>
 
 
@@ -214,7 +216,7 @@ $dist_back=$user_obj['background'];
                 <div class="well">
                     <p>Évènements à venir :</p>
                     <p><strong>Paris</strong></p>
-                    <p>Vendredi 27 Novembre 2015</p>
+                    <p>Vendredi 27 Novembre 2018</p>
                 </div>
 
 

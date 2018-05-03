@@ -25,22 +25,7 @@ else {
         //Id du post qu'on regarde
         $idviewed = $_GET['id_post'];
 
-                //Recupère les post de l'utilisateur
-                 $resultat = mysqli_query($con,"SELECT * FROM post WHERE id_post='$idviewed' ORDER BY date_post DESC");
-
-                //Assoc de l'user viewed
-                $user_viewed = mysqli_fetch_assoc($user);
-                //On récupère tous ses paramètres
-                $user_viewed_id= $user_viewed['id_user'];
-                $user_viewed_nom = $user_viewed['nom'];
-                $user_viewed_prenom = $user_viewed['prenom'];
-                $user_viewed_avatar = $user_viewed['avatar'];
-                $user_viewed_email = $user_viewed['email'];
-                $user_viewed_username = $user_viewed['username'];
-                $user_viewed_adresse = $user_viewed['adresse'];
-                $user_viewed_resume = $user_viewed['resume'];
-                $user_viewed_promotion = $user_viewed['promotion'];
-                $user_viewed_cv= $user_viewed['cv'];
+                
 
  
         $ruq = "SELECT DISTINCT id_post, id_user, prenom, nom, lieu, humeur, date_post, document, avatar, descriptif FROM post
@@ -163,7 +148,7 @@ else {
                     
                     <?php
                         
-                        while($post = mysqli_fetch_array($resultat)){
+                        while($post = mysqli_fetch_array($resultatprofil)){
                             $blindage=0;
                             $test = mysqli_query($con,"SELECT * FROM commentaire WHERE id_post=".$post['id_post']."");
                             $test_obj = $test->fetch_assoc();

@@ -185,7 +185,9 @@ else {
                     <br>
 
                     <h3 class="well">Activité</h3>
+                    
                     <?php
+                        
                         while($post = mysqli_fetch_array($resultat)){
                             $blindage=0;
                             $test = mysqli_query($con,"SELECT * FROM commentaire WHERE id_post=".$post['id_post']."");
@@ -205,30 +207,38 @@ else {
                             if($post['document']){
                                 echo"<img src=".'img/'.$post['document']." width='400px' ><p><br></p>";
                             }
-                            echo" <div class='row'><div class='col-sm-10'><p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$myFormatForView."</p></div>
-                                  <div class='col-sm-2'><a href='suppPost.php?id_post=".$post['id_post']."' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Supprimer</a></div></div>
-                                    </div>";  
+                            echo" <div class='row'>
+                                        <div class='col-sm-10'>
+                                            <p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$myFormatForView."</p>
+                                        </div>
+                                        <div class='col-sm-2'>
+                                            <a href='suppPost.php?id_post=".$post['id_post']."' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Supprimer</a>
+                                        </div>
+                                    </div>
+                                    ";  
 
+                            echo "</div>";
+                            
                             if($blindage==1 ){
                                 $req3 = "SELECT commentaire.id_commentaire, commentaire.id_user, commentaire.id_post, commentaire.commenatire, commentaire.date_commentaire, users.id_user, users.prenom, users.nom FROM commentaire, users WHERE commentaire.id_user = users.id_user AND commentaire.id_post=".$dist_test." ORDER BY commentaire.date_commentaire";
                                 $resultat3 = mysqli_query($con, $req3);
                                 while($sku = mysqli_fetch_array($resultat3)){
                                     $ish = strtotime($sku['date_commentaire']);
                                     $myFormatForView = date("d/m/y à H:i", $ish);
-                                    echo " 
-                                        <div class='col-sm-12'>
+                                    echo "
+                                    <div class='row'>
+                                        <div class='col-sm-8'>
                                             <div class='well'>
                                                 <p id='post-ami'> Commenté par ".$sku['prenom'].' '.$sku['nom']."</p>
                                                 <p id='post-description'> ".$sku['commenatire']."</p>
                                                 <p id='post-lieu'> ".$myFormatForView."</p>
                                             </div>
                                         </div>
-                                ";}
-                            }echo "
-                            </div>  
-                        </div>";
+                                    </div>";
+                                }
+                            }
                         }?>    
-
+                    
                 </div>
             </div>
         </div>

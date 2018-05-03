@@ -20,6 +20,7 @@ else {
     
     $sql="UPDATE users SET resume='$resume' WHERE id_user='$id_user'"; 
     if ($mysqli->query($sql) === TRUE) {
+        $_SESSION['resume']=$resume;
         echo "<script type='text/javascript'> document.location = 'profil.php'; </script>";
     } 
     else{

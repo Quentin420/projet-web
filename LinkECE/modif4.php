@@ -20,6 +20,7 @@ else {
     
     $sql="UPDATE users SET adresse='$adresse' WHERE id_user='$id_user'"; 
     if ($mysqli->query($sql) === TRUE) {
+        $_SESSION['adresse']=$adresse;
         echo "<script type='text/javascript'> document.location = 'profil.php'; </script>";
     } 
     else{

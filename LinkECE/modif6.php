@@ -21,6 +21,7 @@ else {
     { 
         $sql="UPDATE users SET promotion='$promotion' WHERE id_user='$id_user'"; 
         if ($mysqli->query($sql) === TRUE) {
+            $_SESSION['promotion']=$promotion;
             echo "<script type='text/javascript'> document.location = 'profil.php'; </script>";
         } 
         else{

@@ -121,7 +121,7 @@ $dist_back=$user_obj['background'];
 
                                     <div class='col-sm-2'><a href='suppAmi.php?id_user=".$info_user_from['id_user']."' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Refuser</a></div>
 
-                                    <div class='col-sm-2'><a href='suppAmi.php?id_user=".$info_user_from['id_user']."' class='btn btn-success'><span class='glyphicon glyphicon-remove-circle'></span> Accepter</a></div>
+                                    <div class='col-sm-2'><a href='accepterrequete.php?id_demandeur=".$post['id_from']."&id_requete=".$post['id_requete']."' class='btn btn-success'><span class='glyphicon glyphicon-remove-circle'></span> Accepter</a></div>
                                 </div>
                                 </div> 
                                 </div>

@@ -182,7 +182,7 @@ $dist_admin=$user_obj['admin'];
 
         $time = strtotime($post['date_post']);
         $myFormatForView = date("d/m/y à H:i", $time);
-
+        $txt = "Posté par ".$post['prenom']. " ".$post['nom']." depuis ".$post['lieu']." le ".$myFormatForView." : ".$post['descriptif'];
         echo "<div class='row'>
                     
                         <div class='col-sm-2'>
@@ -214,8 +214,10 @@ $dist_admin=$user_obj['admin'];
         echo "
                                 <div class='row'>
                                 <div class='col-sm-6'>
-                                <p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$myFormatForView."</p>
-                                <button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button>";
+                                <p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$myFormatForView."</p>";?>
+                                
+                                <a href="mailto: ?subject=LinkECE - Post à voir&body=<?=$txt?>"><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button></a><?php
+                                
                                 if($bool['nb']>0){
                                     echo "<a href='dislike.php?id_post=". $post['id_post'] ."&id_url=accueil.php'><button class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Déjà aimé (".$nb['nb'].")</button></a>";
                                 }else{

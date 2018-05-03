@@ -159,7 +159,7 @@ else {
                     
                     <br>
 
-                    <h3 class="well">Votre publication</h3>
+                    <h3 class="well">Publication LinkECE</h3>
                     
                     <?php
                         

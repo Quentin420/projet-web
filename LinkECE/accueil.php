@@ -228,8 +228,7 @@ $dist_admin=$user_obj['admin'];
                                 echo "
                                 </div>
                                 <div class='col-sm-6 '>
-
-                                <p> <a href='viewpost.php?id_post=".$notif['id_post']."'> Voir la publication </a></p>
+                                <p> <a href='viewpost.php?id_post=".$post['id_post']."'> Voir la publication </a></p>
 
                                 <form class='form' action='commentaire.php?id_post=".$post['id_post']."' method='post' autocomplete='off'>
                                    
@@ -241,7 +240,7 @@ $dist_admin=$user_obj['admin'];
                                 </div>
                             </div>";
                                         if($blindage==1 ){
-                                    $req3 = "SELECT commentaire.id_commentaire, commentaire.id_user, commentaire.id_post, commentaire.commenatire, commentaire.date_commentaire, users.id_user, users.prenom, users.nom FROM commentaire, users WHERE commentaire.id_user = users.id_user AND commentaire.id_post=".$dist_test." ORDER BY commentaire.date_commentaire LIMIT 4";
+                                    $req3 = "SELECT commentaire.id_commentaire, commentaire.id_user, commentaire.id_post, commentaire.commenatire, commentaire.date_commentaire, users.id_user, users.prenom, users.nom FROM commentaire, users WHERE commentaire.id_user = users.id_user AND commentaire.id_post=".$dist_test." ORDER BY commentaire.date_commentaire DESC LIMIT 4";
     $resultat3 = mysqli_query($con, $req3);
                                     while($sku = mysqli_fetch_array($resultat3)){
                                                            $ish = strtotime($sku['date_commentaire']);

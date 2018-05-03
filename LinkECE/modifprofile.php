@@ -16,7 +16,7 @@ else {
     $email = $_SESSION['email'];
     $username = $_SESSION['username'];
     $id_user = $_SESSION['id_user'];
-    
+    $dist_admin=$_SESSION['admin'];
    
     
 
@@ -60,7 +60,6 @@ else {
                 text-align:left; 
             }
             .entete{
-                color: white;
                 text-align:left;
             }
         </style>
@@ -85,6 +84,7 @@ else {
                         <li><a href="messagerie.php"><span class="glyphicon glyphicon-envelope"></span> Messagerie</a></li>
                         <li><a href="emplois.php"><span class="glyphicon glyphicon-search"></span> Emplois</a></li>
                         <li><a href="notifications.php"><span class="glyphicon glyphicon-bell"></span> Notifications</a></li>
+                        <?php if($dist_admin==1){echo "<li><a href='admin.php'><span class='glyphicon glyphicon-eye-open'></span> Page Admin</a></li>";}?>
                     </ul>
 
 
@@ -100,23 +100,19 @@ else {
             <div class="row">
 
                 <div class="col-sm-3">
-                    <h1 class="entete">Profil</h1>
                     <div class="well">
+                    <h1 class="entete"><?= $prenom.' '.$nom?></h1>
+                    <p>En réseau avec <?= $nb_relation['nb_relation']+$nb['nb_relation']?> personnes.</p>
+                    
                         
                        <img src="<?= $dist_av ?>" class="img-circle" height="150" width="150" alt="Avatar">
                        
-                        
+                        <br>
                     </div> 
                 </div>
 
                 <div class="col-sm-9">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <h2 class="entete"><?= $prenom.' '.$nom?></h2>
-                            <p class="entete">En réseau avec <?= $nb_relation['nb_relation']+$nb['nb_relation']?> personnes.</p>
-                        </div>
-
-                    </div>
+                    
                     
                     <div class="row">
                              <form class="form" action="modif.php" method="post" enctype="multipart/form-data" autocomplete="off">  

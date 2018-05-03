@@ -17,10 +17,10 @@ else{
     {
         //Id de l'utilisateur dont on regarde le profil
         $idpost = $_GET['id_post'];
-        
+        $url=$_GET['id_url'];
         //Infos sur l'utilisateur dont on regarde le profil
         $user = mysqli_query($con, "DELETE FROM `like` WHERE (id_user ='$id_session' AND id_post='$idpost')");
-        echo "<script type='text/javascript'> document.location = 'accueil.php'; </script>";    
+        echo "<script type='text/javascript'> document.location = '".$url."'; </script>";    
     }
 }
 ?>

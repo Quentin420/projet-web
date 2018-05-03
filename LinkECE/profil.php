@@ -5,8 +5,8 @@ include('connect.php');
 
 // Check if user is logged in using the session variable
 if ( $_SESSION['logged_in'] != 1 ) {
-     $_SESSION['message'] = "Vous devez être connecté pour acceder à ce contenu!";
-  header("location: login-system/error.php");    
+    $_SESSION['message'] = "Vous devez être connecté pour acceder à ce contenu!";
+    header("location: login-system/error.php");    
 }
 else {
     // Makes it easier to read
@@ -18,14 +18,18 @@ else {
     $promotion = $_SESSION['promotion'];
     $adresse = $_SESSION['adresse'];
     $resume = $_SESSION['resume'];
-    
+
 
     $result = mysqli_query($con,"SELECT COUNT(*) as nb_relation FROM relation WHERE id_user1 = '$id_user'OR id_user2 = '$id_user'");
     $nb_relation = $result->fetch_assoc();
-   
-    
+
+
+
+
+
+
     $resultat = mysqli_query($con,"SELECT * FROM post WHERE id_user='$id_user' ORDER BY date_post DESC");
-    
+
     //requete pour recuperer avatar et background du user logged
     $av = mysqli_query($con,"SELECT * FROM users WHERE id_user='$id_user'");
     $user_obj = $av->fetch_assoc();
@@ -33,7 +37,7 @@ else {
     $dist_back=$user_obj['background'];
     $dist_cv=$user_obj['cv'];
     $dist_admin=$user_obj['admin'];
-    
+
 }
 ?>
 
@@ -54,13 +58,18 @@ else {
                 color: white;
                 padding: 15px;
             }
-            
+
             .infos{
                 text-align: left;
             }
 
             #post-humeur{
                 color: grey;
+                text-align: left;
+                font-weight: bold;
+            }
+            #post-ami{
+                color: black;
                 text-align: left;
                 font-weight: bold;
             }
@@ -76,8 +85,8 @@ else {
                 text-align: left;
             }
 
-            
-            
+
+
         </style>
     </head>
     <body background="<?= $dist_back ?>">
@@ -114,48 +123,48 @@ else {
 
         <div class="container text-center">    
             <div class="row">
-                    
+
                 <div class="col-sm-3">
                     <br>
                     <div class="well">
-                    <h1 class="entete"><?= $prenom.' '.$nom?></h1>
-                    <?php if($nb_relation['nb_relation']>1){
-                                echo "<p class='entete'>En réseau avec ". ($nb_relation['nb_relation'])." personnes</p>";
-                            }
+                        <h1 class="entete"><?= $prenom.' '.$nom?></h1>
+                        <?php if($nb_relation['nb_relation']>1){
+    echo "<p class='entete'>En réseau avec ". ($nb_relation['nb_relation'])." personnes</p>";
+}
                             else{
                                 echo "<p class='entete'>En réseau avec ". ($nb_relation['nb_relation'])." personne</p>";
                             }?>
-                       
+
                         <br>
-                       <img src="<?= $dist_av ?>" class="img-circle" height="150" width="150" alt="Avatar">
-                       
-                        
+                        <img src="<?= $dist_av ?>" class="img-circle" height="150" width="150" alt="Avatar">
+
+
                     </div>
                     <div class="well">
-                    <a href="<?= $dist_cv ?>" download="<?= $dist_cv ?>">
-                        <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> Consulter CV</button>
-                    </a>  <p></p>
-                    <a href="modifprofile.php">
-                        <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-cog"></span> Modifier profil</button>
-                    </a>  
-                        </div>
+                        <a href="<?= $dist_cv ?>" download="<?= $dist_cv ?>">
+                            <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> Consulter CV</button>
+                        </a>  <p></p>
+                        <a href="modifprofile.php">
+                            <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-cog"></span> Modifier profil</button>
+                        </a>  
+                    </div>
                 </div>
 
                 <div class="col-sm-9">
                     <div class="row">
-                        
+
                         <div class="col-sm-5">
                             <h3 class="well">Informations</h3>
                             <div class="well">
-                            <div class="infos">
-                                
-                                <p>  Pseudo LinkECE : <?= $username ?></p>
-                                <p>  Promotion : <?= $promotion ?></p>
-                                <p>  Adresse email : <a href="mailto:<?= $email ?>"><?= $email ?></a></p>
-                                <p>  Adresse : <?= $adresse ?></p>
-                                <p>  </p>
-                                
-                            </div>
+                                <div class="infos">
+
+                                    <p>  Pseudo LinkECE : <?= $username ?></p>
+                                    <p>  Promotion : <?= $promotion ?></p>
+                                    <p>  Adresse email : <a href="mailto:<?= $email ?>"><?= $email ?></a></p>
+                                    <p>  Adresse : <?= $adresse ?></p>
+                                    <p>  </p>
+
+                                </div>
                             </div>
 
                         </div>
@@ -164,50 +173,62 @@ else {
                         <div class="col-sm-7">
                             <h3 class="well">Résumé</h3>
                             <div class="well">
-                            <div class="infos">
-                                
-                                <p><?= $resume ?></p>
-                            </div>
+                                <div class="infos">
+
+                                    <p><?= $resume ?></p>
+                                </div>
                             </div>
                         </div>
 
 
                     </div>
                     <br>
-                
 
+                    <h3 class="well">Activité</h3>
+                    <?php
+                        while($post = mysqli_fetch_array($resultat)){
+                            $blindage=0;
+                            $test = mysqli_query($con,"SELECT * FROM commentaire WHERE id_post=".$post['id_post']."");
+                            $test_obj = $test->fetch_assoc();
+                            $dist_test=$test_obj['id_post'];
+                            if($post['id_post']==$test_obj['id_post']){
+                                $blindage=1;
+                            }
+                            $time = strtotime($post['date_post']);
+                            $myFormatForView = date("d/m/y à H:i", $time);
+                            echo "
+                                <div class='well'>";
+                            if($post['humeur'] != "---"){
+                                echo "<p id='post-humeur'>".$post['humeur']."</p>";
+                            }
+                            echo "<p id='post-description'>".$post['descriptif']."</p>";
+                            if($post['document']){
+                                echo"<img src=".'img/'.$post['document']." width='400px' ><p><br></p>";
+                            }
+                            echo" <div class='row'><div class='col-sm-10'><p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$myFormatForView."</p></div>
+                                  <div class='col-sm-2'><a href='suppPost.php?id_post=".$post['id_post']."' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Supprimer</a></div></div>
+                                    </div>";  
 
+                            if($blindage==1 ){
+                                $req3 = "SELECT commentaire.id_commentaire, commentaire.id_user, commentaire.id_post, commentaire.commenatire, commentaire.date_commentaire, users.id_user, users.prenom, users.nom FROM commentaire, users WHERE commentaire.id_user = users.id_user AND commentaire.id_post=".$dist_test." ORDER BY commentaire.date_commentaire";
+                                $resultat3 = mysqli_query($con, $req3);
+                                while($sku = mysqli_fetch_array($resultat3)){
+                                    $ish = strtotime($sku['date_commentaire']);
+                                    $myFormatForView = date("d/m/y à H:i", $ish);
+                                    echo " 
+                                        <div class='col-sm-12'>
+                                            <div class='well'>
+                                                <p id='post-ami'> Commenté par ".$sku['prenom'].' '.$sku['nom']."</p>
+                                                <p id='post-description'> ".$sku['commenatire']."</p>
+                                                <p id='post-lieu'> ".$myFormatForView."</p>
+                                            </div>
+                                        </div>
+                                ";}
+                            }echo "
+                            </div>  
+                        </div>";
+                        }?>    
 
-                   <h3 class="well">Activité</h3>
-                   
-                                <?php
-                                
-                                
-                                while($post = mysqli_fetch_array($resultat)){
-                                    $time = strtotime($post['date_post']);
-                                $myFormatForView = date("d/m/y à H:i", $time);
-                                echo "
-                                    <div class='well'>";
-                                    
-                                    if($post['humeur'] != "---"){
-                                        echo "<p id='post-humeur'>".$post['humeur']."</p>";
-                                    }
-                                    echo "<p id='post-description'>".$post['descriptif']."</p>";
-
-                                    if($post['document']){
-                                        echo"<img src=".'img/'.$post['document']." width='400px' ><p><br></p>";
-                                    
-                                    }
-                                       echo" <div class='row'><div class='col-sm-10'><p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$myFormatForView."</p></div>
-                                       <div class='col-sm-2'><a href='suppPost.php?id_post=".$post['id_post']."' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Supprimer</a></div></div>
-                                   
-                                </div>";    
-                    
-                                
-                                }?>
-                        
-                            
-                    </div>
                 </div>
             </div>
         </div>
@@ -218,4 +239,3 @@ else {
 
     </body>
 </html>
-

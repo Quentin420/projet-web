@@ -284,7 +284,7 @@ $dist_admin=$user_obj['admin'];
                                 if($post['humeur'] != "---"){
                                     echo "<p id='post-humeur'>".$post['humeur']."</p>";
                                 }
-                                echo "<p id='post-description'>".$post['descriptif']."</p>";
+                                echo "<p id='post-description'>".$post['descriptif']."</p> ";
 
                                 if($post['document']){
                                     echo"<img src=".'img/'.$post['document']." width='400px' ><p><br></p>";
@@ -294,7 +294,7 @@ $dist_admin=$user_obj['admin'];
                                         <div class='col-sm-6'>
                                             <p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$myFormatForView."</p>
                                         </div>
-                                        <div class='col-sm-6 '>
+                                        <div class='col-sm-6 '><p> <a href='viewpost.php?id_post=".$post['id_post']."'> Voir la publication </a></p>
                                         <form class='form' action='commentaire.php?id_post=".$post['id_post']."' method='post' autocomplete='off'>       
                                             <input type='text' class='form-control' name='commentaire' placeholder='Écrire un commentaire...' required><p></p>
                                             <button type='submit' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-comment'></span> Commenter</button>

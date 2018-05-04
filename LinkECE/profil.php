@@ -216,6 +216,7 @@ else {
                             echo" <div class='row'>
                                         <div class='col-sm-10'>
                                             <p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$myFormatForView."</p>
+                                            <p> <a href='viewpost.php?id_post=".$post['id_post']."'> Voir la publication </a></p>
                                         </div>
                                         <div class='col-sm-2'>
                                             <a href='suppPost.php?id_post=".$post['id_post']."' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Supprimer</a>

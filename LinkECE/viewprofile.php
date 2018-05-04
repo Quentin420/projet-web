@@ -308,7 +308,7 @@ $dist_admin=$user_obj['admin'];
                                 }
                                 
                                 else{
-                                    ?><a href='like.php?id_post=<?= $id_post?>&id_url=<?= $url?>'><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> J'aime (<?=$nb['nb']?>)</button></a><?php
+                                    ?><a href='like.php?id_post=<?= $id_post?>&id_url=<?= $url?>'><button type='button' class='btn btn-success btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> J'aime (<?=$nb['nb']?>)</button></a><?php
                                 } 
                                 echo "
                                         

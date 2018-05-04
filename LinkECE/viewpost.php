@@ -172,11 +172,8 @@ else {
                                         <div class='col-sm-10'>
                                             <p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$myFormatForView."</p>
                                         </div>
-                                        <div class='col-sm-2'>
-                                            <a href='suppPost.php?id_post=".$post['id_post']."' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Supprimer</a>
-                                        </div>
-                                    </div>
-                                    ";  
+                                    </div>";
+                                
 
                             echo "</div>";
                             
@@ -192,8 +189,14 @@ else {
                                             <div class='col-sm-9'>
                                                 <div class='well'>                                    
                                                     <p id='post-ami'> Commentaire de ".$sku['prenom'].' '.$sku['nom']."<span id='date-comment'>(".$myFormatForView.")<span></p>
-                                                    <p id='post-description'> ".$sku['commenatire']."</p>
-                                                </div>
+                                                    <p id='post-description'> ".$sku['commenatire']."</p>";
+                                                   
+                                                    if($sku['id_user']==$id_user){
+                                                        echo"
+                                                        <a href='suppcommentaire.php?id_commentaire=".$sku['id_commentaire']."&id_post=".$idviewed."' class='btn btn-danger'><span class='glyphicon glyphicon-remove-circle'></span> Supprimer</a>";
+                                                    }
+                                                echo "</div>
+                                                
                                             </div>
                                         </div>";
                                 }

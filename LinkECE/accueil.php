@@ -217,12 +217,12 @@ $dist_admin=$user_obj['admin'];
                                 <p id='post-lieu'> Posté depuis ".$post['lieu']." le ".$myFormatForView."</p>";?>
 
                                 
-                                <a href="mailto: ?subject=LinkECE - Post à voir&body=<?=$txt?>"><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button></a><?php
+                                <a href="mailto: ?subject=LinkECE - Post à voir&body=<?=$txt?>"><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-share'></span> Partager</button></a><p></p><?php
                                 
                                 if($bool['nb']>0){
                                     echo "<a href='dislike.php?id_post=". $post['id_post'] ."&id_url=accueil.php'><button class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> Déjà aimé (".$nb['nb'].")</button></a>";
                                 }else{
-                                    echo "<a href='like.php?id_post=".$post['id_post']."&id_url=accueil.php'><button type='button' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> J'aime (".$nb['nb'].")</button></a>";
+                                    echo "<a href='like.php?id_post=".$post['id_post']."&id_url=accueil.php'><button type='button' class='btn btn-success btn-sm'><span class='glyphicon glyphicon-thumbs-up'></span> J'aime (".$nb['nb'].")</button></a>";
                                 }
         
                                 echo "
